@@ -1,0 +1,31 @@
+﻿@model IEnumerable<PCbuild_ASP.MVC_.Domain.Entities.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="grid">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.GameID</td>
+            <td>@Html.ActionLink(item.Name, "Edit", new { item.GameID })</td>
+            <td>
+                @using (Html.BeginForm("Delete", "Admin"))
+                {
+                    @Html.Hidden("GameID", item.GameID)
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Add a new product", "Create")</p>
+

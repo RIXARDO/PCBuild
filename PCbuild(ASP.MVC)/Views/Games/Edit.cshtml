@@ -1,0 +1,45 @@
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.Game
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.GameID);
+    <div>Name: @Html.EditorFor(x => x.Name);</div>
+    <div>AverangeRequirements: @Html.EditorFor(x => x.AverangeRequirements);</div>
+    <div>Image(low)</div>
+    <div>
+        @if (Model.ImageData32 == null)
+        {
+            @:None
+        }
+        else
+        {
+            <img src="@Url.Action("GetImage", "Build", new {Model.GameID, big=false })" />
+        }
+    </div>
+    <div>
+        Upload new image:
+        <input type="file" name="Image32" />
+    </div>
+    <div>Image(high)</div>
+    <div>
+        @if (Model.ImageData64 == null)
+        {
+            @:None
+        }
+        else
+        {
+            <img width="150" height="150" src="@Url.Action("GetImage", "Build", new { Model.GameID, big=true })" />
+        }
+    </div>
+    <div>
+        Upload new image:
+        <input type="file" name="Image64" />
+    </div>
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Back", "Index");
+}
