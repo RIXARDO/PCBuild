@@ -23,7 +23,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
         
         // GET: Show
-        public ViewResult Index(int page=1)
+        public ViewResult ListCPU(int page=1)
         {
             CPUListViewModel model = new CPUListViewModel
             {
@@ -40,6 +40,5 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(model);
         }
 
-        
     }
 }

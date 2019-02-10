@@ -1,0 +1,19 @@
+﻿@using PCbuild_ASP.MVC_.HtmlHelpers;
+@model PCbuild_ASP.MVC_.Models.CPUListViewModel
+
+@{
+    ViewBag.Title = "CPUs";
+}
+
+<h2>ListCPU</h2>
+
+<div>
+    @foreach(var c in Model.CPUs)
+    {
+        Html.RenderPartial("CPUSummary", c);
+    }
+</div>
+
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x=>Url.Action("ListCPU",new { page = x}))
+</div>
