@@ -27,9 +27,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         {
             CPUListViewModel model = new CPUListViewModel
             {
-                CPUs = CPURepository.CPUs.
-                OrderBy(x => x.ProcessorNumber).
-                Skip((page - 1) * PageSize),
+                CPUs = CPURepository.CPUs
+                .OrderBy(x => x.ProcessorNumber)
+                .Skip((page - 1) * PageSize),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
@@ -40,5 +40,38 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(model);
         }
 
+        public ViewResult ListGPU(int page = 1)
+        {
+            GPUListViewModel model = new GPUListViewModel
+            {
+                GPUs = GPURepository.GPUs
+                .OrderBy(x=>x.Name)
+                .Skip((page-1)*PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = GPURepository.GPUs.Count()
+                }
+            };
+            return View(model);
+        }
+
+        public ViewResult ListGame(int page = 1)
+        {
+            GameListViewModel model = new GameListViewModel
+            {
+                Games = gameRepository.Games
+                .OrderBy(x => x.Name)
+                .Skip((page - 1) * PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = gameRepository.Games.Count()
+                }
+            };
+            return View(model);
+        }
     }
 }

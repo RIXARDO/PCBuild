@@ -1,0 +1,49 @@
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.GPU
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "GPUs", FormMethod.Post))
+{
+<div class="form-horizontal">
+
+
+    @Html.HiddenFor(x => x.GPUID)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Manufacture, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.Manufacture)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.Name, new { @class = " col-md-10 form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Architecture, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.Architecture, new { @class = " col-md-10 form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.BoostClock, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.BoostClock, new { @class = " col-md-10 form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.FrameBuffer, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.FrameBuffer, new { @class = " col-md-10 form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.MemorySpeed, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.MemorySpeed, new { @class = "col-md-10 form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.AverageBench, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(x => x.AverageBench, new { @class = " col-md-10 form-control" })
+    </div>
+    @*<div class="form-group"> @Html.EditorFor(x => x.prices.FirstOrDefault().Amount)</div>*@
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</div>
+    }
+    @Html.ActionLink("Back", "Index")

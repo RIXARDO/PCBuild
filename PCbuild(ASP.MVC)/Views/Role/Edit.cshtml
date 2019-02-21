@@ -1,0 +1,20 @@
+﻿@model PCbuild_ASP.MVC_.Models.Identity.EditRoleModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true,"")
+        @Html.HiddenFor(x=>x.Id)
+        <p>Name: @Html.EditorFor(x=>x.Name)</p>
+        <p>Discription: @Html.EditorFor(x=>x.Description)</p>
+        <p><input type="submit" value="Confirm" /></p>
+    </div>
+}

@@ -1,0 +1,82 @@
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.CPU
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CPU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProcessorNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProcessorNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfCores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfCores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfThreads)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfThreads)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PBF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PBF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cache)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cache)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TDP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TDP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverangeBench)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AverangeBench)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CPUID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

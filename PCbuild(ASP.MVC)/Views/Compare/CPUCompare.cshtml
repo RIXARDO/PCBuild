@@ -1,0 +1,85 @@
+﻿@using PCbuild_ASP.MVC_.Domain.Entities
+@model PCbuild_ASP.MVC_.Models.CompareIndexViewModel<CPU>
+@{
+    ViewBag.Title = "CPU Compare";
+}
+
+<h2>CPU Compare</h2>
+
+@if (Model != null)
+{
+<table class="table">
+    <tr>
+        <td></td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.CPUID))
+        {
+            <td>
+                @using (Html.BeginForm("CPURemoveFromCompare", "Compare",FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.returnUrl)
+                    @Html.Hidden("CPUID",item)
+                    <input type="submit" value="Remove" />
+                }
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>Manufacture</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Manufacture))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>Name</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.ProcessorNumber))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>NumberOfCores</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.NumberOfCores))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>NumberOfThreads</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.NumberOfThreads))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>Cache</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Cache))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>PBF</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.PBF))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>TDP</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.TDP))
+        {
+            <td>@item</td>
+        }
+    </tr>
+    <tr>
+        <td>AverangeBench</td>
+        @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverangeBench))
+        {
+            <td>@item</td>
+        }
+    </tr>
+</table>
+}
+
+<a href="@Model.returnUrl">Rerurn back</a>

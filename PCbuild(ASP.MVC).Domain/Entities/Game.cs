@@ -25,5 +25,23 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public byte[] ImageData64 { get; set; }
 
         public string ImageMimeType64 { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+               Game game = (Game)obj;
+                return (GameID == game.GameID);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return GameID<<2;
+        }
     }
 }

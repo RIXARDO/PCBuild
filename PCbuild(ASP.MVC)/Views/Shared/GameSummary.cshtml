@@ -1,0 +1,13 @@
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.Game
+
+<div class="item">
+    <h3>@Model.Name</h3>
+    @if(@Model.ImageData64==null)
+    {
+        
+    }
+    else
+    {
+        <img src="@Url.Action("GetImage", "Build", new { Model.GameID, big = true})" />
+    }
+</div>

@@ -1,0 +1,47 @@
+﻿@model string
+
+@*<script language="javascript">
+</script>
+<script>
+    var UL = document.getElementById("smenu");
+    UL.children.forEach(function (item, i, UL) {
+        var ch = item.firstChild;
+        if (id =="@Model") {
+            item.classList.add("active");
+        }
+    });
+</script>*@
+
+<ul id="smenu" class="nav nav-pills">
+    <li
+        @{ 
+            var cpu = "";
+            if (@Model == "CPU")
+            {
+                cpu = "active";
+            }
+        }
+         class = @cpu 
+            
+        >@Html.ActionLink("CPU","ListCPU", "Show", new { @id="CPU" })</li>
+    <li
+        @{ 
+            var gpu = "";
+            if (@Model == "GPU")
+            {
+                gpu = "active";
+            }
+        }
+         class = @gpu
+        >@Html.ActionLink("GPU","ListGPU","Show", new { @id="GPU" })</li>
+    <li
+        @{ 
+            var game = "";
+            if (@Model == "Game")
+            {
+                game = "active";
+            }
+        }
+         class = @game
+        >@Html.ActionLink("Game","ListGame","Show", new { @id ="Game" })</li>
+</ul>

@@ -1,0 +1,27 @@
+﻿@model PCbuild_ASP.MVC_.Models.Identity.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.ValidationSummary(false)
+        @Html.Hidden("returnUrl", (string)ViewBag.returnUrl)
+        <p>
+            <label>Login</label>
+            <div>
+                @Html.EditorFor(x=>x.Login)
+            </div>
+        </p>
+        <p>
+            <label>Password</label>
+            <div>
+                @Html.EditorFor(x=>x.Password)
+            </div>
+        </p>
+    </div>
+}

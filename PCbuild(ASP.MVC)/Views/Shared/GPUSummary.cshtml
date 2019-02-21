@@ -1,0 +1,14 @@
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.GPU
+
+<div class="item">
+    <h3>@Model.Manufacture @Model.Name</h3>
+    <p>Memory speed: @Model.MemorySpeed</p>
+    <p>Boost Clock: @Model.BoostClock</p>
+    <p>AverageBench: @Model.AverageBench</p>
+    @using (Html.BeginForm("GPUAddToCompare", "Compare"))
+    {
+        @Html.HiddenFor(x=>x.GPUID)
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input type="submit" value="Add to compare" />
+    }
+</div>

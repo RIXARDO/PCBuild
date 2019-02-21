@@ -7,6 +7,12 @@
 
 <h2>ListCPU</h2>
 
+<div class="showmenu">
+    @{
+        Html.RenderPartial("ShowMenu","CPU");
+    }
+</div>
+
 <div>
     @foreach(var c in Model.CPUs)
     {
@@ -14,6 +20,6 @@
     }
 </div>
 
-<div class="pager">
+<div class="pagination">
     @Html.PageLinks(Model.PagingInfo, x=>Url.Action("ListCPU",new { page = x}))
 </div>

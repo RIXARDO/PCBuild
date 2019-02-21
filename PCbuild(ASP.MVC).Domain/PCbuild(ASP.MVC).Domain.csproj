@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ICPURepository.cs" />
+    <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Abstract\IGameRepository.cs" />
     <Compile Include="Abstract\IGPURepository.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Concrete\EFGameRepository.cs" />
     <Compile Include="Concrete\EFGPURepository.cs" />
     <Compile Include="DAL\PCBuildInitializer.cs" />
+    <Compile Include="Entities\Comparison.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GPU.cs" />
     <Compile Include="Global.asax.cs">

@@ -35,5 +35,23 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public List<Price> Prices { get; set; }
 
         public int AverangeBench { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                CPU cpu = (CPU)obj;
+                return (this.CPUID == cpu.CPUID);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+           return CPUID;
+        }
     }
 }

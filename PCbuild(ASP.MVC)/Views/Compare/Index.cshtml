@@ -1,0 +1,15 @@
+﻿@model string
+@{
+    ViewBag.Title = "Compare";
+}
+
+<h2>Compare</h2>
+
+<div class="btn btn-primary">
+    @Html.ActionLink("CPU Compare", "CPUCompare", new { returnUrl = Model }, new { @style = "color:white" })
+</div>
+<div class="btn btn-primary">
+    @Html.ActionLink("GPU Compare", "GPUCompare", new { returnUrl = Model }, new {@style="color:white" })
+</div>
+
+<a href="@Model">Return</a>

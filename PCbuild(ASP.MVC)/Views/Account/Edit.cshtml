@@ -1,0 +1,25 @@
+﻿@model PCbuild_ASP.MVC_.Models.Identity.EditModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true, "")
+        <div>
+            <p>Year: @Html.EditorFor(x=>x.Year)</p>
+        </div>
+    
+        <div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    </div>
+}

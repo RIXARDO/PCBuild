@@ -1,0 +1,46 @@
+﻿@model PCbuild_ASP.MVC_.Models.Identity.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Register User</h4>
+        @Html.ValidationSummary(false);
+        <div>
+            Email
+            <div>
+                @Html.EditorFor(x => x.Email)
+            </div>
+        </div>
+        <div>
+            Year birthday
+            <div>
+                @Html.EditorFor(x=>x.Year)
+            </div>
+        </div>
+        <div>
+            Password
+            <div>
+                @Html.EditorFor(x=>x.Password)
+            </div>
+        </div>
+
+        <div>
+            Cofirm password
+            <div>
+                @Html.EditorFor(x=>x.PasswordConfirm)
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="Register" />
+            </div>
+        </div>
+    </div>
+}

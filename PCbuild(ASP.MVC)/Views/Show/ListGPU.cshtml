@@ -1,0 +1,26 @@
+﻿@using PCbuild_ASP.MVC_.HtmlHelpers;
+@model PCbuild_ASP.MVC_.Models.GPUListViewModel
+
+@{
+    ViewBag.Title = "ListGPU";
+}
+
+<h2>ListGPU</h2>
+
+<div class="showmenu">
+    @{
+        Html.RenderPartial("ShowMenu","GPU");
+    }
+</div>
+
+<div>
+    @foreach(var g in Model.GPUs)
+    {
+        Html.RenderPartial("GPUSummary", g);
+    }
+</div>
+
+<div class="pagination">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ListCPU", new { page = x }))
+</div>
+

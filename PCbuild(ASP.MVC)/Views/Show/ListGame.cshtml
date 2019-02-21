@@ -1,0 +1,25 @@
+﻿@using PCbuild_ASP.MVC_.HtmlHelpers;
+@model PCbuild_ASP.MVC_.Models.GameListViewModel
+
+@{
+    ViewBag.Title = "ListGame";
+}
+
+<h2>ListGame</h2>
+
+<div class="showmenu">
+    @{
+        Html.RenderPartial("ShowMenu","Game");
+    }
+</div>
+
+<div>
+    @foreach(var g in Model.Games)
+    {
+        Html.RenderPartial("GameSummary", g);
+    }
+</div>
+
+<div class="pagination">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("ListGame",new { page = x}))
+</div>

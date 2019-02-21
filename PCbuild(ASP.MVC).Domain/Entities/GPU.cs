@@ -25,5 +25,23 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public int AverageBench { get; set; }
 
         public List<Price> prices { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                GPU gpu = (GPU)obj;
+                return (this.GPUID == gpu.GPUID);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return GPUID;
+        }
     }
 }

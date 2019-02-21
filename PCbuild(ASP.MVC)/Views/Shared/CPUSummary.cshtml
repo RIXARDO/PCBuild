@@ -5,4 +5,10 @@
     <p>Number Of Cores: @Model.NumberOfCores</p>
     <p>Number Of Threads: @Model.NumberOfThreads</p>
     <p>PBF: @Model.PBF</p>
+    @using (Html.BeginForm("CPUAddToCompare", "Compare"))
+    {
+        @Html.HiddenFor(x=>x.CPUID)
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input type="submit" value="Add to compare" />
+    }
 </div>
