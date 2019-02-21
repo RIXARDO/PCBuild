@@ -87,9 +87,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> Delete(string Id)
+        public async Task<ActionResult> Delete(string id)
         {
-            ApplicationRole role = await RoleManager.FindByIdAsync(Id);
+            ApplicationRole role = await RoleManager.FindByIdAsync(id);
             if (role != null)
             {
                 IdentityResult result = await RoleManager.DeleteAsync(role);
