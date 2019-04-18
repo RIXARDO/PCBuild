@@ -1,4 +1,4 @@
-﻿@model PCbuild_ASP.MVC_.Models.Build
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.BuildEntity
 
 @{
     ViewBag.Title = "Index";
@@ -8,67 +8,40 @@
 <h2>Index</h2>
 
 
-@{ 
-}
-<script type="text/javascript"></script>
-<script>
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    var cpu = new { value="Intel" };
-    //    var gpu = new {value="Nvidia"};
-    //
-    //    onchangeCPU(cpu);
-    //    onchangeGPU(gpu);
-    //});
+
+<script src="~/Scripts/Build/BuildView.js"></script>
 
 
-    function onchangeCPU(elem) {
-        var cpus = document.getElementById('CPUs'); @*$('#CPUs');*@
-        while (cpus.firstChild) {
 
-            cpus.removeChild(cpus.firstChild);
-        }
-
-        $.ajax({
-            url: "/Build/DropDownListCPU",
-            method: "GET",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            data: 'value='+elem.value,
-            success: function (result) {
-                for (var i=0; i < result.length; i++) {
-                    cpus.add(new Option(result[i].text, result[i].value));
-                }  
-            }
-        });
-    }
-
-    function onchangeGPU(elem) {
-        var gpus = document.getElementById('GPUs'); @* $('#GPUs');*@
-
-        while (gpus.firstChild){
-
-            gpus.removeChild(gpus.firstChild);
-        }
-
-        $.ajax({
-            url: "/Build/DropDownListGPU",
-            method: "GET",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            data: 'value=' +elem.value,
-            success: function (result) {
-                //alert("result: " + result.length + " gpus:" + gpus.options.length);
-                for (var i = 0; i < result.length; i++) {
-                    gpus.add(new Option(result[i].text, result[i].value));
-                }
-            }
-        });
-    }
-</script>
-
-@using (Ajax.BeginForm("Action", "Build", new AjaxOptions { UpdateTargetId = "results", HttpMethod="Post" }))
+@using (Ajax.BeginForm("Action", "Build", new AjaxOptions { UpdateTargetId = "results", HttpMethod = "Post" }))
 {
-    
+    bool cpuIntel = true, cpuAMD = false;
+    bool gpuNvidia = true, gpuAMD = false;
+
+    if (Model != null && Model.CPU != null && Model.GPU != null)
+    {
+        if (Model.CPU.Manufacture == "Intel")
+        {
+            cpuIntel = true;
+            cpuAMD = false;
+        }
+        else
+        {
+            cpuIntel = false;
+            cpuAMD = true;
+        }
+
+        if (Model.GPU.Manufacture == "Nvidia")
+        {
+            gpuNvidia = true;
+            gpuAMD = false;
+        }
+        else
+        {
+            gpuNvidia = false;
+            gpuAMD = true;
+        }
+    }
     <table class="table">
         <tr>
             <td>CPU</td>
@@ -78,25 +51,27 @@
 
         <tr>
             <td>
-                @Html.RadioButton("CPU", "Intel", true, new { @OnChange = "onchangeCPU(this)" })
+                @Html.RadioButton("CPU", "Intel", cpuIntel, new { @OnChange = "onchangeCPU(this)" })
                 <span>Intel</span>
             </td>
             <td>
-                @Html.RadioButton("GPU", "Nvidia", true, new { @OnChange = "onchangeGPU(this)" })
+                @Html.RadioButton("GPU", "Nvidia", gpuNvidia, new { @OnChange = "onchangeGPU(this)" })
                 <span>Nvidia</span>
             </td>
             <td>
                 @Html.RadioButton("ScreenRez", "p1080", true)
                 <span>1080p</span>
             </td>
+
+
         </tr>
         <tr>
             <td>
-                @Html.RadioButton("CPU", "AMD", new { @OnChange = "onchangeCPU(this)" })
+                @Html.RadioButton("CPU", "AMD", cpuAMD, new { @OnChange = "onchangeCPU(this)" })
                 <span>AMD</span>
             </td>
             <td>
-                @Html.RadioButton("GPU", "Radeon", new { @OnChange = "onchangeGPU(this)" })
+                @Html.RadioButton("GPU", "AMD", gpuAMD, new { @OnChange = "onchangeGPU(this)" })
                 <span>Radeon</span>
             </td>
             <td>
@@ -112,22 +87,56 @@
                 <span>2560p</span>
             </td>
         </tr>
-            <tr>
-                <td>
-                    @*<select id="CPUs" ></select>*@
-                    @Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
-                AsEnumerable(), "CPUID", "ProcessorNumber"))
-                </td>
-                <td>
-                    @*<select id="GPUs"></select>*@
-                    @Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
-        AsEnumerable(), "GPUID", "Name"))
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <select id="CPUs" name="CPUs">
+                    <option></option>
+                </select>
+                @*@Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
+                    AsEnumerable(), "CPUID", "ProcessorNumber"), new { @OnChange = "onchangeCPUid()" })*@
+
+            </td>
+            <td>
+                <select id="GPUs" name="GPUs">
+                    <option></option>
+                </select>
+                @*@Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
+                    AsEnumerable(), "GPUID", "Name"), new { @OnChange = "onchangeGPUid()" })*@
+            </td>
+        </tr>
     </table>
 
-    <input type="submit" value="Action" />
+    <input type="submit" value="Action" class="btn btn-default" />
 }
+
+@using (Html.BeginForm("SaveBuild", "User", FormMethod.Post))
+{
+    @Html.Hidden("BuildId", "0");
+    @Html.Hidden("CPUid");
+    @Html.Hidden("GPUid");
+    <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()" />
+}
+
+
+@section scripts{
+    @Scripts.Render("~/scripts/jquery-3.3.1.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    @*@Scripts.Render("~/scripts/BuildView.js")*@
+}
+
 <div id="results"></div>
-@Scripts.Render("~/scripts/jquery-3.3.1.min.js")
-@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+<script>
+    @{
+        bool sel = true;
+        if (Model == null)
+        {
+            sel = false;
+        }
+    }
+    if (@sel) {
+        $("#CPUs").val("@Model.CPUID");
+        $("#GPUs").val("@Model.GPUID");
+        $("#BuildId").val("@Model.BuildEntityID");
+
+    }
+</script>

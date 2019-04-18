@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
-    public class Game
+    public partial class Game
     {
         [HiddenInput(DisplayValue = false)]
         public int GameID { get; set; }

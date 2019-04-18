@@ -16,18 +16,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("PC Build App", "Index", "Build", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Build", "Index", "Build")</li>
+                    <li>@Html.ActionLink("Products", "ListCPU", "Show")</li>
+                    <li>@Html.ActionLink("Compare", "Index", "Compare")</li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        <div>
+            @if (TempData["message"] != null)
+            {
+                <div class="alert-info">@TempData["message"]</div>
+            }
+        </div>
         @RenderBody()
         <hr />
         <footer>

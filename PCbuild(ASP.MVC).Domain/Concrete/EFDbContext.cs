@@ -19,5 +19,6 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
         public DbSet<CPU> CPUs { get; set;}
         public DbSet<GPU> GPUs { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<BuildEntity> BuildEntities { get; set; }
     }
 }

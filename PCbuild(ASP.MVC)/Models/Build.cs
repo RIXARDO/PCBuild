@@ -5,6 +5,7 @@ using System.Web;
 using PCbuild_ASP.MVC_.Domain.Concrete;
 using PCbuild_ASP.MVC_.Domain.Entities;
 
+//Needs destruction
 namespace PCbuild_ASP.MVC_.Models
 {
     public class Build

@@ -45,7 +45,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
                     dbEntry.NumberOfCores = cpu.NumberOfCores;
                     dbEntry.NumberOfThreads = cpu.NumberOfThreads;
                     dbEntry.PBF = cpu.PBF;
-                    dbEntry.Prices = cpu.Prices;
+                    dbEntry.PriceCPUs = cpu.PriceCPUs;
                     dbEntry.ProcessorNumber = cpu.ProcessorNumber;
                     dbEntry.TDP = cpu.TDP;
                     dbEntry.Cache = cpu.Cache;

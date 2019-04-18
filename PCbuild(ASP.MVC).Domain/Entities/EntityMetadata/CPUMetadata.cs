@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
-    [MetadataType(typeof(CPUMetadata))]
-    public partial class CPU
+    public partial class CPUMetadata
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        [HiddenInput (DisplayValue =false)]
+        [Key]        
         public int CPUID { get; set; }
 
         public string Manufacture { get; set; }
@@ -38,23 +33,5 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public int AverangeBench { get; set; }
 
         public virtual ICollection<BuildEntity> BuildEntities { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            {
-                return false;
-            }
-            else
-            {
-                CPU cpu = (CPU)obj;
-                return (this.CPUID == cpu.CPUID);
-            }
-        }
-
-        public override int GetHashCode()
-        {
-           return CPUID;
-        }
     }
 }

@@ -1,0 +1,39 @@
+﻿@model PCbuild_ASP.MVC_.Domain.Entities.CPU
+@{
+    ViewBag.Title = "Prices";
+}
+<h2>Prices for @Model.Manufacture @Model.ProcessorNumber</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                Vendor
+            </td>
+            <td>
+                Amount
+            </td>
+            <td>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PriceCPUs)
+        {
+        <tr>
+            <td>
+                @item.Vendor
+            </td>
+            <td>
+                @item.Amount @item.Сurrency
+            </td>
+            <td>
+                @Html.ActionLink("Edit","PriceEdit",new { id=item.PriceID})|
+                @Html.ActionLink("Delete","PriceDelete", new { cpuId=Model.CPUID, priceId=item.PriceID})
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+@Html.ActionLink("Add Price","PriceAdd", new { cpuId=Model.CPUID})

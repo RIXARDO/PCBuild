@@ -1,0 +1,39 @@
+﻿@using PCbuild_ASP.MVC_.Domain.Entities;
+
+@model IEnumerable<PCbuild_ASP.MVC_.Domain.Entities.BuildEntity>
+
+@{
+    ViewBag.Title = "Builds";
+}
+
+<h2>Builds</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Builds</div>
+
+    <table class="table table-striped">
+        <tr>
+            <td>CPU</td>
+            <td>GPU</td>
+            <td></td>
+        </tr>
+        @foreach (BuildEntity item in Model.ToList())
+        {
+            if (item.CPU != null & item.GPU!=null)
+            {
+            <tr>
+                <td>@item.CPU.Manufacture @item.CPU.ProcessorNumber</td>
+                <td>@item.GPU.Manufacture @item.GPU.Name</td>
+                <td>
+                    
+                    @using (Html.BeginForm("DeleteBuild", "User", FormMethod.Post))
+                    {
+                        @Html.Hidden("BuildEntityID", item.BuildEntityID)
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    }
+                </td>
+            </tr>
+            }
+        }
+    </table>
+</div>

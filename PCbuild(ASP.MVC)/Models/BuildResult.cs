@@ -8,6 +8,12 @@ namespace PCbuild_ASP.MVC_.Models
 {
     public class BuildResult
     {
+        public List<BuildGame> BuildGames { get; set; }
+        public BuildEntity BuildEntity { get; set; }
+    }
+
+    public class BuildGame
+    {
         public Game Game { get; set; }
         public int FPS { get; set; }
     }

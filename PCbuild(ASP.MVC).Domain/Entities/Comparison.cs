@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
-    public class Comparison<Ent>
+    public partial class Comparison<Ent>
     {
         private List<Ent> compareList= new List<Ent>();
 

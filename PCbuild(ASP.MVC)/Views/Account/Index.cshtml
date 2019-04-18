@@ -1,0 +1,30 @@
+﻿@model PCbuild_ASP.MVC_.Models.Identity.AccountInfoModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    <div class="small">
+        <h4>User Name: @Model.UserName</h4>
+    </div>
+    <div class="small">
+        <h4>Email: @Model.Email</h4>
+    </div>
+    <div class="small">
+        <h4>Birthday year: @Model.Year</h4>
+    </div>
+    <div>
+        @Html.ActionLink("Edit account information", "Edit",null,new { @class="btn btn-primary"})
+    </div>
+    <div>
+        @Html.ActionLink("Change password", "ChangePassword", null, new { @class = "btn btn-primary" })
+    </div>
+    @*<div>
+        @Html.ActionLink("Delete account", "Delete",null, new { @class="btn btn-primary"})
+    </div>*@
+    <div>
+        @Html.ActionLink("Builds", "Builds", "User", null, new { @class="btn btn-primary"})
+    </div>
+</div>

@@ -13,6 +13,7 @@ using PCbuild_ASP.MVC_.Domain.Abstract;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
+   // [Authorize(Roles ="Admin")]
     public class CPUsController : Controller
     {
         private ICPURepository repository;
@@ -120,6 +121,22 @@ namespace PCbuild_ASP.MVC_.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Prices(int CPUID)
+        {
+            var item = repository.CPUs.First(x => x.CPUID == CPUID);
+            if (item != null)
+            {
+                return View(item);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult PriceEdit(int id)
+        {
+
+            return View();
+        }
+
         //protected override void Dispose(bool disposing)
         //{
         //    if (disposing)
@@ -128,5 +145,6 @@ namespace PCbuild_ASP.MVC_.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+
     }
 }

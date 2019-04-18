@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Entities;
 
@@ -28,16 +29,18 @@ namespace PCbuild_ASP.MVC_.Controllers
         // GET: Build
         public ActionResult Index()
         {
-
-            Build model = new Build(CPURepository.CPUs.ToList(), GPURepository.GPUs.ToList(), GameRepository.Games.ToList());
-            return View(model);
+            //Build model = new Build(CPURepository.CPUs.ToList(), GPURepository.GPUs.ToList(), GameRepository.Games.ToList());
+            return View(new BuildEntity());
         }
 
         [HttpPost]
         public ActionResult Action(string CPU, string GPU, string ScreenRez, int? CPUs, int? GPUs)
         {if (CPUs != null & GPUs != null)
             {
-                List<BuildResult> buildResults = new List<BuildResult>();
+                BuildResult buildResult = new BuildResult
+                {
+                    BuildGames = new List<BuildGame>()
+                };
                 float CPUbench = CPURepository.CPUs.Where(x => x.CPUID == CPUs).Select(x => x.AverangeBench).First() / 100f;
                 float GPUbench = GPURepository.GPUs.Where(x => x.GPUID == GPUs).Select(x => x.AverageBench).First() / 100f;
                 float ScreenRezConf = (ScreenRez == "p1080") ? 1 : ((ScreenRez == "p1440") ? 0.75f : 0.5f);
@@ -45,9 +48,15 @@ namespace PCbuild_ASP.MVC_.Controllers
                 foreach (Game game in GameRepository.Games)
                 {
                     float fps = fp / (game.AverangeRequirements / 100f);
-                    buildResults.Add(new BuildResult { Game = game, FPS = (int)fps });
+                    buildResult.BuildGames.Add(new BuildGame { Game = game, FPS = (int)fps });
                 }
-                return PartialView(buildResults);
+                ////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////
+                buildResult.BuildEntity = new BuildEntity { CPU = CPURepository.CPUs.FirstOrDefault(x => x.CPUID == CPUs), GPU = GPURepository.GPUs.FirstOrDefault(x => x.GPUID == GPUs), UserID = User.Identity.GetUserId() };
+                return PartialView(buildResult);
             }
             return PartialView();
         }
@@ -56,12 +65,14 @@ namespace PCbuild_ASP.MVC_.Controllers
         public FileContentResult GetImage(int GameID, bool big=true)
         {
             Game game = GameRepository.Games.FirstOrDefault(g => g.GameID == GameID);
-            if (game != null)
+            if (game != null & game.ImageMimeType64!=null & game.ImageMimeType32!=null)
             {
-                if (big)
-                    return File(game.ImageData64, game.ImageMimeType64);
-                else
-                    return File(game.ImageData32, game.ImageMimeType32);
+                
+                    if (big)
+                        return File(game.ImageData64, game.ImageMimeType64);
+                    else
+                        return File(game.ImageData32, game.ImageMimeType32);
+               
             }
             else
             {

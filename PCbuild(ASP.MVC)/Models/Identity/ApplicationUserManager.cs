@@ -19,6 +19,13 @@ namespace PCbuild_ASP.MVC_.Models.Identity
         {
             ApplicationContext db = context.Get<ApplicationContext>();
             ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+
+            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                RequireUniqueEmail = true
+            };
+
             return manager;
         }
     }

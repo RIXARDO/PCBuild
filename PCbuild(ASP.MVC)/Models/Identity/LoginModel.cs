@@ -14,5 +14,8 @@ namespace PCbuild_ASP.MVC_.Models.Identity
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required]
+        public bool RemeberMe { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 {
     public class EFGPURepository : IGPURepository
     {
+
         private EFDbContext context = new EFDbContext();
 
         public IQueryable<GPU> GPUs
@@ -48,7 +49,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
                     dbEntry.FrameBuffer = gpu.FrameBuffer;
                     dbEntry.MemorySpeed = gpu.MemorySpeed;
                     dbEntry.Name = gpu.Name;
-                    dbEntry.prices = gpu.prices;
+                    dbEntry.PriceGPUs = gpu.PriceGPUs;
                 }
             }
             context.SaveChanges();

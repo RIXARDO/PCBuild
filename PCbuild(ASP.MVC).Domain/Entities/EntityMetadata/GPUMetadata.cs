@@ -6,11 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
-    [MetadataType(typeof(GPUMetadata))]
-    public partial class GPU
+    public partial class GPUMetadata
     {
-
-        public int GPUID{ get;set;}
+        [Key]
+        public int GPUID { get; set; }
 
         public string Manufacture { get; set; }
 
@@ -29,23 +28,5 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public virtual ICollection<PriceGPU> PriceGPUs { get; set; }
 
         public virtual ICollection<BuildEntity> BuildEntities { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            {
-                return false;
-            }
-            else
-            {
-                GPU gpu = (GPU)obj;
-                return (this.GPUID == gpu.GPUID);
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return GPUID;
-        }
     }
 }

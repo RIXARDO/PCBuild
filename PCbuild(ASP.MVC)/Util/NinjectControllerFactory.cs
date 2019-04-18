@@ -38,6 +38,7 @@ namespace PCbuild_ASP.MVC_.Util
                 ninjectKernel.Bind<ICPURepository>().To<EFCPURepository>();
                 ninjectKernel.Bind<IGPURepository>().To<EFGPURepository>();
                 ninjectKernel.Bind<IGameRepository>().To<EFGameRepository>();
+                ninjectKernel.Bind<IBuildEntityRepository>().To<EFBuildRepository>();
      
             }
         }
