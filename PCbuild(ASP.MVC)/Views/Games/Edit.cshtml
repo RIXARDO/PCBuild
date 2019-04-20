@@ -8,8 +8,8 @@
 @using (Html.BeginForm("Edit", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.GameID);
-    <div>Name: @Html.EditorFor(x => x.Name);</div>
-    <div>AverangeRequirements: @Html.EditorFor(x => x.AverangeRequirements);</div>
+    <div class="ro">Name:</div><div> @Html.EditorFor(x => x.Name);</div>
+    <div>AverangeRequirements:</div><div> @Html.EditorFor(x => x.AverangeRequirements);</div>
     <div>Image(low)</div>
     <div>
         @if (Model.ImageData32 == null)
@@ -23,7 +23,7 @@
     </div>
     <div>
         Upload new image:
-        <input type="file" name="Image32" />
+        <input type="file" name="Image32" class="btn btn-primary"/>
     </div>
     <div>Image(high)</div>
     <div>
@@ -38,8 +38,8 @@
     </div>
     <div>
         Upload new image:
-        <input type="file" name="Image64" />
+        <input type="file" name="Image64" class="btn btn-primary"/>
     </div>
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save" class="btn btn-primary" />
     @Html.ActionLink("Back", "Index");
 }

@@ -8,6 +8,7 @@ using PCbuild_ASP.MVC_.Domain.Entities;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class GamesController : Controller
     {
         IGameRepository repo;

@@ -1,16 +1,13 @@
 ﻿@model PCbuild_ASP.MVC_.Domain.Entities.BuildEntity
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Builds";
 }
 
 
-<h2>Index</h2>
-
-
+<h2>Builds</h2>
 
 <script src="~/Scripts/Build/BuildView.js"></script>
-
 
 
 @using (Ajax.BeginForm("Action", "Build", new AjaxOptions { UpdateTargetId = "results", HttpMethod = "Post" }))
@@ -106,17 +103,18 @@
         </tr>
     </table>
 
-    <input type="submit" value="Action" class="btn btn-default" />
+    <input type="submit" value="Action" class="btn btn-default" style="float:left; margin-right:10px" />
 }
 
-@using (Html.BeginForm("SaveBuild", "User", FormMethod.Post))
-{
-    @Html.Hidden("BuildId", "0");
-    @Html.Hidden("CPUid");
-    @Html.Hidden("GPUid");
-    <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()" />
-}
-
+    <div style="display:inline-block">
+        @using (Html.BeginForm("SaveBuild", "Build", FormMethod.Post))
+        {
+            @Html.Hidden("BuildId", "0");
+            @Html.Hidden("CPUid");
+            @Html.Hidden("GPUid");
+            <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()"  style="clear:left"/>
+        }
+    </div>
 
 @section scripts{
     @Scripts.Render("~/scripts/jquery-3.3.1.min.js")

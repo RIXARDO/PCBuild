@@ -8,9 +8,8 @@
 
 
 function onchangeCPU(elem) {
-    var cpus = document.getElementById('CPUs'); 
-        while(cpus.firstChild) {
-
+    var cpus = document.getElementById('CPUs');
+    while (cpus.firstChild) {
         cpus.removeChild(cpus.firstChild);
     }
 
@@ -22,7 +21,7 @@ function onchangeCPU(elem) {
         data: 'value=' + elem.value,
         success: function (result) {
             for (var i = 0; i < result.length; i++) {
-                cpus.add(new Option(result[i].text, result[i].value));
+                cpus.add(new Option(result[i].name, result[i].value));
             }
         }
     });
@@ -31,7 +30,7 @@ function onchangeCPU(elem) {
 function onchangeGPU(elem) {
     var gpus = document.getElementById('GPUs'); //@* $('#GPUs');*@
 
-        while (gpus.firstChild) {
+    while (gpus.firstChild) {
 
         gpus.removeChild(gpus.firstChild);
     }
@@ -45,7 +44,7 @@ function onchangeGPU(elem) {
         success: function (result) {
             //alert("result: " + result.length + " gpus:" + gpus.options.length);
             for (var i = 0; i < result.length; i++) {
-                gpus.add(new Option(result[i].text, result[i].value));
+                gpus.add(new Option(result[i].name, result[i].value));
             }
         }
     });

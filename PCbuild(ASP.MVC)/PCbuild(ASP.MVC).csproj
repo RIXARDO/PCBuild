@@ -302,9 +302,9 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\User\Builds.cshtml" />
+    <Content Include="Views\Build\Builds.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -313,7 +313,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Manage\" />
     <Folder Include="Views\Price\" />
   </ItemGroup>
   <ItemGroup>

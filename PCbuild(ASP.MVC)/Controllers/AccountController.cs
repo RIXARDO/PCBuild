@@ -167,7 +167,7 @@ namespace PCbuild_ASP.MVC_.Controllers
                 IdentityResult result = await UserManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 }
                 else
                 {
@@ -182,35 +182,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(model);
         }
 
-        [Authorize]
-        public async  Task<ActionResult> ChangePassword()
-        {
-            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
-            if (user != null)
-            {
-                PasswordChangeModel model = new PasswordChangeModel();
-                return View(model);
-            }
-            return RedirectToAction("Login", "Account");
-        }
+        
 
-        [Authorize]
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public async Task<ActionResult> ChangePassword(PasswordChangeModel model)
-        {
-            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
-            if (user != null)
-            {
-                IdentityResult result = await UserManager.ChangePasswordAsync(user.Id, model.CurrentPassword, model.NewPassword);
-                if (result.Succeeded)
-                {
-                    TempData["message"] = "Password has changed";
-                    return RedirectToAction("Index");
-                }
-            }
-            return RedirectToAction("Login", "Account");
-        }
+        
 
         //
         // POST: /Account/ExternalLogin
@@ -291,23 +265,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(model);
         }
 
-        [Authorize]
-        public ActionResult Index()
-        {
-            AccountInfoModel model = new AccountInfoModel {
-                UserName = UserManager.FindByEmail(User.Identity.Name).UserName,
-                Email = UserManager.FindByEmail(User.Identity.Name).Email,
-                Year = UserManager.FindByEmail(User.Identity.Name).Year
-            };
-            return View(model);
-        }
+        
 
-        [Authorize]
-        public ActionResult Builds()
-        {
-            IEnumerable<BuildEntity> buildEntities = buildEntityRepository.Builds.Where(x => x.UserID == User.Identity.GetUserId());
-            return View(buildEntities);
-        }
+        
 
         #region Helpers
         // Used for XSRF protection when adding external logins

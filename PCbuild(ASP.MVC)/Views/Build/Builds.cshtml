@@ -26,7 +26,7 @@
                 <td>@item.GPU.Manufacture @item.GPU.Name</td>
                 <td>
                     
-                    @using (Html.BeginForm("DeleteBuild", "User", FormMethod.Post))
+                    @using (Html.BeginForm("DeleteBuild", "Build", FormMethod.Post))
                     {
                         @Html.Hidden("BuildEntityID", item.BuildEntityID)
                         <input type="submit" value="Delete" class="btn btn-danger" />

@@ -8,78 +8,82 @@
 
 @if (Model != null)
 {
-<table class="table">
-    <tr>
-        <td></td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.CPUID))
-        {
-            <td>
-                @using (Html.BeginForm("CPURemoveFromCompare", "Compare",FormMethod.Post))
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td></td>
+                @foreach (var item in Model.Comparison.CompareList.Select(x => x.CPUID))
                 {
-                    @Html.HiddenFor(x => x.returnUrl)
-                    @Html.Hidden("CPUID",item)
-                    <input type="submit" value="Remove" />
+                    <td>
+                        @using (Html.BeginForm("CPURemoveFromCompare", "Compare", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(x => x.returnUrl)
+                            @Html.Hidden("CPUID", item)
+                            <input type="submit" value="Remove" class="btn btn-danger" />
+                        }
+                    </td>
                 }
-            </td>
-        }
-    </tr>
-    <tr>
-        <td>Manufacture</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Manufacture))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>Name</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.ProcessorNumber))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>NumberOfCores</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.NumberOfCores))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>NumberOfThreads</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.NumberOfThreads))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>Cache</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Cache))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>PBF</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.PBF))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>TDP</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.TDP))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>AverangeBench</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverangeBench))
-        {
-            <td>@item</td>
-        }
-    </tr>
-</table>
+            </tr>
+        </thead>
+        <tr>
+            <td><b>Manufacture</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.Manufacture))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>Name</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.ProcessorNumber))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>NumberOfCores</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.NumberOfCores))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>NumberOfThreads</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.NumberOfThreads))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>Cache</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.Cache))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>PBF</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.PBF))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>TDP</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.TDP))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>AverangeBench</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverangeBench))
+            {
+                <td>@item</td>
+            }
+        </tr>
+    </table>
+</div>
 }
 
-<a href="@Model.returnUrl">Rerurn back</a>
+<a href="@Model.returnUrl" class="btn btn-primary">Rerurn back</a>

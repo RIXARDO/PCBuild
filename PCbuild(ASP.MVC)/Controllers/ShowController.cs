@@ -8,7 +8,7 @@ using PCbuild_ASP.MVC_.Models;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
-    public class ShowController : Controller
+    public class ShowController : AsyncController
     {
         ICPURepository CPURepository;
         IGPURepository GPURepository;

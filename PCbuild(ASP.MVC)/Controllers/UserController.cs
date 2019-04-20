@@ -40,47 +40,11 @@ namespace PCbuild_ASP.MVC_.Controllers
         //    return View();
         //}
 
-        [Authorize]
-        public ActionResult Builds()
-        {
-            string UserID = User.Identity.GetUserId();
-            IEnumerable<BuildEntity> buildEntities = buildRepository.Builds.Where(x => x.UserID == UserID).AsEnumerable();
-            return View(buildEntities);
-        }
+        
 
-        [HttpPost]
-        public ActionResult DeleteBuild(int BuildEntityID)
-        {
-            var build = buildRepository.Delete(BuildEntityID);
-            if (build != null)
-            {
-                TempData["message"] = "Build was deleted";
-            }
-            return RedirectToAction("Builds");
-        }
+        
 
-        public ActionResult EditBuild(int BuildEntityID)
-        {
-            BuildEntity build = buildRepository.Builds.FirstOrDefault(x=>x.BuildEntityID==BuildEntityID);
-            return View("Build",build);
-        }
-
-        [HttpPost]
-        [Authorize]
-        public ActionResult SaveBuild(string BuildId,string CPUid, string GPUid)
-        {
-                BuildEntity build = new BuildEntity();
-                int BuildID = int.Parse(BuildId);
-                int CPUID = int.Parse(CPUid);
-                int GPUID = int.Parse(GPUid);
-                build.CPUID = CPUID;
-                build.GPUID = GPUID ;
-                build.UserID = User.Identity.GetUserId();
-                build.BuildEntityID = BuildID;
-                buildRepository.SaveBuild(build);
-
-                return RedirectToAction("Builds","User");
-        }
+        
     }
 
 }

@@ -51,7 +51,20 @@ namespace PCbuild_ASP.MVC_.Controllers
             }
         }
 
-        //
+
+        [Authorize]
+        public ActionResult Index()
+        {
+            AccountInfoModel model = new AccountInfoModel
+            {
+                UserName = UserManager.FindByEmail(User.Identity.Name).UserName,
+                Email = UserManager.FindByEmail(User.Identity.Name).Email,
+                Year = UserManager.FindByEmail(User.Identity.Name).Year
+            };
+            return View(model);
+        }
+
+        
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -74,6 +87,36 @@ namespace PCbuild_ASP.MVC_.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+        }
+
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(PasswordChangeModel model)
+        {
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                IdentityResult result = await UserManager.ChangePasswordAsync(user.Id, model.CurrentPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    TempData["message"] = "Password has changed";
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        [Authorize]
+        public async Task<ActionResult> ChangePassword()
+        {
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            if (user != null)
+            {
+                PasswordChangeModel model = new PasswordChangeModel();
+                return View(model);
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -216,10 +259,10 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
+        //public ActionResult ChangePassword()
+        //{
+        //    return View();
+        //}
 
         //
         // POST: /Manage/ChangePassword

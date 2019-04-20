@@ -13,7 +13,7 @@ using PCbuild_ASP.MVC_.Domain.Abstract;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
-   // [Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public class CPUsController : Controller
     {
         private ICPURepository repository;

@@ -8,70 +8,72 @@
 
 @if (Model != null)
 {
-<table class="table">
-    <tr>
-        <td></td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.GPUID))
-        {
-            <td>
-                @using (Html.BeginForm("GPURemoveFromCompare","Compare",FormMethod.Post))
-                {
-                    @Html.HiddenFor(x => x.returnUrl)
-                    @Html.Hidden("GPUID", item)
-                    <input type="submit" value="Remove" />
-                }
-            </td>
-        }
-    </tr>
-    <tr>
-        <td>Manufacture</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Manufacture))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>Name</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Name))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>Architecture</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.Architecture))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>BoostClock</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.BoostClock))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>FrameBuffer</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.FrameBuffer))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>MemorySpeed</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.MemorySpeed))
-        {
-            <td>@item</td>
-        }
-    </tr>
-    <tr>
-        <td>AverageBench</td>
-        @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverageBench))
-        {
-            <td>@item</td>
-        }
-    </tr>
-</table>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <td></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.GPUID))
+            {
+                <td>
+                    @using (Html.BeginForm("GPURemoveFromCompare", "Compare", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(x => x.returnUrl)
+                        @Html.Hidden("GPUID", item)
+                        <input type="submit" value="Remove" class="btn btn-danger"/>
+                    }
+                </td>
+            }
+        </tr>
+        <tr>
+            <td><b>Manufacture</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.Manufacture))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>Name</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.Name))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>Architecture</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.Architecture))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>BoostClock</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.BoostClock))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>FrameBuffer</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.FrameBuffer))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>MemorySpeed</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.MemorySpeed))
+            {
+                <td>@item</td>
+            }
+        </tr>
+        <tr>
+            <td><b>AverageBench</b></td>
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverageBench))
+            {
+                <td>@item</td>
+            }
+        </tr>
+    </table>
+</div>
 }
-<a href="@Model.returnUrl">Return back</a>
+<a href="@Model.returnUrl" class="btn btn-primary">Return back</a>
