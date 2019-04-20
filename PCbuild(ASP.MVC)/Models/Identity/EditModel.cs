@@ -7,6 +7,6 @@ namespace PCbuild_ASP.MVC_.Models.Identity
 {
     public class EditModel
     {
-        public int Year { get; set; }
+        public DateTime Year { get; set; }
     }
 }

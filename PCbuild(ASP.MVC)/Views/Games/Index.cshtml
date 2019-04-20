@@ -6,7 +6,7 @@
 
 <h2>Games</h2>
 
-<table class="grid">
+<table class="table">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -18,10 +18,10 @@
             <td>@item.GameID</td>
             <td>@Html.ActionLink(item.Name, "Edit", new { item.GameID })</td>
             <td>
-                @using (Html.BeginForm("Delete", "Admin"))
+                @using (Html.BeginForm("Delete", "Games"))
                 {
                     @Html.Hidden("GameID", item.GameID)
-                    <input type="submit" value="Delete" />
+                    <input type="submit" value="Delete" class="btn btn-danger"/>
                 }
             </td>
         </tr>

@@ -6,12 +6,14 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace PCbuild_ASP.MVC_.Models.Identity
 {
     public class ApplicationUser: IdentityUser
     {
-        public int Year { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime Year { get; set; }
         public ApplicationUser()
         {
         }

@@ -21,10 +21,10 @@
             <img src="@Url.Action("GetImage", "Build", new {Model.GameID, big=false })" />
         }
     </div>
-    <div>
+    <label class="btn btn-primary">
         Upload new image:
-        <input type="file" name="Image32" class="btn btn-primary"/>
-    </div>
+        <input type="file" name="Image32" hidden/>
+    </label>
     <div>Image(high)</div>
     <div>
         @if (Model.ImageData64 == null)
@@ -33,13 +33,13 @@
         }
         else
         {
-            <img width="150" height="150" src="@Url.Action("GetImage", "Build", new { Model.GameID, big=true })" />
+            <img src="@Url.Action("GetImage", "Build", new { Model.GameID, big=true })" />
         }
     </div>
-    <div>
+    <label class="btn btn-primary">
         Upload new image:
-        <input type="file" name="Image64" class="btn btn-primary"/>
-    </div>
+        <input type="file" name="Image64" hidden/>
+    </label>
     <input type="submit" value="Save" class="btn btn-primary" />
     @Html.ActionLink("Back", "Index");
 }

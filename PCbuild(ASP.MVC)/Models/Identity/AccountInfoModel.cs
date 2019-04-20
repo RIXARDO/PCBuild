@@ -9,6 +9,6 @@ namespace PCbuild_ASP.MVC_.Models.Identity
     {
         public string UserName { get; set; }
         public string Email { get; set; }
-        public int Year { get; set; }
+        public DateTime Year { get; set; }
     }
 }

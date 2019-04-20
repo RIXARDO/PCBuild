@@ -12,7 +12,8 @@ namespace PCbuild_ASP.MVC_.Models.Identity
         public string Email { get; set; }
 
         [Required]
-        public int Year { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime Year { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

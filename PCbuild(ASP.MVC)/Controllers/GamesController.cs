@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Domain.Entities;
+using System.Drawing;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
@@ -50,7 +51,9 @@ namespace PCbuild_ASP.MVC_.Controllers
                     Image64.InputStream.Read(game.ImageData64, 0, Image64.ContentLength);
                 }
                 repo.SaveGame(game);
-                TempData["message"] = string.Format("{0} has been saved", game.Name);
+                
+                TempData["message"] =
+                    string.Format("{0} has been saved", game.Name);
                 return RedirectToAction("Index");
             }
             else
