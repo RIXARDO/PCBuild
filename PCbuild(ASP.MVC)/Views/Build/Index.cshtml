@@ -56,7 +56,7 @@
                 <span>Nvidia</span>
             </td>
             <td>
-                @Html.RadioButton("ScreenRez", "p1080", true)
+                @Html.RadioButton("ScreenRez", "p1080", true, new { @OnChange = "submitForm()" })
                 <span>1080p</span>
             </td>
 
@@ -72,7 +72,7 @@
                 <span>Radeon</span>
             </td>
             <td>
-                @Html.RadioButton("ScreenRez", "p1440")
+                @Html.RadioButton("ScreenRez", "p1440",new { OnChange = "submitForm()" })
                 <span>1440p</span>
             </td>
         </tr>
@@ -80,13 +80,13 @@
             <td></td>
             <td></td>
             <td>
-                @Html.RadioButton("ScreenRez", "p2560")
+                @Html.RadioButton("ScreenRez", "p2560", new { @OnChange = "submitForm()" })
                 <span>2560p</span>
             </td>
         </tr>
         <tr>
             <td>
-                <select id="CPUs" name="CPUs">
+                <select id="CPUs" name="CPUs" onchange="submitForm()">
                     <option></option>
                 </select>
                 @*@Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
@@ -94,7 +94,7 @@
 
             </td>
             <td>
-                <select id="GPUs" name="GPUs">
+                <select id="GPUs" name="GPUs" onchange="submitForm()">
                     <option></option>
                 </select>
                 @*@Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
@@ -103,7 +103,7 @@
         </tr>
     </table>
 
-    <input type="submit" value="Action" class="btn btn-default" style="float:left; margin-right:10px" />
+    <input type="hidden" value="Action" class="btn btn-default" style="float:left; margin-right:10px" />
 }
 
     <div style="display:inline-block">

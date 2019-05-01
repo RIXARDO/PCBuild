@@ -9,6 +9,12 @@ namespace PCbuild_ASP.MVC_.Models.Identity
     public class RegisterModel
     {
         [Required]
+        [StringLength(16,MinimumLength = 3)]
+        public string UserName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]

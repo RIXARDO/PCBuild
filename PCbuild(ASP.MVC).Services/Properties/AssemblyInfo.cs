@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PCbuild(ASP.MVC).Domain")]
+[assembly: AssemblyTitle("PCbuild(ASP.MVC).Services")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Win-Yagd")]
-[assembly: AssemblyProduct("PCbuild(ASP.MVC).Domain")]
+[assembly: AssemblyProduct("PCbuild(ASP.MVC).Services")]
 [assembly: AssemblyCopyright("Copyright © Win-Yagd 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("419f29ef-2bad-4d8c-ad2a-4160a6dc99b3")]
+[assembly: Guid("fe6ec3e8-3190-4a1b-8866-febb324ae205")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -15,18 +15,29 @@
         <div>
             Email
             <div>
+                @Html.ValidationMessageFor(x=>x.Email)
                 @Html.EditorFor(x => x.Email)
+            </div>
+        </div>
+        <div>
+            UserName
+            <div>
+                @Html.ValidationMessageFor(x=>x.UserName)
+                @Html.EditorFor(x=>x.UserName)
             </div>
         </div>
         <div>
             Year birthday
             <div>
-                @Html.EditorFor(x=>x.Year)
+                @Html.ValidationMessageFor(x=>x.Year)
+                @Html.EditorFor(x => x.Year)
             </div>
         </div>
+
         <div>
             Password
             <div>
+                @Html.ValidationMessageFor(x=>x.Password)
                 @Html.EditorFor(x=>x.Password)
             </div>
         </div>
@@ -34,13 +45,17 @@
         <div>
             Cofirm password
             <div>
+                @Html.ValidationMessageFor(x=>x.PasswordConfirm)
                 @Html.EditorFor(x=>x.PasswordConfirm)
             </div>
         </div>
         <div>
             <div>
-                <input type="submit" value="Register" />
+                <input type="submit" value="Register" class="btn btn-primary"/>
             </div>
         </div>
     </div>
 }
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.intellisense.js"></script>

@@ -22,3 +22,20 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.property .name{
+    float:left;
+    text-align:right;
+    margin-left: 20pt;
+}
+
+.property .value{
+    float:none;
+    text-align:left;
+    display:block;
+    margin: 0 40pt 0 180pt;
+}
+
+.names{
+    margin-bottom:20pt;
+}

@@ -5,26 +5,44 @@
 }
 
 <h2>Your account</h2>
-<div>
-    <div class="small">
-        <h4>User Name: @Model.UserName</h4>
+
+<div class="names">
+    <div class="property">
+        <div class="name">
+            User Name:
+        </div>
+        <div class="value">
+            @Model.UserName
+        </div>
     </div>
-    <div class="small">
-        <h4>Email: @Model.Email</h4>
+    <div class="property">
+        <div class="name">
+            Email:
+        </div>
+        <div class="value">
+            @Model.Email
+        </div>
     </div>
-    <div class="small">
-        <h4>Birthday year: @Model.Year</h4>
+    <div class="property">
+        <div class="name">
+            Birthday year:
+        </div>
+        <div class="value">
+            @Model.Year
+        </div>
     </div>
-    <div>
-        @Html.ActionLink("Edit account information", "Edit","Manage",null,new { @class="btn btn-primary"})
-    </div>
-    <div>
-        @Html.ActionLink("Change password", "ChangePassword","Manage", null, new { @class = "btn btn-primary" })
-    </div>
-    @*<div>
-        @Html.ActionLink("Delete account", "Delete",null, new { @class="btn btn-primary"})
-    </div>*@
-    <div>
-        @Html.ActionLink("Builds", "Builds", "Build", null, new { @class="btn btn-primary"})
-    </div>
+</div>
+<div class="btn-group" role="group" aria-label="btn-group-manage">
+
+        @Html.ActionLink("Edit account information", "Edit", "Manage", null, new { @class = "btn btn-primary" })
+    
+        @Html.ActionLink("Change password", "ChangePassword", "Manage", null, new { @class = "btn btn-primary" })
+
+        @*
+            @Html.ActionLink("Delete account", "Delete",null, new { @class="btn btn-primary"})
+        *@
+
+        @Html.ActionLink("Builds", "Builds", "Build", null, new { @class = "btn btn-primary" })
+
+
 </div>

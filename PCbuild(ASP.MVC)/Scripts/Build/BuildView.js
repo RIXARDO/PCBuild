@@ -50,6 +50,10 @@ function onchangeGPU(elem) {
     });
 }
 
+function submitForm() {
+    $("#form0").submit();
+}
+
 //$(document).ready(function () {
 //    $("select#CPUs").change(function () {
 //        $("#CPUid").val = $(this).children("option:selected").val();
