@@ -65,7 +65,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Year = model.Year };
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
                 IdentityResult result = await UserManager.CreateAsync(user,model.Password);
                 if (result.Succeeded)
                 {
@@ -134,7 +134,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         [ActionName("Delete")]
         public async Task<ActionResult> DeleteConfirmed()
         {
-            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
             {
                 IdentityResult result = await UserManager.DeleteAsync(user);
@@ -148,7 +148,7 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         public async Task<ActionResult> Edit()
         {
-            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
             {
                 EditModel model = new EditModel { Year = user.Year };
@@ -160,7 +160,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(EditModel model)
         {
-            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
             if (user != null)
             {
                 user.Year = model.Year;

@@ -12,8 +12,7 @@ namespace PCbuild_ASP.MVC_.Models.Identity
 {
     public class ApplicationUser: IdentityUser
     {
-        [DataType(DataType.Date)]
-        [UIHint("DateTime")]
+        [DataType(DataType.DateTime)]
         public DateTime Year { get; set; }
         public ApplicationUser()
         {

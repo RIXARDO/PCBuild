@@ -9,7 +9,7 @@ namespace PCbuild_ASP.MVC_.Models.Identity
 {
     public class ApplicationContext: IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext():base("EFDbContext") {}
+        public ApplicationContext():base("IdentityDb"){}
 
         public static ApplicationContext Create()
         {

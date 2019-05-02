@@ -1,3 +1,0 @@
-﻿@model DateTime?
-
-@Html.TextBox("",Model!=null?String.Format("{0:d}",((DateTime)Model).ToShortDateString()):"", new { type="datetime-local"})
