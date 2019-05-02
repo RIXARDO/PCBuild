@@ -32,20 +32,20 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public void SaveCPU(CPU cpu)
         {
-            if (cpu.CPUID == 0)
+            if (cpu.ProductID == null)
             {
                 context.CPUs.Add(cpu);
             }
             else
             {
-                CPU dbEntry = context.CPUs.Find(cpu.CPUID);
+                CPU dbEntry = context.CPUs.Find(cpu.ProductID);
                 if (dbEntry != null)
                 {
                     dbEntry.Manufacture = cpu.Manufacture;
                     dbEntry.NumberOfCores = cpu.NumberOfCores;
                     dbEntry.NumberOfThreads = cpu.NumberOfThreads;
                     dbEntry.PBF = cpu.PBF;
-                    dbEntry.PriceCPUs = cpu.PriceCPUs;
+                    //dbEntry.Price = cpu.Price;
                     dbEntry.ProcessorNumber = cpu.ProcessorNumber;
                     dbEntry.TDP = cpu.TDP;
                     dbEntry.Cache = cpu.Cache;

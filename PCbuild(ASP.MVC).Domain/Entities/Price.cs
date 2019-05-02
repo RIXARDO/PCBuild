@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
@@ -16,5 +17,10 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public string Vendor { get; set; }
         public Currency Сurrency { get; set; }
         public double Amount { get; set; }
+
+        //[ForeignKey("Product")]
+        //public Guid ProductID { get; set; }
+        [Required]
+        public virtual Product Product { get; set; }
     }
 }

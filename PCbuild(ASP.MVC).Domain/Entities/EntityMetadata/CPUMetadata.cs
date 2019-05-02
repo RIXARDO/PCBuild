@@ -8,8 +8,6 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
 {
     public partial class CPUMetadata
     {
-        [Key]        
-        public int CPUID { get; set; }
 
         public string Manufacture { get; set; }
 
@@ -27,8 +25,6 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public string Cache { get; set; }
 
         public string TDP { get; set; }
-
-        public virtual ICollection<PriceCPU> PriceCPUs { get; set; }
 
         public int AverangeBench { get; set; }
 

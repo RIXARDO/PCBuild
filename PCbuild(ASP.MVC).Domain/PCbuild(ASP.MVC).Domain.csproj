@@ -80,15 +80,17 @@
   <ItemGroup>
     <Compile Include="Abstract\IBuildEntityRepository.cs" />
     <Compile Include="Abstract\ICPURepository.cs" />
-    <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Abstract\IGameRepository.cs" />
     <Compile Include="Abstract\IGPURepository.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Abstract\IPriceRepository.cs" />
+    <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="Concrete\EFBuildRepository.cs" />
     <Compile Include="Concrete\EFCPURepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGameRepository.cs" />
     <Compile Include="Concrete\EFGPURepository.cs" />
+    <Compile Include="Concrete\EFPriceRepository.cs" />
+    <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="DAL\PCBuildInitializer.cs" />
     <Compile Include="Entities\BuildEntity.cs" />
     <Compile Include="Entities\Comparison.cs" />
@@ -98,8 +100,15 @@
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GPU.cs" />
     <Compile Include="Entities\Price.cs" />
-    <Compile Include="Entities\PriceCPU.cs" />
-    <Compile Include="Entities\PriceGPU.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Migrations\201905012033535_ProductGuid.cs" />
+    <Compile Include="Migrations\201905012033535_ProductGuid.Designer.cs">
+      <DependentUpon>201905012033535_ProductGuid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905021721560_ProductGuid2.cs" />
+    <Compile Include="Migrations\201905021721560_ProductGuid2.Designer.cs">
+      <DependentUpon>201905021721560_ProductGuid2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,6 +118,14 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905012033535_ProductGuid.resx">
+      <DependentUpon>201905012033535_ProductGuid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021721560_ProductGuid2.resx">
+      <DependentUpon>201905021721560_ProductGuid2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

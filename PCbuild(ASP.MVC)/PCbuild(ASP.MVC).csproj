@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201904201815167_MergeIdentityData.Designer.cs">
       <DependentUpon>201904201815167_MergeIdentityData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905021711247_ProductGuid.cs" />
+    <Compile Include="Migrations\201905021711247_ProductGuid.Designer.cs">
+      <DependentUpon>201905021711247_ProductGuid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity\AccountInfoModel.cs" />
     <Compile Include="Models\Identity\ApplicationContext.cs" />
@@ -215,7 +219,6 @@
     <Compile Include="Models\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\ApplicationUserManager.cs" />
-    <Compile Include="Models\Build.cs" />
     <Compile Include="Models\BuildResult.cs" />
     <Compile Include="Models\CompareIndexViewModel.cs" />
     <Compile Include="Models\CPUListViewModel.cs" />
@@ -338,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904201815167_MergeIdentityData.resx">
       <DependentUpon>201904201815167_MergeIdentityData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021711247_ProductGuid.resx">
+      <DependentUpon>201905021711247_ProductGuid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
