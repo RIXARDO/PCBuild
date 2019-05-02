@@ -117,7 +117,6 @@
   <ItemGroup>
     <Compile Include="Abstract\IBuildEntityRepository.cs" />
     <Compile Include="Abstract\ICPURepository.cs" />
-    <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Abstract\IGameRepository.cs" />
     <Compile Include="Abstract\IGPURepository.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -133,8 +132,6 @@
     <Compile Include="Entities\EntityMetadata\GPUMetadata.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GPU.cs" />
-    <Compile Include="Entities\PriceCPU.cs" />
-    <Compile Include="Entities\PriceGPU.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
