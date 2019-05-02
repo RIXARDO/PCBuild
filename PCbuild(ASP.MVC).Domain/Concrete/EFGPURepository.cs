@@ -33,25 +33,23 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public void SaveGPU(GPU gpu)
         {
-            if (gpu.ProductID == null)
+            if (gpu.GPUID == 0)
             {
                 context.GPUs.Add(gpu);
             }
             else
             {
-                GPU dbEntry = context.GPUs.Find(gpu.ProductID);
+                GPU dbEntry = context.GPUs.Find(gpu.GPUID);
                 if (dbEntry != null)
                 {
                     dbEntry.Manufacture = gpu.Manufacture;
-                    dbEntry.Developer = gpu.Developer;
                     dbEntry.Architecture = gpu.Architecture;
                     dbEntry.AverageBench = gpu.AverageBench;
                     dbEntry.BoostClock = gpu.BoostClock;
                     dbEntry.FrameBuffer = gpu.FrameBuffer;
                     dbEntry.MemorySpeed = gpu.MemorySpeed;
                     dbEntry.Name = gpu.Name;
-                    //dbEntry.Price = gpu.Price;
-                    
+                    dbEntry.PriceGPUs = gpu.PriceGPUs;
                 }
             }
             context.SaveChanges();

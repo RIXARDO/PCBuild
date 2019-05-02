@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
     [MetadataType(typeof(GPUMetadata))]
-    [Table("GPUs")]
-    public partial class GPU: Product
+    public partial class GPU
     {
-        public string Manufacture { get; set; }
 
-        public string Developer { get; set; }
+        public int GPUID{ get;set;}
+
+        public string Manufacture { get; set; }
 
         public string Name { get; set; }
 
@@ -27,6 +26,8 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
 
         public int AverageBench { get; set; }
 
+        public virtual ICollection<PriceGPU> PriceGPUs { get; set; }
+
         public virtual ICollection<BuildEntity> BuildEntities { get; set; }
 
         public override bool Equals(object obj)
@@ -38,13 +39,13 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
             else
             {
                 GPU gpu = (GPU)obj;
-                return (this.ProductID == gpu.ProductID);
+                return (this.GPUID == gpu.GPUID);
             }
         }
 
         public override int GetHashCode()
         {
-            return ProductID.GetHashCode();
+            return GPUID;
         }
     }
 }

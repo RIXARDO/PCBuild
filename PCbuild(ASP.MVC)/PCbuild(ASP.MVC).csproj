@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201902210841171_DataMigration.Designer.cs">
       <DependentUpon>201902210841171_DataMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904201815167_MergeIdentityData.cs" />
+    <Compile Include="Migrations\201904201815167_MergeIdentityData.Designer.cs">
+      <DependentUpon>201904201815167_MergeIdentityData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity\AccountInfoModel.cs" />
     <Compile Include="Models\Identity\ApplicationContext.cs" />
@@ -274,7 +278,6 @@
     <Content Include="Views\Build\Action.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Games\Edit.cshtml" />
-    <Content Include="Views\Build\ChangeDropDown.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Show\Index.cshtml" />
     <Content Include="Views\Show\ListCPU.cshtml" />
@@ -310,6 +313,7 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CPUs\Prices.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,15 +333,18 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PCbuild%28ASP.MVC%29.Domain\PCbuild%28ASP.MVC%29.Domain.csproj">
-      <Project>{6b7717ba-1dd6-4b1e-964f-e6c1a1282935}</Project>
-      <Name>PCbuild%28ASP.MVC%29.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201902210841171_DataMigration.resx">
       <DependentUpon>201902210841171_DataMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201815167_MergeIdentityData.resx">
+      <DependentUpon>201904201815167_MergeIdentityData.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PCbuild%28ASP.MVC%29.Domain\PCbuild%28ASP.MVC%29.Domain.csproj">
+      <Project>{419f29ef-2bad-4d8c-ad2a-4160a6dc99b3}</Project>
+      <Name>PCbuild%28ASP.MVC%29.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

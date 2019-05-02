@@ -4,14 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
     [MetadataType(typeof(CPUMetadata))]
-    [Table("CPUs")]
-    public partial class CPU:Product
+    public partial class CPU
     {
+        /// <summary>
+        /// Id
+        /// </summary>
+        [HiddenInput (DisplayValue =false)]
+        public int CPUID { get; set; }
 
         public string Manufacture { get; set; }
 
@@ -30,6 +33,8 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
 
         public string TDP { get; set; }
 
+        public virtual ICollection<PriceCPU> PriceCPUs { get; set; }
+
         public int AverangeBench { get; set; }
 
         public virtual ICollection<BuildEntity> BuildEntities { get; set; }
@@ -43,13 +48,13 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
             else
             {
                 CPU cpu = (CPU)obj;
-                return (this.ProductID == cpu.ProductID);
+                return (this.CPUID == cpu.CPUID);
             }
         }
 
         public override int GetHashCode()
         {
-           return ProductID.GetHashCode();
+           return CPUID;
         }
     }
 }

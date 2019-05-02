@@ -68,13 +68,13 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         // GET: CPUs/Edit/5
-        public async Task<ActionResult> Edit(Guid id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CPU cPU = await repository.CPUs.FirstAsync(x => x.ProductID == id);
+            CPU cPU = await repository.CPUs.FirstAsync(x => x.CPUID == id);
             if (cPU == null)
             {
                 return HttpNotFound();
@@ -121,9 +121,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Prices(Guid CPUID)
+        public ActionResult Prices(int CPUID)
         {
-            var item = repository.CPUs.First(x => x.ProductID == CPUID);
+            var item = repository.CPUs.First(x => x.CPUID == CPUID);
             if (item != null)
             {
                 return View(item);

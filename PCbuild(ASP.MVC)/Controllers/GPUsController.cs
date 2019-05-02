@@ -25,9 +25,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
 
-        public ViewResult Edit(Guid id)
+        public ViewResult Edit(int id)
         {
-            GPU gpu = repository.GPUs.FirstOrDefault(x => x.ProductID == id);
+            GPU gpu = repository.GPUs.FirstOrDefault(x => x.GPUID == id);
             return View(gpu);
         }
 

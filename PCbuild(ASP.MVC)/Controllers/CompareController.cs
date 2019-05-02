@@ -5,8 +5,6 @@ using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Entities;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Models;
-using System;
-
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
@@ -29,7 +27,7 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(returnUrl);
         }
 
-        public ActionResult CPUCompare(Domain.Entities.Comparison<CPU> comparison, string returnUrl)
+        public ActionResult CPUCompare(Comparison<CPU> comparison, string returnUrl)
         {
             return View(new CompareIndexViewModel<CPU>
             {
@@ -39,9 +37,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPUAddToCompare(Domain.Entities.Comparison<CPU> comparison, Guid CPUID, string returnUrl)
+        public RedirectToRouteResult CPUAddToCompare(Comparison<CPU> comparison, int CPUID, string returnUrl)
         {
-            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.ProductID == CPUID);
+            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.CPUID == CPUID);
             if (cpu != null)
             {
                 comparison.AddItem(cpu);
@@ -49,9 +47,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return RedirectToAction("CPUCompare", new { returnUrl });
         }
         [HttpPost]
-        public RedirectToRouteResult CPURemoveFromCompare(Domain.Entities.Comparison<CPU> comparison, Guid CPUID, string returnUrl)
+        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPU> comparison, int CPUID, string returnUrl)
         {
-            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.ProductID == CPUID);
+            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.CPUID == CPUID);
             if (cpu != null)
             {
                 comparison.Remove(cpu);
@@ -60,13 +58,13 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPUClearCompare(Domain.Entities.Comparison<CPU> comparison, string returnUrl)
+        public RedirectToRouteResult CPUClearCompare(Comparison<CPU> comparison, string returnUrl)
         {
             comparison.Clear();
             return RedirectToAction("CPUCompare", new { returnUrl });
         }
 
-        public ActionResult GPUCompare(Domain.Entities.Comparison<GPU> comparison, string returnUrl)
+        public ActionResult GPUCompare(Comparison<GPU> comparison, string returnUrl)
         {
             return View(new CompareIndexViewModel<GPU>
             {
@@ -76,10 +74,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPUAddToCompare(Domain.Entities.Comparison<GPU> comparison,
-            Guid GPUID, string returnUrl)
+        public RedirectToRouteResult GPUAddToCompare(Comparison<GPU> comparison, int GPUID, string returnUrl)
         {
-            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.ProductID == GPUID);
+            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.GPUID == GPUID);
             if (gpu != null)
             {
                 comparison.AddItem(gpu);
@@ -88,10 +85,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPURemoveFromCompare(Domain.Entities.Comparison<GPU> comparison,
-            Guid GPUID, string returnUrl)
+        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPU> comparison, int GPUID, string returnUrl)
         {
-            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.ProductID == GPUID);
+            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.GPUID == GPUID);
             if (gpu != null)
             {
                 comparison.Remove(gpu);
@@ -100,7 +96,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPUClearCompare(Domain.Entities.Comparison<GPU> comparison, string returnUrl)
+        public RedirectToRouteResult GPUClearCompare(Comparison<GPU> comparison, string returnUrl)
         {
             comparison.Clear();
             return RedirectToAction("GPUCompare", new { returnUrl });
