@@ -11,6 +11,6 @@ namespace PCbuild_ASP.MVC_.Domain.Abstract
     {
         IQueryable<GPU> GPUs { get; }
         void SaveGPU(GPU gpu);
-        GPU DeleteGPU(int GPUid);
+        GPU DeleteGPU(Guid gpuId);
     }
 }

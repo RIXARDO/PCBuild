@@ -36,7 +36,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public ActionResult Action(string CPU, string GPU, string ScreenRez, int? CPUs, int? GPUs)
+        public ActionResult Action(string CPU, string GPU, string ScreenRez, Guid CPUs, Guid GPUs)
         {
             if (CPUs != null & GPUs != null)
             {
@@ -44,8 +44,8 @@ namespace PCbuild_ASP.MVC_.Controllers
                 {
                     BuildGames = new List<BuildGame>()
                 };
-                float CPUbench = CPURepository.CPUs.Where(x => x.CPUID == CPUs).Select(x => x.AverangeBench).First() / 100f;
-                float GPUbench = GPURepository.GPUs.Where(x => x.GPUID == GPUs).Select(x => x.AverageBench).First() / 100f;
+                float CPUbench = CPURepository.CPUs.Where(x => x.ProductGuid == CPUs).Select(x => x.AverangeBench).First() / 100f;
+                float GPUbench = GPURepository.GPUs.Where(x => x.ProductGuid == GPUs).Select(x => x.AverageBench).First() / 100f;
                 float ScreenRezConf = (ScreenRez == "p1080") ? 1 : ((ScreenRez == "p1440") ? 0.75f : 0.5f);
                 float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
                 foreach (Game game in GameRepository.Games)
@@ -60,8 +60,8 @@ namespace PCbuild_ASP.MVC_.Controllers
                 ////////////////////////////////////////////////////////////
                 buildResult.BuildEntity = new BuildEntity
                 {
-                    CPU = CPURepository.CPUs.FirstOrDefault(x => x.CPUID == CPUs),
-                    GPU = GPURepository.GPUs.FirstOrDefault(x => x.GPUID == GPUs),
+                    CPU = CPURepository.CPUs.FirstOrDefault(x => x.ProductGuid == CPUs),
+                    GPU = GPURepository.GPUs.FirstOrDefault(x => x.ProductGuid == GPUs),
                     UserID = User.Identity.GetUserId()
                 };
 
@@ -93,7 +93,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         public JsonResult DropDownListCPU(string value)
         {
             var cpus = CPURepository.CPUs.Where(x => x.Manufacture == value)
-                .Select(x => new { name = x.ProcessorNumber, value = x.CPUID });
+                .Select(x => new { name = x.ProcessorNumber, value = x.ProductGuid });
             return Json(cpus, JsonRequestBehavior.AllowGet);
 
         }
@@ -101,7 +101,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         public JsonResult DropDownListGPU(string value)
         {
             var gpus = GPURepository.GPUs.Where(x => x.Manufacture == value)
-                .Select(x => new { name = x.Name, value = x.GPUID });
+                .Select(x => new { name = x.Name, value = x.ProductGuid });
             return Json(gpus, JsonRequestBehavior.AllowGet);
         }
 

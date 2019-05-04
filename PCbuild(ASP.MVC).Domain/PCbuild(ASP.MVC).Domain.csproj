@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{419F29EF-2BAD-4D8C-AD2A-4160A6DC99B3}</ProjectGuid>
+    <ProjectGuid>{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PCbuild_ASP.MVC_.Domain</RootNamespace>
@@ -83,32 +83,52 @@
     <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Abstract\IGameRepository.cs" />
     <Compile Include="Abstract\IGPURepository.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Abstract\IPriceRepository.cs" />
+    <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="Concrete\EFBuildRepository.cs" />
     <Compile Include="Concrete\EFCPURepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGameRepository.cs" />
     <Compile Include="Concrete\EFGPURepository.cs" />
+    <Compile Include="Concrete\EFPriceRepository.cs" />
+    <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="DAL\PCBuildInitializer.cs" />
+    <Compile Include="Entities\Additional\ProductAdditional.cs" />
     <Compile Include="Entities\BuildEntity.cs" />
     <Compile Include="Entities\Comparison.cs" />
     <Compile Include="Entities\CPU.cs" />
     <Compile Include="Entities\EntityMetadata\CPUMetadata.cs" />
     <Compile Include="Entities\EntityMetadata\GPUMetadata.cs" />
+    <Compile Include="Entities\EntityMetadata\ProductMetadata.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GPU.cs" />
     <Compile Include="Entities\Price.cs" />
-    <Compile Include="Entities\PriceCPU.cs" />
-    <Compile Include="Entities\PriceGPU.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Migrations\201904121830113_InitialCreate.cs" />
+    <Compile Include="Migrations\201904121830113_InitialCreate.Designer.cs">
+      <DependentUpon>201904121830113_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905021920492_AddProductPriceMDTLV.cs" />
+    <Compile Include="Migrations\201905021920492_AddProductPriceMDTLV.Designer.cs">
+      <DependentUpon>201905021920492_AddProductPriceMDTLV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904121830113_InitialCreate.resx">
+      <DependentUpon>201904121830113_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021920492_AddProductPriceMDTLV.resx">
+      <DependentUpon>201905021920492_AddProductPriceMDTLV.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

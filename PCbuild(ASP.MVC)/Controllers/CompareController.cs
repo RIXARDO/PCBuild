@@ -37,9 +37,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPUAddToCompare(Comparison<CPU> comparison, int CPUID, string returnUrl)
+        public RedirectToRouteResult CPUAddToCompare(Comparison<CPU> comparison, System.Guid cpuId, string returnUrl)
         {
-            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.CPUID == CPUID);
+            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.ProductGuid == cpuId);
             if (cpu != null)
             {
                 comparison.AddItem(cpu);
@@ -47,9 +47,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return RedirectToAction("CPUCompare", new { returnUrl });
         }
         [HttpPost]
-        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPU> comparison, int CPUID, string returnUrl)
+        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPU> comparison, System.Guid cpuId, string returnUrl)
         {
-            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.CPUID == CPUID);
+            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.ProductGuid == cpuId);
             if (cpu != null)
             {
                 comparison.Remove(cpu);
@@ -74,9 +74,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPUAddToCompare(Comparison<GPU> comparison, int GPUID, string returnUrl)
+        public RedirectToRouteResult GPUAddToCompare(Comparison<GPU> comparison, System.Guid gpuId, string returnUrl)
         {
-            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.GPUID == GPUID);
+            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.ProductGuid == gpuId);
             if (gpu != null)
             {
                 comparison.AddItem(gpu);
@@ -85,9 +85,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPU> comparison, int GPUID, string returnUrl)
+        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPU> comparison, System.Guid gpuId, string returnUrl)
         {
-            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.GPUID == GPUID);
+            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.ProductGuid == gpuId);
             if (gpu != null)
             {
                 comparison.Remove(gpu);

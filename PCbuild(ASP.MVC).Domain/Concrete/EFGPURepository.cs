@@ -20,9 +20,9 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
             }
         }
 
-        public GPU DeleteGPU(int GPUid)
+        public GPU DeleteGPU(Guid gpuId)
         {
-            GPU dbEntry = context.GPUs.Find(GPUid);
+            GPU dbEntry = context.GPUs.Find(gpuId);
             if (dbEntry != null)
             {
                 context.GPUs.Remove(dbEntry);
@@ -33,13 +33,13 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public void SaveGPU(GPU gpu)
         {
-            if (gpu.GPUID == 0)
+            if (gpu.ProductGuid == null)
             {
                 context.GPUs.Add(gpu);
             }
             else
             {
-                GPU dbEntry = context.GPUs.Find(gpu.GPUID);
+                GPU dbEntry = context.GPUs.Find(gpu.ProductGuid);
                 if (dbEntry != null)
                 {
                     dbEntry.Manufacture = gpu.Manufacture;
@@ -49,7 +49,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
                     dbEntry.FrameBuffer = gpu.FrameBuffer;
                     dbEntry.MemorySpeed = gpu.MemorySpeed;
                     dbEntry.Name = gpu.Name;
-                    dbEntry.PriceGPUs = gpu.PriceGPUs;
+                    dbEntry.Price = gpu.Price;
                 }
             }
             context.SaveChanges();

@@ -8,10 +8,9 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
 {
     public partial class GPUMetadata
     {
-        [Key]
-        public int GPUID { get; set; }
-
         public string Manufacture { get; set; }
+
+        public string Developer { get; set; }
 
         public string Name { get; set; }
 
@@ -24,8 +23,6 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
         public int MemorySpeed { get; set; }
 
         public int AverageBench { get; set; }
-
-        public virtual ICollection<PriceGPU> PriceGPUs { get; set; }
 
         public virtual ICollection<BuildEntity> BuildEntities { get; set; }
     }

@@ -11,6 +11,6 @@ namespace PCbuild_ASP.MVC_.Domain.Abstract
     {
         IQueryable<CPU> CPUs { get; }
         void SaveCPU(CPU cpu);
-        CPU DeleteCPU(int CPUid);
+        CPU DeleteCPU(Guid cpuId);
     }
 }

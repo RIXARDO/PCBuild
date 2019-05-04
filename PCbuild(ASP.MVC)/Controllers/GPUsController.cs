@@ -25,9 +25,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
 
-        public ViewResult Edit(int id)
+        public ViewResult Edit(Guid id)
         {
-            GPU gpu = repository.GPUs.FirstOrDefault(x => x.GPUID == id);
+            GPU gpu = repository.GPUs.FirstOrDefault(x => x.ProductGuid == id);
             return View(gpu);
         }
 
@@ -52,7 +52,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             var deletedGPU=repository.DeleteGPU(id);
             if (deletedGPU != null)

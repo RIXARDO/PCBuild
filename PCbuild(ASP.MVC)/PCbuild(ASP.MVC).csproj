@@ -204,10 +204,6 @@
     <Compile Include="Migrations\201902210841171_DataMigration.Designer.cs">
       <DependentUpon>201902210841171_DataMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904201815167_MergeIdentityData.cs" />
-    <Compile Include="Migrations\201904201815167_MergeIdentityData.Designer.cs">
-      <DependentUpon>201904201815167_MergeIdentityData.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity\AccountInfoModel.cs" />
     <Compile Include="Models\Identity\ApplicationContext.cs" />
@@ -335,9 +331,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902210841171_DataMigration.resx">
       <DependentUpon>201902210841171_DataMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904201815167_MergeIdentityData.resx">
-      <DependentUpon>201904201815167_MergeIdentityData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

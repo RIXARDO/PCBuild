@@ -20,5 +20,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
         public DbSet<GPU> GPUs { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<BuildEntity> BuildEntities { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Price> Prices { get; set; }
     }
 }

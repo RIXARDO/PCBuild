@@ -68,13 +68,13 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         // GET: CPUs/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CPU cPU = await repository.CPUs.FirstAsync(x => x.CPUID == id);
+            CPU cPU = await repository.CPUs.FirstAsync(x => x.ProductGuid == id);
             if (cPU == null)
             {
                 return HttpNotFound();
@@ -115,15 +115,15 @@ namespace PCbuild_ASP.MVC_.Controllers
         // POST: CPUs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             repository.DeleteCPU(id);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Prices(int CPUID)
+        public ActionResult Prices(Guid cpuId)
         {
-            var item = repository.CPUs.First(x => x.CPUID == CPUID);
+            var item = repository.CPUs.First(x => x.ProductGuid == cpuId);
             if (item != null)
             {
                 return View(item);
