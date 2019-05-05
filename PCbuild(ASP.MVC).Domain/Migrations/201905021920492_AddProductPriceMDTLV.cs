@@ -21,7 +21,7 @@ namespace PCbuild_ASP.MVC_.Domain.Migrations
                 "dbo.Products",
                 c => new
                     {
-                        ProductGuid = c.Guid(nullable: false),
+                        ProductGuid = c.Guid(nullable: false, identity: true),
                         Status = c.String(),
                     })
                 .PrimaryKey(t => t.ProductGuid);

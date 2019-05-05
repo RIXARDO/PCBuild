@@ -11,7 +11,7 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
 {
     [MetadataType(typeof(ProductMetadata))]
     public partial class Product
-    {
+    { 
         public Guid ProductGuid { get; set; }
         public string Status { get; set; }
 

@@ -33,6 +33,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
             else
             {
                 Game dbEntry = context.Games.Find(game.GameID);
+                
                 if (dbEntry != null)
                 {
                     dbEntry.Name = game.Name;

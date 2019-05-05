@@ -10,6 +10,8 @@ namespace PCbuild_ASP.MVC_.Domain.Entities.EntityMetadata
 {
     public partial class ProductMetadata
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ProductGuid { get; set; }
     }
 }
