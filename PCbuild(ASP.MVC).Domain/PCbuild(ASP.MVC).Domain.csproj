@@ -82,22 +82,29 @@
     <Compile Include="Abstract\ICPURepository.cs" />
     <Compile Include="Abstract\IEntity.cs" />
     <Compile Include="Abstract\IGameRepository.cs" />
+    <Compile Include="Abstract\IGenericRepository.cs" />
     <Compile Include="Abstract\IGPURepository.cs" />
     <Compile Include="Abstract\IPriceRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Concrete\EFBuildRepository.cs" />
     <Compile Include="Concrete\EFCPURepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFGameRepository.cs" />
+    <Compile Include="Concrete\EFRepository.cs" />
     <Compile Include="Concrete\EFGPURepository.cs" />
     <Compile Include="Concrete\EFPriceRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
+    <Compile Include="Concrete\EFUnitOfWork.cs" />
     <Compile Include="DAL\PCBuildInitializer.cs" />
     <Compile Include="Entities\Additional\ProductAdditional.cs" />
     <Compile Include="Entities\BuildEntity.cs" />
     <Compile Include="Entities\Comparison.cs" />
     <Compile Include="Entities\CPU.cs" />
+    <Compile Include="Entities\EntityMetadata\BuildEntityMetadata.cs" />
     <Compile Include="Entities\EntityMetadata\CPUMetadata.cs" />
+    <Compile Include="Entities\EntityMetadata\GameMetadata.cs" />
     <Compile Include="Entities\EntityMetadata\GPUMetadata.cs" />
     <Compile Include="Entities\EntityMetadata\ProductMetadata.cs" />
     <Compile Include="Entities\Game.cs" />
@@ -111,6 +118,18 @@
     <Compile Include="Migrations\201905021920492_AddProductPriceMDTLV.cs" />
     <Compile Include="Migrations\201905021920492_AddProductPriceMDTLV.Designer.cs">
       <DependentUpon>201905021920492_AddProductPriceMDTLV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905081701120_AddGamePK.cs" />
+    <Compile Include="Migrations\201905081701120_AddGamePK.Designer.cs">
+      <DependentUpon>201905081701120_AddGamePK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905081718315_SeedOnly.cs" />
+    <Compile Include="Migrations\201905081718315_SeedOnly.Designer.cs">
+      <DependentUpon>201905081718315_SeedOnly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906182008202_CPURefactor.cs" />
+    <Compile Include="Migrations\201906182008202_CPURefactor.Designer.cs">
+      <DependentUpon>201906182008202_CPURefactor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +146,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905021920492_AddProductPriceMDTLV.resx">
       <DependentUpon>201905021920492_AddProductPriceMDTLV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905081701120_AddGamePK.resx">
+      <DependentUpon>201905081701120_AddGamePK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905081718315_SeedOnly.resx">
+      <DependentUpon>201905081718315_SeedOnly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906182008202_CPURefactor.resx">
+      <DependentUpon>201906182008202_CPURefactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -26,9 +26,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(repo.Games);
         }
 
-        public ViewResult Edit(int GameID)
+        public ViewResult Edit(Guid GameID)
         {
-            Game game = repo.Games.FirstOrDefault(x => x.GameID == GameID);
+            Game game = repo.Games.FirstOrDefault(x => x.GameGuid == GameID);
             return View(game);
 
         }

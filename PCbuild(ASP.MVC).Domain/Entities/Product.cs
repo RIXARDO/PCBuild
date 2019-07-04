@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using PCbuild_ASP.MVC_.Domain.Entities.EntityMetadata;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {

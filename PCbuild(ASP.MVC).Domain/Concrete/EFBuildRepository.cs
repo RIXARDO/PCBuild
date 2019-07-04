@@ -21,13 +21,13 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public void SaveBuild(BuildEntity build)
         {
-            if (build.BuildEntityID == 0)
+            if (build.BuildEntityGuid == null)
             {
                 context.BuildEntities.Add(build);
             }
             else
             {
-                BuildEntity dbEntry = context.BuildEntities.Find(build.BuildEntityID);
+                BuildEntity dbEntry = context.BuildEntities.Find(build.BuildEntityGuid);
                 if (dbEntry != null)
                 {
                     dbEntry.CPU = build.CPU;

@@ -9,7 +9,7 @@ using PCbuild_ASP.MVC_.Controllers;
 
 namespace PCbuild_ASP.MVC_.Tests.Controllers
 {
-    [TestClass]
+    //[TestClass]
     public class HomeControllerTest
     {
         [TestMethod]

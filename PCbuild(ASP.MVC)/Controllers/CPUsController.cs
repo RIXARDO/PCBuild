@@ -56,7 +56,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverangeBench")] CPU cPU)
+        public ActionResult Create([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverageBench")] CPU cPU)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverangeBench")] CPU cPU)
+        public ActionResult Edit([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverageBench")] CPU cPU)
         {
             if (ModelState.IsValid)
             {

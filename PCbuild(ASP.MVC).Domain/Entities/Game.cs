@@ -7,10 +7,11 @@ using System.Web.Mvc;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
+    [MetadataType(typeof(GameMetadata))]
     public partial class Game
     {
         [HiddenInput(DisplayValue = false)]
-        public int GameID { get; set; }
+        public Guid GameGuid { get; set; }
 
         [Required(ErrorMessage ="Please enter a name")]
         public string Name { get; set; }
@@ -35,13 +36,13 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
             else
             {
                Game game = (Game)obj;
-                return (GameID == game.GameID);
+                return (GameGuid == game.GameGuid);
             }
         }
 
         public override int GetHashCode()
         {
-            return GameID<<2;
+            return GameGuid.GetHashCode();
         }
     }
 }

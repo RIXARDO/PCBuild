@@ -205,6 +205,7 @@
       <DependentUpon>201902210841171_DataMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\Identity\AccountInfoModel.cs" />
     <Compile Include="Models\Identity\ApplicationContext.cs" />
     <Compile Include="Models\Identity\ApplicationRole.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CPUs\Prices.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

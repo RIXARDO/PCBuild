@@ -8,10 +8,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PCbuild_ASP.MVC_.Domain.Entities
 {
-    public partial class ProductMetadata
+    public partial class Product
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ProductGuid { get; set; }
+
     }
 }

@@ -49,7 +49,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
                     dbEntry.ProcessorNumber = cpu.ProcessorNumber;
                     dbEntry.TDP = cpu.TDP;
                     dbEntry.Cache = cpu.Cache;
-                    dbEntry.AverangeBench = cpu.AverangeBench;
+                    dbEntry.AverageBench = cpu.AverageBench;
                 }
             }
             context.SaveChanges();

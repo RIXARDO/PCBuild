@@ -30,7 +30,7 @@ namespace PCbuild_ASP.MVC_.Domain.Entities
 
         public string TDP { get; set; }
 
-        public int AverangeBench { get; set; }
+        public int AverageBench { get; set; }
 
         public virtual ICollection<BuildEntity> BuildEntities { get; set; }
 

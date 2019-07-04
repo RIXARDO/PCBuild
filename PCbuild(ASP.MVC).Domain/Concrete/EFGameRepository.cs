@@ -26,13 +26,13 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public void SaveGame(Game game)
         {
-            if (game.GameID == 0)
+            if (game.GameGuid == null)
             {
                 context.Games.Add(game);
             }
             else
             {
-                Game dbEntry = context.Games.Find(game.GameID);
+                Game dbEntry = context.Games.Find(game.GameGuid);
                 
                 if (dbEntry != null)
                 {

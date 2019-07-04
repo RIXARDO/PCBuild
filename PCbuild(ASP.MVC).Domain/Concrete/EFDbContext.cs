@@ -16,6 +16,11 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
             Database.SetInitializer(new PCBuildInitializer());
         }
 
+        public EFDbContext(string ConectionString) : base(ConectionString)
+        {
+            Database.SetInitializer(new DropCreateDatabaseAlways<EFDbContext>());
+        }
+
         public DbSet<CPU> CPUs { get; set;}
         public DbSet<GPU> GPUs { get; set; }
         public DbSet<Game> Games { get; set; }

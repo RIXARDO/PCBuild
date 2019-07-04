@@ -8,6 +8,8 @@ using Moq;
 using System.Configuration;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Domain.Concrete;
+using System.Web;
+using System.Threading;
 
 namespace PCbuild_ASP.MVC_.Util
 {
@@ -33,13 +35,15 @@ namespace PCbuild_ASP.MVC_.Util
                     : (IController)ninjectKernel.Get(controllerType);
             }
 
-            private void AddBindings()
-            {
-                ninjectKernel.Bind<ICPURepository>().To<EFCPURepository>();
-                ninjectKernel.Bind<IGPURepository>().To<EFGPURepository>();
-                ninjectKernel.Bind<IGameRepository>().To<EFGameRepository>();
-                ninjectKernel.Bind<IBuildEntityRepository>().To<EFBuildRepository>();
-     
+        private void AddBindings()
+        {
+            ninjectKernel.Bind<ICPURepository>().To<EFCPURepository>();
+            ninjectKernel.Bind<IGPURepository>().To<EFGPURepository>();
+            ninjectKernel.Bind<IGameRepository>().To<EFGameRepository>();
+            ninjectKernel.Bind<IBuildEntityRepository>().To<EFBuildRepository>();
+            ninjectKernel.Bind<IUnitOfWork>().To<EFUnitOfWork>().InScope(x => HttpContext.Current!=null?(object)HttpContext.Current:(object)Thread.CurrentThread);
+            ninjectKernel.Bind(typeof(IGenericRepository<>)).To(typeof(EFRepository<>));
+            ninjectKernel.Bind<EFDbContext>().ToSelf().InScope(x => { return HttpContext.Current != null ? (object)HttpContext.Current : (object)Thread.CurrentThread; });
             }
         }
     }

@@ -28,7 +28,7 @@
             cpuAMD = true;
         }
 
-        if (Model.GPU.Manufacture == "Nvidia")
+        if (Model.GPU.Developer == "Nvidia")
         {
             gpuNvidia = true;
             gpuAMD = false;
@@ -134,7 +134,7 @@
     if (@sel) {
         $("#CPUs").val("@Model.CPUID");
         $("#GPUs").val("@Model.GPUID");
-        $("#BuildId").val("@Model.BuildEntityID");
+        $("#BuildId").val("@Model.BuildEntityGuid");
 
     }
 </script>

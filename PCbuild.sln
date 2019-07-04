@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC).Tests", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC).Domain", "PCbuild(ASP.MVC).Domain\PCbuild(ASP.MVC).Domain.csproj", "{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC).Services", "PCbuild(ASP.MVC).Services\PCbuild(ASP.MVC).Services.csproj", "{61F12496-B1BA-4A95-805C-3A720E23B7F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F12496-B1BA-4A95-805C-3A720E23B7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F12496-B1BA-4A95-805C-3A720E23B7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F12496-B1BA-4A95-805C-3A720E23B7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F12496-B1BA-4A95-805C-3A720E23B7F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

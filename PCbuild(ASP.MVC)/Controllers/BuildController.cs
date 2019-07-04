@@ -16,6 +16,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         ICPURepository CPURepository;
         IGPURepository GPURepository;
         IGameRepository GameRepository;
+
         private IBuildEntityRepository BuildRepository;
 
 
@@ -44,7 +45,7 @@ namespace PCbuild_ASP.MVC_.Controllers
                 {
                     BuildGames = new List<BuildGame>()
                 };
-                float CPUbench = CPURepository.CPUs.Where(x => x.ProductGuid == CPUs).Select(x => x.AverangeBench).First() / 100f;
+                float CPUbench = CPURepository.CPUs.Where(x => x.ProductGuid == CPUs).Select(x => x.AverageBench).First() / 100f;
                 float GPUbench = GPURepository.GPUs.Where(x => x.ProductGuid == GPUs).Select(x => x.AverageBench).First() / 100f;
                 float ScreenRezConf = (ScreenRez == "p1080") ? 1 : ((ScreenRez == "p1440") ? 0.75f : 0.5f);
                 float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
@@ -72,9 +73,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
 
-        public FileContentResult GetImage(int GameID, bool big = true)
+        public FileContentResult GetImage(Guid GameID, bool big = true)
         {
-            Game game = GameRepository.Games.FirstOrDefault(g => g.GameID == GameID);
+            Game game = GameRepository.Games.FirstOrDefault(g => g.GameGuid == GameID);
             if (game != null & game.ImageMimeType64 != null & game.ImageMimeType32 != null)
             {
 
@@ -100,7 +101,7 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         public JsonResult DropDownListGPU(string value)
         {
-            var gpus = GPURepository.GPUs.Where(x => x.Manufacture == value)
+            var gpus = GPURepository.GPUs.Where(x => x.Developer == value)
                 .Select(x => new { name = x.Name, value = x.ProductGuid });
             return Json(gpus, JsonRequestBehavior.AllowGet);
         }
@@ -126,9 +127,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [Authorize]
-        public ActionResult EditBuild(int BuildEntityID)
+        public ActionResult EditBuild(Guid BuildEntityID)
         {
-            BuildEntity build = BuildRepository.Builds.FirstOrDefault(x => x.BuildEntityID == BuildEntityID);
+            BuildEntity build = BuildRepository.Builds.FirstOrDefault(x => x.BuildEntityGuid == BuildEntityID);
             return View("Build", build);
         }
 
@@ -137,13 +138,13 @@ namespace PCbuild_ASP.MVC_.Controllers
         public ActionResult SaveBuild(string BuildId, string CPUid, string GPUid)
         {
             BuildEntity build = new BuildEntity();
-            int BuildID = int.Parse(BuildId);
-            int CPUID = int.Parse(CPUid);
-            int GPUID = int.Parse(GPUid);
+            Guid.TryParse(BuildId, out Guid BuildID);
+            Guid.TryParse(CPUid, out Guid CPUID);
+            Guid.TryParse(GPUid, out Guid GPUID);
             build.CPUID = CPUID;
             build.GPUID = GPUID;
             build.UserID = User.Identity.GetUserId();
-            build.BuildEntityID = BuildID;
+            build.BuildEntityGuid = BuildID;
             BuildRepository.SaveBuild(build);
 
             return RedirectToAction("Builds", "Build");

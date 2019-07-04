@@ -1,0 +1,65 @@
+﻿using PCbuild_ASP.MVC_.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using PCbuild_ASP.MVC_.Domain.Abstract;
+
+namespace PCbuild_ASP.MVC_.Domain.Concrete
+{
+    public class EFUnitOfWork : IUnitOfWork, IDisposable
+    {
+        private readonly EFDbContext context;
+
+        private Dictionary<string, IRepository> repositores;
+
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        public EFUnitOfWork()
+        {
+            context = new EFDbContext();
+            repositores = new Dictionary<string, IRepository>();
+        }
+
+        public EFUnitOfWork(EFDbContext dbContext)
+        {
+            repositores = new Dictionary<string, IRepository>();
+            context = dbContext;
+        }
+
+        public virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+                disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public void Register(IRepository repository)
+        {
+            repositores.Add(repository.GetType().Name, repository);
+        }
+
+        public object GetSource()
+        {
+            return context;
+        }
+    }
+}
