@@ -18,7 +18,8 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public EFDbContext(string ConectionString) : base(ConectionString)
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<EFDbContext>());
+            Database.SetInitializer(
+                new DropCreateDatabaseIfModelChanges<EFDbContext>());
         }
 
         public DbSet<CPU> CPUs { get; set;}

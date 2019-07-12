@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PCbuild_ASP.MVC_.Domain.Entities.Game>
+﻿@model IEnumerable<PCbuild_ASP.MVC_.Models.ViewModel.GameViewModel>
 
 @{
     ViewBag.Title = "Games";
@@ -15,12 +15,12 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.GameID</td>
-            <td>@Html.ActionLink(item.Name, "Edit", new { item.GameID })</td>
+            <td>@item.GameGuid</td>
+            <td>@Html.ActionLink(item.Name, "Edit", new { item.GameGuid })</td>
             <td>
                 @using (Html.BeginForm("Delete", "Games"))
                 {
-                    @Html.Hidden("GameID", item.GameID)
+                    @Html.Hidden("GameID", item.GameGuid)
                     <input type="submit" value="Delete" class="btn btn-danger"/>
                 }
             </td>

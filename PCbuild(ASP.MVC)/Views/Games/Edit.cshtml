@@ -1,4 +1,5 @@
-﻿@model PCbuild_ASP.MVC_.Domain.Entities.Game
+﻿@model PCbuild_ASP.MVC_.Models.ViewModel.GameViewModel
+
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,7 +8,7 @@
 
 @using (Html.BeginForm("Edit", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.HiddenFor(x => x.GameID);
+    @Html.HiddenFor(x => x.GameGuid);
     <div class="ro">Name:</div><div> @Html.EditorFor(x => x.Name);</div>
     <div>AverangeRequirements:</div><div> @Html.EditorFor(x => x.AverangeRequirements);</div>
     <div>Image(low)</div>
@@ -18,7 +19,7 @@
         }
         else
         {
-            <img src="@Url.Action("GetImage", "Build", new {Model.GameID, big=false })" />
+            <img src="@Url.Action("GetImage", "Build", new {Model.GameGuid, big=false })" />
         }
     </div>
     <label class="btn btn-primary">
@@ -33,7 +34,7 @@
         }
         else
         {
-            <img src="@Url.Action("GetImage", "Build", new { Model.GameID, big=true })" />
+            <img src="@Url.Action("GetImage", "Build", new { Model.GameGuid, big=true })" />
         }
     </div>
     <label class="btn btn-primary">

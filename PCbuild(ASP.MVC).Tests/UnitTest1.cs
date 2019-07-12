@@ -25,7 +25,7 @@ namespace PCbuild_ASP.MVC_.Tests
             Mock<IUnitOfWork> mockUow = new Mock<IUnitOfWork>();
             mockUow.Setup(x => x.GetSource()).Returns(context.Object);
 
-            EFRepository<TestModel> repository = new EFRepository<TestModel>(mockUow.Object);
+            EFRepository<TestModel> repository = new EFRepository<TestModel>(mockUow.Object, null);
 
             //act
             repository.Create(testModel);

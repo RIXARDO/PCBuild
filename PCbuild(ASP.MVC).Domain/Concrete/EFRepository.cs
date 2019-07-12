@@ -14,7 +14,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         DbSet<TEntity> dbset;
 
-        public EFRepository(IUnitOfWork unitOfWork)
+        public EFRepository(IUnitOfWork unitOfWork, EFDbContext dbContext)
         {
             unitOfWork.Register(this);
             //Bad Decision

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PCbuild_ASP.MVC_.Domain.Entities.CPU>
+﻿@model IEnumerable<PCbuild_ASP.MVC_.Models.ViewModel.CPUViewModel>
 
 @{
     ViewBag.Title = "CPUs Admin";
@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.TDP)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AverangeBench)
+            @Html.DisplayNameFor(model => model.AverageBench)
         </th>
         <th></th>
     </tr>
@@ -62,12 +62,12 @@
             @Html.DisplayFor(modelItem => item.TDP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AverangeBench)
+            @Html.DisplayFor(modelItem => item.AverageBench)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CPUID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductGuid }) |
             @*@Html.ActionLink("Details", "Details", new { id=item.CPUID }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.CPUID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductGuid })
         </td>
     </tr>
 }

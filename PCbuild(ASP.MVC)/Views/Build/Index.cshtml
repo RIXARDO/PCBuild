@@ -110,8 +110,8 @@
         @using (Html.BeginForm("SaveBuild", "Build", FormMethod.Post))
         {
             @Html.Hidden("BuildId", "0");
-            @Html.Hidden("CPUid");
-            @Html.Hidden("GPUid");
+            @Html.Hidden("CPUGuid");
+            @Html.Hidden("GPUGuid");
             <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()"  style="clear:left"/>
         }
     </div>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PCbuild_ASP.MVC_.Services.Util
 {
-    class AutoMapperServicesProfile: Profile
+    public class AutoMapperServicesProfile: Profile
     {
         public AutoMapperServicesProfile()
         {

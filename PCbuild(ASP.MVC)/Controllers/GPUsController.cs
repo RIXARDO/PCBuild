@@ -3,40 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuild_ASP.MVC_.Services.Interfaces;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
     public class GPUsController : Controller
     {
-        private IGPURepository repository;
+        IGPUService Service;
+        IMapper Mapper;
 
-        public GPUsController(IGPURepository gPURepository)
+        public GPUsController(IGPUService service, IMapper mapper)
         {
-            repository = gPURepository;
+            Service = service;
+            Mapper = mapper;
         }
 
         // GET: GPUs
         public ActionResult Index()
         {
-            return View(repository.GPUs);
+            var gpus = Mapper.Map<IEnumerable<GPUdto>, IEnumerable<GPUViewModel>>(Service.GetGPUs());
+            return View(gpus);
         }
 
 
         public ViewResult Edit(Guid id)
         {
-            GPU gpu = repository.GPUs.FirstOrDefault(x => x.ProductGuid == id);
+            var gpu = Mapper.Map<GPUdto, GPUViewModel>(Service.GetGPUByID(id));
             return View(gpu);
         }
 
         [HttpPost]
-        public ActionResult Edit(GPU gpu)
+        public ActionResult Edit(GPUViewModel gpu)
         {
             if (ModelState.IsValid)
             {
-                repository.SaveGPU(gpu);
+                var gpudto = Mapper.Map<GPUViewModel, GPUdto>(gpu);
+                Service.SaveGPU(gpudto);
                 TempData["message"] = string.Format("{0} has been saved", gpu.Name);
                 return RedirectToAction("Index");
             }
@@ -48,13 +56,14 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         public ActionResult Create()
         {
-            return View("Edit", new GPU());
+            return View("Edit", new GPUViewModel());
         }
 
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
-            var deletedGPU=repository.DeleteGPU(id);
+            var deletedGPU = Service.GetGPUByID(id);
+            Service.DeleteGPU(id);
             if (deletedGPU != null)
             {
                 TempData["message"] = string.Format("{0} was deleted", deletedGPU.Name);

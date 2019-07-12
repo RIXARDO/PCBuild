@@ -10,24 +10,35 @@ using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Concrete;
 using PCbuild_ASP.MVC_.Domain.Entities;
 using PCbuild_ASP.MVC_.Domain.Abstract;
+using PCbuild_ASP.MVC_.Services.Interfaces;
+using PCbuild_ASP.MVC_.Services.Services;
+using PCbuild_ASP.MVC_.Models.ViewModel;
+using AutoMapper;
+using static PCbuild_ASP.MVC_.Models.ViewModel.CPUViewModel;
+using PCbuild_ASP.MVC_.Services.DTO;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
     [Authorize(Roles ="Admin")]
     public class CPUsController : Controller
     {
-        private ICPURepository repository;
+        ICPUService Service;
+        IMapper Mapper;
 
-        public CPUsController(ICPURepository cPURepository)
+        public CPUsController(ICPUService service, IMapper mapper)
         {
-            repository = cPURepository;
+            Service = service;
+            Mapper = mapper;
         }
         
 
         // GET: CPUs
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await repository.CPUs.ToListAsync());
+            //Mapper Async
+            var getcpu = Service.GetCPUs();
+            var cpus = Mapper.Map<IEnumerable<CPUdto>, IEnumerable<CPUViewModel>>(getcpu);
+            return View(cpus);
         }
 
         //// GET: CPUs/Details/5
@@ -56,30 +67,31 @@ namespace PCbuild_ASP.MVC_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverageBench")] CPU cPU)
+        public ActionResult Create([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverageBench")] CPUViewModel cpu)
         {
             if (ModelState.IsValid)
             {
-                repository.SaveCPU(cPU);
+                var cpudto = Mapper.Map<CPUViewModel, CPUdto>(cpu);
+                Service.SaveCPU(cpudto);
                 return RedirectToAction("Index");
             }
 
-            return View(cPU);
+            return View(cpu);
         }
 
         // GET: CPUs/Edit/5
-        public async Task<ActionResult> Edit(Guid id)
+        public ActionResult Edit(Guid id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CPU cPU = await repository.CPUs.FirstAsync(x => x.ProductGuid == id);
-            if (cPU == null)
+            CPUViewModel cpu = Mapper.Map<CPUdto,CPUViewModel>(Service.GetCPUByID(id));
+            if (cpu == null)
             {
                 return HttpNotFound();
             }
-            return View(cPU);
+            return View(cpu);
         }
 
         // POST: CPUs/Edit/5
@@ -87,14 +99,15 @@ namespace PCbuild_ASP.MVC_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverageBench")] CPU cPU)
+        public ActionResult Edit([Bind(Include = "CPUID,Manufacture,ProcessorNumber,NumberOfCores,NumberOfThreads,PBF,Cache,TDP,AverageBench")] CPUViewModel cpu)
         {
             if (ModelState.IsValid)
             {
-                repository.SaveCPU(cPU);
+                var cpudto = Mapper.Map<CPUViewModel, CPUdto>(cpu);
+                Service.EditCPU(cpudto);
                 return RedirectToAction("Index");
             }
-            return View(cPU);
+            return View(cpu);
         }
 
         //// GET: CPUs/Delete/5
@@ -117,24 +130,8 @@ namespace PCbuild_ASP.MVC_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            repository.DeleteCPU(id);
+            Service.DeleteCPU(id);
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Prices(Guid cpuId)
-        {
-            var item = repository.CPUs.First(x => x.ProductGuid == cpuId);
-            if (item != null)
-            {
-                return View(item);
-            }
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult PriceEdit(int id)
-        {
-
-            return View();
         }
 
         //protected override void Dispose(bool disposing)

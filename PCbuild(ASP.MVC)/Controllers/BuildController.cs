@@ -8,6 +8,8 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuild_ASP.MVC_.Services.Interfaces;
+using AutoMapper;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
@@ -18,7 +20,6 @@ namespace PCbuild_ASP.MVC_.Controllers
         IGameRepository GameRepository;
 
         private IBuildEntityRepository BuildRepository;
-
 
 
         public BuildController(ICPURepository cPU, IGPURepository gPU, IGameRepository game, IBuildEntityRepository build)

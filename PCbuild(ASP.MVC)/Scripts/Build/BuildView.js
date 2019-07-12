@@ -61,12 +61,12 @@ function onchangeGPU(elem) {
 //        });
 
 function onchangeCPUid() {
-    $("#CPUid").val($("#CPUs").children("option:selected").val());
+    $("#CPUGuid").val($("#CPUs").children("option:selected").val());
 }
 
 function onchangeGPUid() {
     //alert($("#GPUs").attr("id"));
-    $("#GPUid").val($("#GPUs").children("option:selected").val());
+    $("#GPUGuid").val($("#GPUs").children("option:selected").val());
 }
 
 function onclickSave() {

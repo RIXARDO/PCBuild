@@ -14,17 +14,17 @@ namespace PCbuild_ASP.MVC_.Services.Util
         public override void Load()
         {
             var mapperConfiguration = CreateConfiguration();
-            Bind<MapperConfiguration>()
-                .ToConstant(mapperConfiguration).InSingletonScope();
+            //Bind<MapperConfiguration>()
+            //    .ToConstant(mapperConfiguration).InSingletonScope();
 
-            Bind<IMapper>().ToMethod(ctx => new Mapper(mapperConfiguration, type => ctx.Kernel.Get(type)));
+            //Bind<IMapper>().ToMethod(ctx => new Mapper(mapperConfiguration, type => ctx.Kernel.Get(type)));
         }
 
         private MapperConfiguration CreateConfiguration()
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddMaps(GetType().Assembly);
+                cfg.AddProfile(typeof(AutoMapperServicesProfile));
             });
 
             return config;

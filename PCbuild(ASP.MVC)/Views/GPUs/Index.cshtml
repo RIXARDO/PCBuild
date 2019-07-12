@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PCbuild_ASP.MVC_.Domain.Entities.GPU>
+﻿@model IEnumerable<PCbuild_ASP.MVC_.Models.ViewModel.GPUViewModel>
 
 @{
     ViewBag.Title = "GPUs";
@@ -11,7 +11,7 @@
 <table class="table">
 
     <tr>
-        <th>@Html.DisplayNameFor(Model => Model.Manufacture)</th>
+        <th>@Html.DisplayNameFor(Model=>Model.Manufacture)</th>
         <th>@Html.DisplayNameFor(Model => Model.Name)</th>
         <th>@Html.DisplayNameFor(Model => Model.Architecture)</th>
         <th>@Html.DisplayNameFor(Model => Model.BoostClock)</th>
@@ -33,8 +33,8 @@
         <td>@Html.DisplayFor(ItemModel => item.AverageBench)</td>
         @*<td>@Html.DisplayFor(ItemModel=> item.prices.FirstOrDefault().Amount.ToString())</td>*@
         <td>
-            @Html.ActionLink("Edit","Edit", new { id=item.GPUID}) |
-            @Html.ActionLink("Delete","Delete", new { id=item.GPUID})
+            @Html.ActionLink("Edit","Edit", new { id=item.ProductGuid}) |
+            @Html.ActionLink("Delete","Delete", new { id=item.ProductGuid})
         </td>
     </tr>
     }

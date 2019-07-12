@@ -6,35 +6,44 @@ using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Domain.Entities;
 using System.Drawing;
+using PCbuild_ASP.MVC_.Services.Interfaces;
+using AutoMapper;
+using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuild_ASP.MVC_.Services.DTO;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class GamesController : Controller
     {
-        IGameRepository repo;
+        IGameService Service;
+        IMapper Mapper;
 
-        public GamesController(IGameRepository repository)
+        public GamesController(IGameService service, IMapper mapper)
         {
-            repo = repository;
+            Service = service;
+            Mapper = mapper;
         }
 
         // GET: Games
         public ActionResult Index()
         {
-
-            return View(repo.Games);
+            var gamesdto = Service.GetGames();
+            var games =
+                Mapper.Map<IEnumerable<GameDTO>, IEnumerable<GameViewModel>>(gamesdto);
+            return View(games);
         }
 
         public ViewResult Edit(Guid GameID)
         {
-            Game game = repo.Games.FirstOrDefault(x => x.GameGuid == GameID);
+            GameDTO gamedto = Service.GetGameByID(GameID);
+            var game = Mapper.Map<GameDTO, GameViewModel>(gamedto);
             return View(game);
 
         }
 
         [HttpPost]
-        public ActionResult Edit(Game game, HttpPostedFileBase Image32, HttpPostedFileBase Image64)
+        public ActionResult Edit(GameViewModel game, HttpPostedFileBase Image32, HttpPostedFileBase Image64)
         {
             if (ModelState.IsValid)
             {
@@ -50,8 +59,9 @@ namespace PCbuild_ASP.MVC_.Controllers
                     game.ImageData64 = new byte[Image64.ContentLength];
                     Image64.InputStream.Read(game.ImageData64, 0, Image64.ContentLength);
                 }
-                repo.SaveGame(game);
-                
+                var gamedto = Mapper.Map<GameViewModel, GameDTO>(game);
+                Service.SaveGame(gamedto);
+
                 TempData["message"] =
                     string.Format("{0} has been saved", game.Name);
                 return RedirectToAction("Index");
@@ -64,18 +74,19 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         public ViewResult Create()
         {
-            return View("Edit", new Game());
+            return View("Edit", new GameViewModel());
         }
 
         [HttpDelete]
-        public ActionResult Delete(int GameID)
+        public ActionResult Delete(Guid GameID)
         {
-            Game deletedGame = repo.DeleteGame(GameID);
-                if (deletedGame != null)
-                {
-                    TempData["message"] = string.Format("{0} was deleted", deletedGame.Name);
-                }
-            return RedirectToAction("Index");
+            GameDTO deletedGame = Service.GetGameByID(GameID);
+            Service.DeleteGame(GameID);
+            if (deletedGame != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted", deletedGame.Name);
             }
+            return RedirectToAction("Index");
         }
     }
+}

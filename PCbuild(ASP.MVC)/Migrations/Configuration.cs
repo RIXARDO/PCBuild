@@ -26,6 +26,7 @@ namespace PCbuild_ASP.MVC_.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            base.Seed(context);
         }
     }
 }

@@ -11,6 +11,8 @@ using System.Web.Routing;
 using Ninject.Injection;
 using PCbuild_ASP.MVC_.Binders;
 using PCbuild_ASP.MVC_.Domain.Entities;
+using Ninject.Web.Mvc;
+using PCbuild_ASP.MVC_.Services.Util;
 
 namespace PCbuild_ASP.MVC_
 {
@@ -26,7 +28,15 @@ namespace PCbuild_ASP.MVC_
             ModelBinders.Binders.Add(typeof(Comparison<CPU>), new CompareCPUModelBinder());
             ModelBinders.Binders.Add(typeof(Comparison<GPU>), new CompareGPUModelBinder());
 
-            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            //ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+
+            NinjectModule servicesModule = new AutoMapperNinjectModule();
+            NinjectModule presentationModule = new NinjectRegistration();
+
+            var kernel = new StandardKernel(servicesModule,presentationModule);
+            kernel.Unbind<ModelValidatorProvider>();
+
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }
