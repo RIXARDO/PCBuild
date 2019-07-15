@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Entities;
 using PCbuild_ASP.MVC_.Services.Interfaces;
 using AutoMapper;
+using PCbuild_ASP.MVC_.Models.ViewModel;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
@@ -30,11 +31,20 @@ namespace PCbuild_ASP.MVC_.Controllers
             BuildRepository = build;
         }
 
+        IBuildService Service;
+        IMapper Mapper;
+
+        public BuildController(IBuildService service, IMapper mapper)
+        {
+            Service = service;
+            Mapper = mapper;
+        }
+
         // GET: Build
         public ActionResult Index()
         {
             //Build model = new Build(CPURepository.CPUs.ToList(), GPURepository.GPUs.ToList(), GameRepository.Games.ToList());
-            return View(new BuildEntity());
+            return View(new BuildEntityViewModel());
         }
 
         [HttpPost]

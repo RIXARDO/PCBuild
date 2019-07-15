@@ -60,7 +60,7 @@ namespace PCbuild_ASP.MVC_.Controllers
                     Image64.InputStream.Read(game.ImageData64, 0, Image64.ContentLength);
                 }
                 var gamedto = Mapper.Map<GameViewModel, GameDTO>(game);
-                Service.SaveGame(gamedto);
+                Service.EditGame(gamedto);
 
                 TempData["message"] =
                     string.Format("{0} has been saved", game.Name);
@@ -75,6 +75,23 @@ namespace PCbuild_ASP.MVC_.Controllers
         public ViewResult Create()
         {
             return View("Edit", new GameViewModel());
+        }
+
+        public ActionResult Create(GameViewModel game)
+        {
+            if (ModelState.IsValid)
+            {
+                var gamedto = Mapper.Map<GameViewModel, GameDTO>(game);
+                Service.SaveGame(gamedto);
+
+                TempData["message"] =
+                    string.Format("{0} has been created", game.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(game);
+            }
         }
 
         [HttpDelete]

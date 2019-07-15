@@ -29,12 +29,7 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
 
         public CPUsControllerTest()
         {
-            //NinjectModule servicesModule = new AutoMapperNinjectModule();
-            //NinjectModule presentationModule = new NinjectRegistration();
-            
-            //var kernel = new StandardKernel(servicesModule, presentationModule);
-            //controller = kernel.Get<CPUsController>();
-            
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(typeof(AutoMapperPresentationProfile))));
         }
 
         private TestContext testContextInstance;
@@ -76,12 +71,6 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
         // public void MyTestCleanup() { }
         //
         #endregion
-
-        [TestInitialize]
-        public void TestInit()
-        {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(typeof(AutoMapperPresentationProfile))));
-        }
 
         [TestMethod]
         public void Index_Action_RightResult()
