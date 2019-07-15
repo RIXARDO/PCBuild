@@ -44,7 +44,7 @@ namespace PCbuild_ASP.MVC_.Controllers
             if (ModelState.IsValid)
             {
                 var gpudto = Mapper.Map<GPUViewModel, GPUdto>(gpu);
-                Service.SaveGPU(gpudto);
+                Service.EditGPU(gpudto);
                 TempData["message"] = string.Format("{0} has been saved", gpu.Name);
                 return RedirectToAction("Index");
             }
@@ -54,9 +54,21 @@ namespace PCbuild_ASP.MVC_.Controllers
             }
         }
 
+        public ActionResult Create(GPUViewModel gpu)
+        {
+            if (ModelState.IsValid)
+            {
+                var gpudto = Mapper.Map<GPUViewModel, GPUdto>(gpu);
+                Service.SaveGPU(gpudto);
+                return RedirectToAction("Index");
+            }
+
+            return View(gpu);
+        }
+
         public ActionResult Create()
         {
-            return View("Edit", new GPUViewModel());
+            return View();
         }
 
         [HttpPost]

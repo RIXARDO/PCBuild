@@ -327,6 +327,7 @@
     <Content Include="Views\CPUs\Prices.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\GPUs\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
