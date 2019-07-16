@@ -2,19 +2,17 @@
 
 <div class="row">
     @foreach (var m in Model.BuildGames)
-     {
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail" style="width: 18rem;">
-            <img src="@Url.Action("GetImage","Build" , new { m.Game.GameGuid, big=true })"/>
-            <div class="caption">
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail" style="width: 18rem;">
+                <img src="@Url.Action("GetImage","Build" , new { m.Game.GameGuid, big=true })" />
+                <div class="caption">
 
-                <p>@m.Game.Name</p>
-                <p>@m.FPS</p>
+                    <p>@m.Game.Name</p>
+                    <p>@m.FPS</p>
 
+                </div>
             </div>
         </div>
-    </div>
     }
-                
-            
-        </div>
+</div>

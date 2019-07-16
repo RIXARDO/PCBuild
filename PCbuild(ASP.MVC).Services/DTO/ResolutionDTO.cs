@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace PCbuild_ASP.MVC_.Services.DTO
 {
-
     public enum ResolutionDTO
     {
         res1080 = 1080,

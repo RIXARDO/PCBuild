@@ -11,6 +11,8 @@ using PCbuild_ASP.MVC_.Domain.Entities;
 using PCbuild_ASP.MVC_.Services.Interfaces;
 using AutoMapper;
 using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuild_ASP.MVC_.Services.DTO;
+using Ninject;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
@@ -23,12 +25,20 @@ namespace PCbuild_ASP.MVC_.Controllers
         private IBuildEntityRepository BuildRepository;
 
 
-        public BuildController(ICPURepository cPU, IGPURepository gPU, IGameRepository game, IBuildEntityRepository build)
+        public BuildController(
+            ICPURepository cPU, 
+            IGPURepository gPU, 
+            IGameRepository game, 
+            IBuildEntityRepository build,
+            IBuildService service, 
+            IMapper mapper)
         {
             CPURepository = cPU;
             GPURepository = gPU;
             GameRepository = game;
             BuildRepository = build;
+            Service = service;
+            Mapper = mapper;
         }
 
         IBuildService Service;
@@ -48,34 +58,33 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public ActionResult Action(string CPU, string GPU, string ScreenRez, Guid CPUs, Guid GPUs)
+        public ActionResult Action(ResolutionEnum ScreenRez, Guid CPUs, Guid GPUs)
         {
             if (CPUs != null & GPUs != null)
             {
-                BuildResult buildResult = new BuildResult
-                {
-                    BuildGames = new List<BuildGame>()
-                };
-                float CPUbench = CPURepository.CPUs.Where(x => x.ProductGuid == CPUs).Select(x => x.AverageBench).First() / 100f;
-                float GPUbench = GPURepository.GPUs.Where(x => x.ProductGuid == GPUs).Select(x => x.AverageBench).First() / 100f;
-                float ScreenRezConf = (ScreenRez == "p1080") ? 1 : ((ScreenRez == "p1440") ? 0.75f : 0.5f);
-                float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
-                foreach (Game game in GameRepository.Games)
-                {
-                    float fps = fp / (game.AverangeRequirements / 100f);
-                    buildResult.BuildGames.Add(new BuildGame { Game = game, FPS = (int)fps });
-                }
-                ////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////
-                buildResult.BuildEntity = new BuildEntity
-                {
-                    CPU = CPURepository.CPUs.FirstOrDefault(x => x.ProductGuid == CPUs),
-                    GPU = GPURepository.GPUs.FirstOrDefault(x => x.ProductGuid == GPUs),
-                    UserID = User.Identity.GetUserId()
-                };
+                ResolutionDTO resolution = (ResolutionDTO)ScreenRez; 
+
+                BuildResultDTO resultDTO = Service.Action(CPUs,GPUs,ResolutionDTO.res1080);
+
+                BuildResult buildResult = Mapper.Map<BuildResultDTO, BuildResult>(resultDTO);
+
+                //float CPUbench = CPURepository.CPUs.Where(x => x.ProductGuid == CPUs).Select(x => x.AverageBench).First() / 100f;
+                //float GPUbench = GPURepository.GPUs.Where(x => x.ProductGuid == GPUs).Select(x => x.AverageBench).First() / 100f;
+                //float ScreenRezConf = (ScreenRez == "p1080") ? 1 : ((ScreenRez == "p1440") ? 0.75f : 0.5f);
+                //float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
+                //foreach (Game game in GameRepository.Games)
+                //{
+                //    float fps = fp / (game.AverangeRequirements / 100f);
+                //    buildResult.BuildGames.Add(new BuildGame { Game = game, FPS = (int)fps });
+                //}
+
+                ///////////////////////////////////////////////////////////
+                //buildResult.BuildEntity = new BuildEntityViewModel
+                //{
+                //    CPU = CPURepository.CPUs.FirstOrDefault(x => x.ProductGuid == CPUs),
+                //    GPU = GPURepository.GPUs.FirstOrDefault(x => x.ProductGuid == GPUs),
+                //    UserID = User.Identity.GetUserId()
+                //};
 
                 return PartialView(buildResult);
             }
@@ -120,8 +129,11 @@ namespace PCbuild_ASP.MVC_.Controllers
         [Authorize]
         public ActionResult Builds()
         {
-            string UserID = User.Identity.GetUserId();
-            IEnumerable<BuildEntity> buildEntities = BuildRepository.Builds.Where(x => x.UserID == UserID).AsEnumerable();
+            string UserID = User!=null?User.Identity.GetUserId():null;
+            IEnumerable<BuildEntityDTO> buildEntityViewModels = Service.GetBuilds(null);
+            IEnumerable<BuildEntityViewModel> buildEntities =  
+                Mapper.Map<IEnumerable<BuildEntityDTO>, 
+                IEnumerable<BuildEntityViewModel>>(buildEntityViewModels);
             return View(buildEntities);
         }
 
@@ -160,6 +172,5 @@ namespace PCbuild_ASP.MVC_.Controllers
 
             return RedirectToAction("Builds", "Build");
         }
-
     }
 }

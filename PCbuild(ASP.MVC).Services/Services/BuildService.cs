@@ -57,7 +57,8 @@ namespace PCbuild_ASP.MVC_.Services.Services
                     };
                     float CPUbench = CPUs.FindById(cpu).AverageBench / 100f;
                     float GPUbench = GPUs.FindById(gpu).AverageBench / 100f;
-                    float ScreenRezConf = (resolution == ResolutionDTO.res1080) ? 1 : ((resolution == ResolutionDTO.res1440) ? 0.75f : 0.5f);
+                    float ScreenRezConf = 
+                        (resolution == ResolutionDTO.res1080) ? 1 : ((resolution == ResolutionDTO.res1440) ? 0.75f : 0.5f);
                     float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
 
                     foreach (Game game in Games.Get())
@@ -94,7 +95,7 @@ namespace PCbuild_ASP.MVC_.Services.Services
                 BuildRepository.Delete(entry);
             }catch(Exception ex)
             {
-                
+                throw ex;
             }
         }
 
@@ -111,11 +112,11 @@ namespace PCbuild_ASP.MVC_.Services.Services
             }
         }
 
-        public IEnumerable<BuildEntityDTO> GetBuilds()
+        public IEnumerable<BuildEntityDTO> GetBuilds(string UserID)
         {
             try
             {
-                var entry = mapper.Map<IEnumerable<BuildEntity>, IEnumerable<BuildEntityDTO>>(BuildRepository.Get());
+                var entry = mapper.Map<IEnumerable<BuildEntity>, IEnumerable<BuildEntityDTO>>(BuildRepository.Get(x=>x.UserID==UserID));
                 return entry;
             }
             catch(Exception ex)

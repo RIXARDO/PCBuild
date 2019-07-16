@@ -9,7 +9,7 @@ namespace PCbuild_ASP.MVC_.Services.Interfaces
 {
     public partial interface IBuildService
     {
-        IEnumerable<BuildEntityDTO> GetBuilds();
+        IEnumerable<BuildEntityDTO> GetBuilds(string UserGuid);
 
         IEnumerable<CPUdto> GetCPUsByManufacture(string Manufacture);
 

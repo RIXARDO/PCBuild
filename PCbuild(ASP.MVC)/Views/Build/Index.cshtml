@@ -1,4 +1,5 @@
-﻿@model PCbuild_ASP.MVC_.Models.ViewModel.BuildEntityViewModel
+﻿@using PCbuild_ASP.MVC_.Models
+@model PCbuild_ASP.MVC_.Models.ViewModel.BuildEntityViewModel
 
 @{
     ViewBag.Title = "Builds";
@@ -39,6 +40,7 @@
             gpuAMD = true;
         }
     }
+
     <table class="table">
         <tr>
             <td>CPU</td>
@@ -48,41 +50,33 @@
 
         <tr>
             <td>
-                @Html.RadioButton("CPU", "Intel", cpuIntel, new { @OnChange = "onchangeCPU(this)" })
-                <span>Intel</span>
+                <div>
+                    @Html.RadioButton("CPU", "Intel", cpuIntel, new { @OnChange = "onchangeCPU(this)" })
+                    <span>Intel</span>
+                    @Html.RadioButton("CPU", "AMD", cpuAMD, new { @OnChange = "onchangeCPU(this)" })
+                    <span>AMD</span>
+                </div>
             </td>
             <td>
-                @Html.RadioButton("GPU", "Nvidia", gpuNvidia, new { @OnChange = "onchangeGPU(this)" })
-                <span>Nvidia</span>
+                <div>
+                    @Html.RadioButton("GPU", "Nvidia", gpuNvidia, new { @OnChange = "onchangeGPU(this)" })
+                    <span>Nvidia</span>
+                    @Html.RadioButton("GPU", "AMD", gpuAMD, new { @OnChange = "onchangeGPU(this)" })
+                    <span>Radeon</span>
+                </div>
             </td>
             <td>
-                @Html.RadioButton("ScreenRez", "p1080", true)
-                <span>1080p</span>
+                <div>
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true)
+                    <span>1080p</span>
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1440)
+                    <span>1440p</span>
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res2160)
+                    <span>2560p</span>
+                </div>
             </td>
 
 
-        </tr>
-        <tr>
-            <td>
-                @Html.RadioButton("CPU", "AMD", cpuAMD, new { @OnChange = "onchangeCPU(this)" })
-                <span>AMD</span>
-            </td>
-            <td>
-                @Html.RadioButton("GPU", "AMD", gpuAMD, new { @OnChange = "onchangeGPU(this)" })
-                <span>Radeon</span>
-            </td>
-            <td>
-                @Html.RadioButton("ScreenRez", "p1440")
-                <span>1440p</span>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>
-                @Html.RadioButton("ScreenRez", "p2560")
-                <span>2560p</span>
-            </td>
         </tr>
         <tr>
             <td>
@@ -106,15 +100,15 @@
     <input type="submit" value="Action" class="btn btn-default" style="float:left; margin-right:10px" />
 }
 
-    <div style="display:inline-block">
-        @using (Html.BeginForm("SaveBuild", "Build", FormMethod.Post))
-        {
-            @Html.Hidden("BuildId", "0");
-            @Html.Hidden("CPUGuid");
-            @Html.Hidden("GPUGuid");
-            <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()"  style="clear:left"/>
-        }
-    </div>
+<div style="display:inline-block">
+    @using (Html.BeginForm("SaveBuild", "Build", FormMethod.Post))
+    {
+        @Html.Hidden("BuildId", "0");
+        @Html.Hidden("CPUGuid");
+        @Html.Hidden("GPUGuid");
+        <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()" style="clear:left" />
+    }
+</div>
 
 @section scripts{
     @Scripts.Render("~/scripts/jquery-3.3.1.min.js")

@@ -54,7 +54,7 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
 
         public void Register(IRepository repository)
         {
-            repositores.Add(repository.GetType().Name, repository);
+            repositores.Add(string.Concat(repository.GetType().Name,repositores.Count), repository);
         }
 
         public object GetSource()

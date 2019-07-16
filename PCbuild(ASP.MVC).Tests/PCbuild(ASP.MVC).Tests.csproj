@@ -107,6 +107,7 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BuildControllerTest.cs" />
     <Compile Include="Controllers\CPUsControllerTest.cs" />
     <Compile Include="Controllers\GamesControllerTest.cs" />
     <Compile Include="Controllers\GPUsControllerTest.cs" />

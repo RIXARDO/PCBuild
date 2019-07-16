@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="DTO\BuildResultDTO.cs" />
     <Compile Include="DTO\FileDTO.cs" />
-    <Compile Include="DTO\Resolution.cs" />
+    <Compile Include="DTO\ResolutionDTO.cs" />
     <Compile Include="Interfaces\ICPUService.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IGPUService.cs" />
