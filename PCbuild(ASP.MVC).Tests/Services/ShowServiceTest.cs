@@ -236,5 +236,88 @@ namespace PCbuild_ASP.MVC_.Tests.Services
             //Assert
             Assert.AreEqual(10, result.GPUList.Count());
         }
+
+        [TestMethod]
+        public void GameList_ReturnGameListWithPagingInfo_ReturnRightCountOfList()
+        {
+            //Arrange
+            ShowService service =
+                new ShowService(
+                    uow.Object,
+                    CPUs.Object,
+                    GPUs.Object,
+                    Games.Object,
+                    Mapper);
+            var gameList = new List<Game>();
+            for (var i = 0; i < 16; i++)
+            {
+                gameList.Add(
+                    new Game { GameGuid = Guid.NewGuid(), Name = i.ToString() });
+            }
+
+            Games.Setup(x => x.Get()).Returns(gameList.AsQueryable());
+            //Act
+            var result = service.ListGame(2);
+            //Assert
+            Assert.AreEqual(6, result.GameList.Count());
+        }
+
+        [TestMethod]
+        public void GameList_ReturnGameListWhenCountLessThanPageSize_ReturnRightCountOfList()
+        {
+            //Arrange
+            ShowService service =
+                new ShowService(
+                    uow.Object,
+                    CPUs.Object,
+                    GPUs.Object,
+                    Games.Object,
+                    Mapper);
+            var gameList = new List<Game>();
+            for (var i = 0; i < 6; i++)
+            {
+                gameList.Add(
+                    new Game
+                    {
+                        GameGuid = Guid.NewGuid(),
+                        Name = i.ToString()
+                    });
+            }
+
+            Games.Setup(x => x.Get()).Returns(gameList.AsQueryable());
+            //Act
+            var result = service.ListGame(1);
+            //Assert
+            Assert.AreEqual(6, result.GameList.Count());
+        }
+
+        [TestMethod]
+        public void GameList_ReturnGameListWhenQuanityMoreThanPageSize_RightReturn()
+        {
+            //Arrange
+            ShowService service =
+                new ShowService(
+                    uow.Object,
+                    CPUs.Object,
+                    GPUs.Object,
+                    Games.Object,
+                    Mapper);
+            var gameList = new List<Game>();
+            for (var i = 0; i < 100; i++)
+            {
+                gameList.Add(
+                    new Game
+                    {
+                        GameGuid = Guid.NewGuid(),
+                        Name = i.ToString()
+                    });
+            }
+
+            Games.Setup(x => x.Get()).Returns(gameList.AsQueryable());
+            //Act
+            var result = service.ListGame(2);
+            //Assert
+            Assert.AreEqual(10, result.GameList.Count());
+        }
     }
 }
