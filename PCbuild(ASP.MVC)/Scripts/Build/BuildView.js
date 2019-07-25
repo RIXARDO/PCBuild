@@ -1,12 +1,5 @@
-﻿//document.addEventListener("DOMContentLoaded", function () {
-//    var cpu = new { value="Intel" };
-//    var gpu = new {value="Nvidia"};
-//
-//    onchangeCPU(cpu);
-//    onchangeGPU(gpu);
-//});
-
-
+﻿
+//Event for RadioButton
 function onchangeCPU(elem) {
     var cpus = document.getElementById('CPUs');
     while (cpus.firstChild) {
@@ -18,15 +11,17 @@ function onchangeCPU(elem) {
         method: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        data: 'value=' + elem.value,
+        data: 'value=' + elem.val(),
         success: function (result) {
             for (var i = 0; i < result.length; i++) {
                 cpus.add(new Option(result[i].name, result[i].value));
             }
+            $("#CPUs").children("[value=" + $("CPUGuid").val() + "]").val("selected");
         }
     });
 }
 
+//Event for RadioButton
 function onchangeGPU(elem) {
     var gpus = document.getElementById('GPUs'); //@* $('#GPUs');*@
 
@@ -40,12 +35,13 @@ function onchangeGPU(elem) {
         method: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        data: 'value=' + elem.value,
+        data: 'value=' + elem.val(),
         success: function (result) {
             //alert("result: " + result.length + " gpus:" + gpus.options.length);
             for (var i = 0; i < result.length; i++) {
                 gpus.add(new Option(result[i].name, result[i].value));
             }
+            $("#GPUs").children("[value=" + $("GPUGuid").val() + "]").val("selected");
         }
     });
 }
@@ -60,34 +56,38 @@ function onchangeGPU(elem) {
 //            $("#GPUid").val = $(this).children("option:selected").val();
 //        });
 
+//Event for hidden input(CPU)
 function onchangeCPUid() {
     $("#CPUGuid").val($("#CPUs").children("option:selected").val());
 }
-
+//Event for hidden input(GPU)
 function onchangeGPUid() {
     //alert($("#GPUs").attr("id"));
     $("#GPUGuid").val($("#GPUs").children("option:selected").val());
 }
 
+//Function to update hidden id
 function onclickSave() {
     onchangeCPUid();
     onchangeGPUid();
 }
-//$(document).ready(function () {
-//    onchangeCPUid();
-//    onchangeGPUid();
-//});
+
 window.onload = init;
+//$(document).ready(function () {
+//    init();
+//});
+
 function init() {
-
+    
     $("#CPUs").addClass("form-control");
-    $("#CPUs").add("onclick", onchangeCPUid());
+    $("#CPUs").change(onchangeCPUid);
     $("#GPUs").addClass("form-control");
-    $("#GPUs").add("onclick", onchangeGPUid());
+    $("#GPUs").change(onchangeGPUid);
 
-    onchangeCPU(document.getElementById("CPU"));
-    onchangeGPU(document.getElementById("GPU"));
+    //console.log("init");
+    //console.log(document.getElementById("CPU").val());
+    onchangeCPU($("input[name=CPU]:checked"));
+    onchangeGPU($("input[name=GPU]:checked"));
     onchangeCPUid();
     onchangeGPUid();
-
 }

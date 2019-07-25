@@ -34,12 +34,11 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(games);
         }
 
-        public ViewResult Edit(Guid GameID)
+        public ViewResult Edit(Guid GameGuid)
         {
-            GameDTO gamedto = Service.GetGameByID(GameID);
+            GameDTO gamedto = Service.GetGameByID(GameGuid);
             var game = Mapper.Map<GameDTO, GameViewModel>(gamedto);
             return View(game);
-
         }
 
         [HttpPost]

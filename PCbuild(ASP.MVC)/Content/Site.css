@@ -1,12 +1,15 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #000000 url(../Content/Pictures/header_bg.jpg) repeat;
 }
 
-/* Set padding to keep content from hitting the edges */
+/* Set padding to keep content from hitting the edges and set font(family,color) */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    font-family: monospace;
+    background: rgba(213, 213, 213, 0.70)
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

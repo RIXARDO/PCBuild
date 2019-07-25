@@ -239,8 +239,10 @@
     <Compile Include="Models\Identity\RegisterModel.cs" />
     <Compile Include="Models\ResolutionEnum.cs" />
     <Compile Include="Models\ViewModel\BuildEntityViewModel.cs" />
+    <Compile Include="Models\ViewModel\CPUDropDownListItem.cs" />
     <Compile Include="Models\ViewModel\CPUViewModel.cs" />
     <Compile Include="Models\ViewModel\GameViewModel.cs" />
+    <Compile Include="Models\ViewModel\GPUDropDownListItem.cs" />
     <Compile Include="Models\ViewModel\GPUViewModel.cs" />
     <Compile Include="Models\ViewModel\PriceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,6 +255,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pictures\header_bg.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -330,6 +333,7 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\GPUs\Create.cshtml" />
+    <Content Include="Views\Build\EditBuild.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

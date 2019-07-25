@@ -42,7 +42,7 @@ namespace PCbuild_ASP.MVC_.Domain.Migrations
             //};
             //gpus.ForEach(x => context.GPUs.Add(x));
             //context.SaveChanges();
-            
+
             //var games = new List<Game>
             //{
             //    new Game{Name="GTAV", AverangeRequirements=50},
@@ -51,7 +51,7 @@ namespace PCbuild_ASP.MVC_.Domain.Migrations
             //games.ForEach(x => context.Games.Add(x));
             //context.SaveChanges();
 
-            
+            base.Seed(context);
         }
     }
 }

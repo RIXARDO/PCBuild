@@ -119,6 +119,7 @@
     <Compile Include="Services\GPUServiceTest.cs" />
     <Compile Include="Services\GameServiceTest.cs" />
     <Compile Include="Services\PriceServiceTest.cs" />
+    <Compile Include="Services\ShowServiceTest.cs" />
     <Compile Include="TestModel.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="AutoMapperTest.cs" />

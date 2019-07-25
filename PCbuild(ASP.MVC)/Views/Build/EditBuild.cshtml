@@ -1,0 +1,107 @@
+﻿@using PCbuild_ASP.MVC_.Models
+@model PCbuild_ASP.MVC_.Models.ViewModel.BuildEntityViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<h2>Edit</h2>
+
+<script src="~/Scripts/Build/BuildView.js"></script>
+
+<table class="table">
+    <tr>
+        <td>CPU</td>
+        <td>GPU</td>
+    </tr>
+
+    <tr>
+        <td>
+            <div>
+                <div class="radio">
+                    <label>
+                        @Html.RadioButton("CPU", "Intel", Model.CPU.Manufacture == "Intel" ? true : false, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
+                        Intel
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        @Html.RadioButton("CPU", "AMD", Model.CPU.Manufacture == "AMD" ? true : false, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
+                        AMD
+                    </label>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div>
+                <div class="radio">
+                    <label>
+                        @Html.RadioButton("GPU", "Nvidia", Model.GPU.Developer == "Nvidia" ? true : false, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
+                        Nvidia
+                    </label>
+                </div>
+                <div class="radio">
+                    <lable>
+                        @Html.RadioButton("GPU", "AMD", Model.GPU.Developer == "AMD" ? true : false, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
+                        Radeon
+                    </lable>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select id="CPUs" name="CPUs">
+                <option></option>
+            </select>
+            @*@Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
+                AsEnumerable(), "CPUID", "ProcessorNumber"), new { @OnChange = "onchangeCPUid()" })*@
+
+        </td>
+        <td>
+            <select id="GPUs" name="GPUs">
+                <option></option>
+            </select>
+            @*@Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
+                AsEnumerable(), "GPUID", "Name"), new { @OnChange = "onchangeGPUid()" })*@
+        </td>
+    </tr>
+</table>
+
+<div style="display:inline-block">
+    @using (Html.BeginForm("EditBuild", "Build", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.BuildEntityGuid, new { @name = "BuildId", @id = "BuildId" });
+        @Html.HiddenFor(x => x.CPUID, new { @name = "CPUGuid", @id = "CPUGuid" });
+        @Html.HiddenFor(x => x.GPUID, new { @name = "GPUGuid", @id = "GPUGuid" });
+        @*@Html.Hidden("BuildId", "0");
+            @Html.Hidden("CPUGuid");
+            @Html.Hidden("GPUGuid");*@
+        <input type="submit" value="Save" class="btn btn-default" onclick="onclickSave()" style="clear:left" />
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/scripts/jquery-3.3.1.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    @*@Scripts.Render("~/scripts/BuildView.js")*@
+}
+
+<div id="results"></div>
+<script>
+
+    if (@Model!=null) {
+        $("#CPUs").val("@Model.CPUID");
+        $("#GPUs").val("@Model.GPUID");
+        $("#BuildId").val("@Model.BuildEntityGuid");
+    }
+    $(document).ready(function () {
+        $("#CPUGuid").val(@Model.CPU.ProductGuid);
+        $("#GPUGuid").val(@Model.GPU.ProductGuid);
+
+        $("#CPUs").children("[value=" + $("CPUGuid").val() + "]").val("selected");
+        $("#GPUs").children("[value=" + $("GPUGuid").val() + "]").val("selected");
+    })
+
+</script>

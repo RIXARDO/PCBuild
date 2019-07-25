@@ -29,12 +29,13 @@
         </div>
     </div>
     <div class="container body-content">
-        <div>
             @if (TempData["message"] != null)
             {
-                <div class="alert alert-info" role="alert">@TempData["message"]</div>
+                <div class="alert alert-info alert-dismissable fade in" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @TempData["message"]
+                </div>
             }
-        </div>
         @RenderBody()
         <hr />
         <footer>

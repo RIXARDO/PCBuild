@@ -11,6 +11,8 @@ using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Services.DTO;
 using PCbuild_ASP.MVC_.Models;
 using PCbuild_ASP.MVC_.Models.ViewModel;
+using System.Web;
+using System.Security.Principal;
 
 namespace PCbuild_ASP.MVC_.Tests.Controllers
 {
@@ -22,6 +24,7 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
     {
         IMapper Mapper;
         Mock<IBuildService> Service= new Mock<IBuildService>();
+        BuildController Controller;
 
         public BuildControllerTest()
         {
@@ -69,15 +72,21 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
         //
         #endregion
 
+            [TestInitialize]
+            public void TestInit()
+        {
+            Controller = new BuildController(Service.Object, Mapper);
+        }
+
         [TestMethod]
         public void Index_Output_RightOutput()
         {
             //Arrange
             Guid guid = Guid.NewGuid();
 
-            BuildController controller = new BuildController(Service.Object, Mapper);
+             
             //Act
-            var result = controller.Index() as ViewResult;
+            var result = Controller.Index() as ViewResult;
             //Assert
             Assert.IsNotNull(result);
         }
@@ -113,10 +122,9 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
 
             Service.Setup(x => x.Action(CPUguid, GPUguid, resolution)).Returns(resultDTO);
 
-            BuildController controller = new BuildController(Service.Object, Mapper);
             //Act
             var result = 
-                controller.Action((ResolutionEnum)resolution, 
+                Controller.Action((ResolutionEnum)resolution, 
                 CPUguid, GPUguid) as PartialViewResult;
             //Assert
             BuildResult buildResult = (BuildResult) result.Model;
@@ -148,6 +156,7 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
         [TestMethod]
         public void Builds_DisplayAllBuilds_RightDisplay()
         {
+            //Arrange
             Guid UserID = Guid.NewGuid();
 
             Guid BuildGuid1 = Guid.NewGuid();
@@ -176,16 +185,18 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
                 new BuildEntityDTO{BuildEntityGuid = BuildGuid2, CPU = cpudto2, GPU =  gpudto2},
                 new BuildEntityDTO{BuildEntityGuid = BuildGuid3, CPU = cpudto3, GPU = gpudto3}
             };
+            var context = new Mock<HttpContextBase>();
+            var mockIdentity = new Mock<IIdentity>();
+            //context.SetupGet(x => x.User.Identity).Returns(mockIdentity.Object);
+            //mockIdentity.Setup(x => x.Name).Returns("SuperName");
 
-            //Arrange
             Service.Setup(x => x.GetBuilds(null)).Returns(buildEntityList);
-            BuildController controller = new BuildController(Service.Object, Mapper);
-
+             
             //Act
-            var result = controller.Builds() as ViewResult;
+            var result = Controller.Builds() as ViewResult;
             //Assert
             List<BuildEntityViewModel> builds = (List<BuildEntityViewModel>)result.Model;
-
+            
             Assert.IsNotNull(builds.Find(x => x.BuildEntityGuid == BuildGuid1),"Build guid 1");
             Assert.IsNotNull(builds.Find(x => x.BuildEntityGuid == BuildGuid2), "Build guid 2");
             Assert.IsNotNull(builds.Find(x => x.BuildEntityGuid == BuildGuid3), "Build guid 3");
@@ -208,6 +219,20 @@ namespace PCbuild_ASP.MVC_.Tests.Controllers
             Assert.IsNotNull(builds.Find(x => x.GPU.Name == gpudto1.Name), "GPU name 1");
             Assert.IsNotNull(builds.Find(x => x.GPU.Name == gpudto2.Name), "GPU name 2");
             Assert.IsNotNull(builds.Find(x => x.GPU.Name == gpudto3.Name), "GPU name 3");
+        }
+
+        [TestMethod]
+        public void SaveBuild_CallSeviceMethodToCreateBuildEntity_ServiceMethodWasCalled()
+        {
+            //Arrnage
+            Guid cpuGuid = Guid.NewGuid();
+            Guid gpuGuid = Guid.NewGuid();
+
+            //Act
+            Controller.SaveBuild(cpuGuid.ToString(), gpuGuid.ToString());
+            //Assert
+            Service.Verify(
+                x => x.SaveBuild(It.IsAny<BuildEntityDTO>()), "SaveBuild Method never called");
         }
     }
 }

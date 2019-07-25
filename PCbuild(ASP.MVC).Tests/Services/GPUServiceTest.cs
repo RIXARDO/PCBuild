@@ -92,7 +92,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
                 new GPU {ProductGuid = guid3, Name="GPU3"}
             };
 
-            GPUs.Setup(x => x.Get()).Returns(gpus);
+            GPUs.Setup(x => x.Get()).Returns(gpus.AsQueryable());
             //Act
             var result = gpuService.GetGPUs();
             //Assert

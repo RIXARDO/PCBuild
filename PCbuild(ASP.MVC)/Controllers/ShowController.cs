@@ -5,15 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Models;
+using PCbuild_ASP.MVC_.Services.Interfaces;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
     public class ShowController : AsyncController
     {
+        ICPUService CPUs;
+        IGPUService GPUs;
+        IGameService Games;
+        public int PageSize = 10;
+
         ICPURepository CPURepository;
         IGPURepository GPURepository;
         IGameRepository gameRepository;
-        public int PageSize = 10;
 
         public ShowController(ICPURepository cPU, IGPURepository gPU, IGameRepository game)
         {
@@ -21,7 +26,7 @@ namespace PCbuild_ASP.MVC_.Controllers
             GPURepository = gPU;
             gameRepository = game;
         }
-        
+
         // GET: Show
         public ViewResult ListCPU(int page=1)
         {

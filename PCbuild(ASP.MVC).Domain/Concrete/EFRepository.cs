@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using PCbuild_ASP.MVC_.Domain.Abstract;
@@ -43,14 +44,14 @@ namespace PCbuild_ASP.MVC_.Domain.Concrete
             return dbset.Find(id);
         }
 
-        public IEnumerable<TEntity> Get()
+        public IQueryable<TEntity> Get()
         {
-            return dbset.AsNoTracking().ToList();
+            return dbset.AsNoTracking();
         }
 
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return dbset.AsNoTracking().Where(predicate).ToList();
+            return dbset.AsNoTracking().Where(predicate);
         }
 
         public void Update(TEntity item)

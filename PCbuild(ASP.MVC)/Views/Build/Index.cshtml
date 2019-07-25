@@ -13,90 +13,67 @@
 
 @using (Ajax.BeginForm("Action", "Build", new AjaxOptions { UpdateTargetId = "results", HttpMethod = "Post" }))
 {
-    bool cpuIntel = true, cpuAMD = false;
-    bool gpuNvidia = true, gpuAMD = false;
 
-    if (Model != null && Model.CPU != null && Model.GPU != null)
-    {
-        if (Model.CPU.Manufacture == "Intel")
-        {
-            cpuIntel = true;
-            cpuAMD = false;
-        }
-        else
-        {
-            cpuIntel = false;
-            cpuAMD = true;
-        }
 
-        if (Model.GPU.Developer == "Nvidia")
-        {
-            gpuNvidia = true;
-            gpuAMD = false;
-        }
-        else
-        {
-            gpuNvidia = false;
-            gpuAMD = true;
-        }
-    }
-
-    <table class="table">
-        <tr>
-            <td>CPU</td>
-            <td>GPU</td>
-            <td>Screen</td>
-        </tr>
-
-        <tr>
-            <td>
-                <div>
-                    @Html.RadioButton("CPU", "Intel", cpuIntel, new { @OnChange = "onchangeCPU(this)" })
-                    <span>Intel</span>
-                    @Html.RadioButton("CPU", "AMD", cpuAMD, new { @OnChange = "onchangeCPU(this)" })
-                    <span>AMD</span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    @Html.RadioButton("GPU", "Nvidia", gpuNvidia, new { @OnChange = "onchangeGPU(this)" })
-                    <span>Nvidia</span>
-                    @Html.RadioButton("GPU", "AMD", gpuAMD, new { @OnChange = "onchangeGPU(this)" })
-                    <span>Radeon</span>
-                </div>
-            </td>
-            <td>
-                <div>
-                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true)
+    <div class="row">
+        <div class="col-md-4">
+            <h5>CPU</h5>
+            <div class="radio">
+                @Html.RadioButton("CPU", "Intel", true, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
+                <span>Intel</span>
+            </div>
+            <div class="radio">
+                @Html.RadioButton("CPU", "AMD", false, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
+                <span>AMD</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h5>GPU</h5>
+            <div class="radio">
+                @Html.RadioButton("GPU", "Nvidia", true, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
+                <span>Nvidia</span>
+            </div>
+            <div class="radio">
+                @Html.RadioButton("GPU", "AMD", false, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
+                <span>Radeon</span>
+            </div>
+        </div>
+            <div class="col-md-4">
+                <h5>Screen</h5>
+                <div class="radio">
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true, new { @class = "custom-control-input" })
                     <span>1080p</span>
-                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1440)
+                </div>
+                <div class="radio">
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1440, new { @class = "custom-control-input" })
                     <span>1440p</span>
-                    @Html.RadioButton("ScreenRez", ResolutionEnum.res2160)
+                </div>
+                <div class="radio">
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res2160, new { @class = "custom-control-input" })
                     <span>2560p</span>
                 </div>
-            </td>
+            </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <select id="CPUs" name="CPUs">
+                <option></option>
+            </select>
+        </div>
+        @*@Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
+        AsEnumerable(), "CPUID", "ProcessorNumber"), new { @OnChange = "onchangeCPUid()" })*@
 
 
-        </tr>
-        <tr>
-            <td>
-                <select id="CPUs" name="CPUs">
-                    <option></option>
-                </select>
-                @*@Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
-                    AsEnumerable(), "CPUID", "ProcessorNumber"), new { @OnChange = "onchangeCPUid()" })*@
+        <div class="col-md-4">
+            <select id="GPUs" name="GPUs">
+                <option></option>
+            </select>
+        </div>
+        @*@Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
+        AsEnumerable(), "GPUID", "Name"), new { @OnChange = "onchangeGPUid()" })*@
 
-            </td>
-            <td>
-                <select id="GPUs" name="GPUs">
-                    <option></option>
-                </select>
-                @*@Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
-                    AsEnumerable(), "GPUID", "Name"), new { @OnChange = "onchangeGPUid()" })*@
-            </td>
-        </tr>
-    </table>
-
+    </div>
     <input type="submit" value="Action" class="btn btn-default" style="float:left; margin-right:10px" />
 }
 
@@ -117,18 +94,3 @@
 }
 
 <div id="results"></div>
-<script>
-    @{
-        bool sel = true;
-        if (Model == null)
-        {
-            sel = false;
-        }
-    }
-    if (@sel) {
-        $("#CPUs").val("@Model.CPUID");
-        $("#GPUs").val("@Model.GPUID");
-        $("#BuildId").val("@Model.BuildEntityGuid");
-
-    }
-</script>

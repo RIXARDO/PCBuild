@@ -17,11 +17,9 @@ namespace PCbuild_ASP.MVC_.Services.Services
         IGenericRepository<CPU> CPUs;
         IGenericRepository<Game> Games;
         IGenericRepository<GPU> GPUs;
+
         IMapper mapper;
-
         IUnitOfWork uow;
-
-
 
 
         public BuildService(IUnitOfWork unitOfWork, IGenericRepository<BuildEntity> buildRepository, IGenericRepository<GPU> gpus, IGenericRepository<CPU> cpus, IGenericRepository<Game> games)//IMapper mapper
@@ -31,7 +29,7 @@ namespace PCbuild_ASP.MVC_.Services.Services
             CPUs = cpus;
             GPUs = gpus;
             Games = games;
-            
+
             MapperConfiguration configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<CPU, CPUdto>();
@@ -48,7 +46,7 @@ namespace PCbuild_ASP.MVC_.Services.Services
         {
             try
             {
-                
+
                 if (cpu != null & gpu != null)
                 {
                     BuildResultDTO buildResult = new BuildResultDTO
@@ -57,13 +55,12 @@ namespace PCbuild_ASP.MVC_.Services.Services
                     };
                     float CPUbench = CPUs.FindById(cpu).AverageBench / 100f;
                     float GPUbench = GPUs.FindById(gpu).AverageBench / 100f;
-                    float ScreenRezConf = 
+                    float ScreenRezConf =
                         (resolution == ResolutionDTO.res1080) ? 1 : ((resolution == ResolutionDTO.res1440) ? 0.75f : 0.5f);
                     float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
 
-                    foreach (Game game in Games.Get())
+                    foreach (Game game in Games.Get().ToList())
                     {
-
                         float fps = fp / (game.AverangeRequirements / 100f);
                         buildResult.BuildGames.Add(
                             new BuildGameDTO { GameDTO = mapper.Map<Game, GameDTO>(game), FPS = (int)fps });
@@ -80,8 +77,10 @@ namespace PCbuild_ASP.MVC_.Services.Services
                 }
                 //doubtfully
                 return null;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
+                throw ex;
                 return null;
                 //ex.Message;
             }
@@ -93,7 +92,9 @@ namespace PCbuild_ASP.MVC_.Services.Services
             {
                 var entry = BuildRepository.FindById(guid);
                 BuildRepository.Delete(entry);
-            }catch(Exception ex)
+                uow.Save();
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -105,8 +106,9 @@ namespace PCbuild_ASP.MVC_.Services.Services
             {
                 var entity = mapper.Map<BuildEntityDTO, BuildEntity>(build);
                 BuildRepository.Update(entity);
+                uow.Save();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);//Add Log
             }
@@ -116,47 +118,56 @@ namespace PCbuild_ASP.MVC_.Services.Services
         {
             try
             {
-                var entry = mapper.Map<IEnumerable<BuildEntity>, IEnumerable<BuildEntityDTO>>(BuildRepository.Get(x=>x.UserID==UserID));
+                var entry = mapper.Map<IEnumerable<BuildEntity>, IEnumerable<BuildEntityDTO>>(BuildRepository.Get(x => x.UserID == UserID));
                 return entry;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                throw ex;
                 //Add Log
                 return null;
             }
         }
 
-        public IEnumerable<CPUdto> GetCPUsByManufacture(string Manufacture)
+        public IEnumerable<CPUItemDTO> GetCPUsByManufacture(string Manufacture)
         {
             try
             {
-                var cpus = mapper.Map<IEnumerable<CPU>, IEnumerable<CPUdto>>(CPUs.Get(x => x.Manufacture == Manufacture));
+                var cpus = CPUs
+                    .Get(x => x.Manufacture == Manufacture)
+                    .Select(x => new CPUItemDTO { ProductGuid = x.ProductGuid, ProcessorNumber = x.ProcessorNumber });
+
                 return cpus;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                throw ex;
                 //Add Log
-                return null;
+                //return null;
             }
         }
 
-        public IEnumerable<GPUdto> GetGPUsByDeveloper(string Developer)
+        public IEnumerable<GPUItemDTO> GetGPUsByDeveloper(string Developer)
         {
             try
             {
-                var gpus = mapper.Map<IEnumerable<GPU>, IEnumerable<GPUdto>>(GPUs.Get(x => x.Developer == Developer));
+                var gpus = GPUs
+                    .Get(x => x.Developer == Developer)
+                    .Select(x => new GPUItemDTO { ProductGuid = x.ProductGuid, Name = x.Name });
                 return gpus;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return null;
+                throw ex;
+                //   return null;
             }
         }
 
         public void SaveBuild(BuildEntityDTO build)
         {
-                var entry = mapper.Map<BuildEntityDTO, BuildEntity>(build);
-                BuildRepository.Create(entry);   
+            var entry = mapper.Map<BuildEntityDTO, BuildEntity>(build);
+            BuildRepository.Create(entry);
+            uow.Save();
         }
 
         private bool disposed = false;
@@ -177,6 +188,30 @@ namespace PCbuild_ASP.MVC_.Services.Services
                     uow.Dispose();
                 }
                 disposed = true;
+            }
+        }
+
+        public BuildEntityDTO GetBuildById(Guid BuildGuid)
+        {
+            var build = BuildRepository.FindById(BuildGuid);
+            BuildEntityDTO buildDTO = mapper.Map<BuildEntity, BuildEntityDTO>(build);
+            return buildDTO;
+        }
+
+        public FileDTO GetImage(Guid gameGuid)
+        {
+            Game game = Games.FindById(gameGuid);
+            if (game != null & game.ImageMimeType64 != null)
+            {
+                return new FileDTO
+                {
+                    File = game.ImageData64,
+                    FileType = game.ImageMimeType64
+                };
+            }
+            else
+            {
+                return null;
             }
         }
     }

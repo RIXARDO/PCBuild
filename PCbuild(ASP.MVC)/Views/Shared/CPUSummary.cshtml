@@ -1,4 +1,4 @@
-﻿@model PCbuild_ASP.MVC_.Domain.Entities.CPU
+﻿@model PCbuild_ASP.MVC_.Models.ViewModel.CPUViewModel
 
 <div class="item">
     <h3>@Model.Manufacture @Model.ProcessorNumber</h3>
@@ -7,7 +7,7 @@
     <p>PBF: @Model.PBF</p>
     @using (Html.BeginForm("CPUAddToCompare", "Compare"))
     {
-        @Html.HiddenFor(x=>x.CPUID)
+        @Html.HiddenFor(x=>x.ProductGuid)
         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
         <input type="submit" value="Add to compare" class="btn btn-primary"/>
     }

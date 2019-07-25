@@ -7,6 +7,8 @@ using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Domain.Entities;
 using PCbuild_ASP.MVC_.Services.DTO;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using AutoMapper;
 
 namespace PCbuild_ASP.MVC_.Tests.Services
@@ -32,7 +34,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
                 uow.Object, BuildRepository.Object, GPUs.Object, CPUs.Object, Games.Object);
         }
         [TestMethod]
-        public void ActionTest()
+        public void Action_CombineInputData_OutputRightResult()
         {
             //Arrange
             Guid cpuGuid = new Guid();
@@ -44,9 +46,8 @@ namespace PCbuild_ASP.MVC_.Tests.Services
             CPUs.Setup(x => x.FindById(gpuGuid)).Returns(new CPU { AverageBench=100});
             Games.Setup(x => x.FindById(gameGuid))
                 .Returns(new Game { AverangeRequirements = 100 });
-            Games.Setup(x=>x.Get()).Returns(new List<Game> {new Game { AverangeRequirements=100}});
+            Games.Setup(x=>x.Get()).Returns(new List<Game> {new Game { AverangeRequirements=100}}.AsQueryable());
             
-
             //Act
             var result = buildService.Action(cpuGuid,gpuGuid,resolution);
 
@@ -55,7 +56,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
         }
 
         [TestMethod]
-        public void DeleteBuildTest()
+        public void DeleteBuild_DeleteBuild_RepositoryMehtodWasCalled()
         {
             //Arrange
             BuildEntity entity = new BuildEntity();
@@ -67,7 +68,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
         }
 
         [TestMethod]
-        public void EditBuildTest()
+        public void EditBuild_EditBuildEntity_RepositoryMethodWasCalled()
         {
             //Arrange
             BuildEntityDTO entityDTO = new BuildEntityDTO();
@@ -80,7 +81,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
         }
 
         [TestMethod]
-        public void CreateBuildTest()
+        public void CreateBuild_CreateBuildEnity_RepositoryMethodWasCalled()
         {
             //Arrange
             BuildEntityDTO entityDTO = new BuildEntityDTO();
@@ -90,6 +91,69 @@ namespace PCbuild_ASP.MVC_.Tests.Services
 
             //Assert
             BuildRepository.Verify(x => x.Create(It.IsAny<BuildEntity>()), "Not called");
+        }
+
+        [TestMethod]
+        public void GetCPUsByManufacture_GetCPUsFromRepository_RightEntitysReturned()
+        {
+            //Arrange
+            Guid guid1 = Guid.NewGuid();
+            Guid guid2 = Guid.NewGuid();
+            Guid guid3 = Guid.NewGuid();
+            List<CPU> cpuList = new List<CPU> {
+                new CPU { ProductGuid=guid1, ProcessorNumber="ProcNum1"},
+            new CPU { ProductGuid=guid2, ProcessorNumber="ProcNum2"},
+            new CPU { ProductGuid=guid3, ProcessorNumber="ProcNum3"}};
+
+            CPUs.Setup(x => x.Get(It.IsAny<Expression<Func<CPU,bool>>>()))
+                .Returns(cpuList.AsQueryable());
+
+            //Act
+            var result = buildService.GetCPUsByManufacture("Manuf1");
+            //Assert
+            Assert.IsNotNull(result.Where(x=>x.ProductGuid==guid1), "guid1 is missing");
+            Assert.IsNotNull(result.Where(x => x.ProductGuid == guid2), "guid2 is missing");
+            Assert.IsNotNull(result.Where(x => x.ProductGuid == guid3), "guid3 is missing");
+
+            Assert.IsNotNull(result
+                .Where(x => x.ProcessorNumber == cpuList[0].ProcessorNumber),
+                cpuList[0].ProcessorNumber+" is missing");
+            Assert.IsNotNull(result
+                .Where(x => x.ProcessorNumber == cpuList[1].ProcessorNumber),
+                cpuList[0].ProcessorNumber+" is missing");
+            Assert.IsNotNull(result
+                .Where(x => x.ProcessorNumber == cpuList[2].ProcessorNumber),
+                cpuList[0].ProcessorNumber+" is missing");
+        }
+
+        [TestMethod]
+        public void GetGPUsByManufacture_GetGPUsFromRepository_RightEntitysReturned()
+        {
+            //Arrange
+            Guid guid1 = Guid.NewGuid();
+            Guid guid2 = Guid.NewGuid();
+            Guid guid3 = Guid.NewGuid();
+            List<GPU> gpuList = new List<GPU> {
+                new GPU { ProductGuid=guid1, Name="Name1"},
+            new GPU { ProductGuid=guid2, Name="Name2"},
+            new GPU { ProductGuid=guid3, Name="Name3"}};
+
+            GPUs.Setup(x => x.Get(It.IsAny<Expression<Func<GPU, bool>>>()))
+                .Returns(gpuList.AsQueryable());
+
+            //Act
+            var result = buildService.GetGPUsByDeveloper("Developer1");
+            //Assert
+            Assert.IsNotNull(result.Where(x => x.ProductGuid == guid1), "guid1 is missing");
+            Assert.IsNotNull(result.Where(x => x.ProductGuid == guid2), "guid2 is missing");
+            Assert.IsNotNull(result.Where(x => x.ProductGuid == guid3), "guid3 is missing");
+
+            Assert.IsNotNull(result
+                .Where(x => x.Name == gpuList[0].Name), gpuList[0].Name + "is missing");
+            Assert.IsNotNull(result
+                .Where(x => x.Name == gpuList[1].Name), gpuList[1].Name + " is missing");
+            Assert.IsNotNull(result
+                .Where(x => x.Name == gpuList[2].Name), gpuList[2].Name+" is missing");
         }
     }
 }

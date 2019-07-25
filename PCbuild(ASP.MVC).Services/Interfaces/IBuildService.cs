@@ -11,9 +11,9 @@ namespace PCbuild_ASP.MVC_.Services.Interfaces
     {
         IEnumerable<BuildEntityDTO> GetBuilds(string UserGuid);
 
-        IEnumerable<CPUdto> GetCPUsByManufacture(string Manufacture);
+        IEnumerable<CPUItemDTO> GetCPUsByManufacture(string Manufacture);
 
-        IEnumerable<GPUdto> GetGPUsByDeveloper(string Developer);
+        IEnumerable<GPUItemDTO> GetGPUsByDeveloper(string Developer);
 
         BuildResultDTO Action(Guid cpu, Guid gpu, ResolutionDTO resolution);
 
@@ -22,7 +22,10 @@ namespace PCbuild_ASP.MVC_.Services.Interfaces
         void DeleteBuild(Guid guid);
 
         void SaveBuild(BuildEntityDTO build);
-        
+
+        BuildEntityDTO GetBuildById(Guid BuildGuid);
+
         void Dispose();
+        FileDTO GetImage(Guid gameGuid);
     }
 }

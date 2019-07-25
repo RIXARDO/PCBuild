@@ -1,6 +1,6 @@
-﻿@using PCbuild_ASP.MVC_.Domain.Entities;
+﻿@using PCbuild_ASP.MVC_.Models.ViewModel
 
-@model IEnumerable<PCbuild_ASP.MVC_.Domain.Entities.BuildEntity>
+@model IEnumerable<PCbuild_ASP.MVC_.Models.ViewModel.BuildEntityViewModel>
 
 @{
     ViewBag.Title = "Builds";
@@ -8,31 +8,40 @@
 
 <h2>Builds</h2>
 
-<div class="panel panel-primary">
+@Html.ActionLink("Create", "Index", "Build", new { @class = "btn btn-default" })
+<div class="panel panel-default">
     <div class="panel-heading">Builds</div>
+    <div>
 
+    </div>
     <table class="table table-striped">
         <tr>
             <td>CPU</td>
             <td>GPU</td>
             <td></td>
         </tr>
-        @foreach (BuildEntity item in Model.ToList())
+        @foreach (BuildEntityViewModel item in Model.ToList())
         {
-            if (item.CPU != null & item.GPU!=null)
+            if (item.CPU != null & item.GPU != null)
             {
-            <tr>
-                <td>@item.CPU.Manufacture @item.CPU.ProcessorNumber</td>
-                <td>@item.GPU.Manufacture @item.GPU.Name</td>
-                <td>
-                    
-                    @using (Html.BeginForm("DeleteBuild", "Build", FormMethod.Post))
-                    {
-                        @Html.Hidden("BuildEntityID", item.BuildEntityID)
-                        <input type="submit" value="Delete" class="btn btn-danger" />
-                    }
-                </td>
-            </tr>
+                <tr>
+                    <td>@item.CPU.Manufacture @item.CPU.ProcessorNumber</td>
+                    <td>@item.GPU.Developer @item.GPU.Name</td>
+                    <td>
+                        <div style="display:inline">
+                            @using (Html.BeginForm("DeleteBuild", "Build", FormMethod.Post))
+                            {
+                                @Html.Hidden("BuildEntityGuid", item.BuildEntityGuid)
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            }
+                            @using (Html.BeginForm("EditBuild", "Build", FormMethod.Get))
+                            {
+                                @Html.Hidden("BuildEntityGuid", item.BuildEntityGuid)
+                                <input type="submit" value="Edit" class="btn btn-default" />
+                            }
+                        </div>
+                    </td>
+                </tr>
             }
         }
     </table>

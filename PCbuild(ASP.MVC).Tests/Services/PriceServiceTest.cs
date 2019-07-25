@@ -89,7 +89,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
                 new Price{PriceGuid= guid3, Vendor = vendorName3}
             };
 
-            Prices.Setup(x => x.Get()).Returns(PriceList);
+            Prices.Setup(x => x.Get()).Returns(PriceList.AsQueryable());
             //Act
             var result = priceService.GetPrices();
             //Assert

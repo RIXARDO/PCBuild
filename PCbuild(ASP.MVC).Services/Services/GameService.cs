@@ -88,10 +88,10 @@ namespace PCbuild_ASP.MVC_.Services.Services
         public FileDTO GetImage(Guid guid)
         {
             Game game = Games.FindById(guid);
-            if (game != null & game.ImageMimeType64 != null & game.ImageMimeType32 != null)
+            if (game != null & game.ImageMimeType64 != null)
             {
-                   
-                    return new FileDTO { File = game.ImageData64, FileType = game.ImageMimeType64 };
+                    return new FileDTO {
+                        File = game.ImageData64, FileType = game.ImageMimeType64 };
             }
             else
             {

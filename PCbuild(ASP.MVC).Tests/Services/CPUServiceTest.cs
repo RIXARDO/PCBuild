@@ -90,7 +90,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
                 new CPU{ProductGuid = guid3, ProcessorNumber = procNumber3}
             };
 
-            CPUs.Setup(x => x.Get()).Returns(CPUList);
+            CPUs.Setup(x => x.Get()).Returns(CPUList.AsQueryable());
             //Act
             var result = cpuService.GetCPUs();
             //Assert

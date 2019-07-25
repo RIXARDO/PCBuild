@@ -26,11 +26,11 @@ namespace PCbuild_ASP.MVC_.Controllers
 
 
         public BuildController(
-            ICPURepository cPU, 
-            IGPURepository gPU, 
-            IGameRepository game, 
+            ICPURepository cPU,
+            IGPURepository gPU,
+            IGameRepository game,
             IBuildEntityRepository build,
-            IBuildService service, 
+            IBuildService service,
             IMapper mapper)
         {
             CPURepository = cPU;
@@ -62,9 +62,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         {
             if (CPUs != null & GPUs != null)
             {
-                ResolutionDTO resolution = (ResolutionDTO)ScreenRez; 
+                ResolutionDTO resolution = (ResolutionDTO)ScreenRez;
 
-                BuildResultDTO resultDTO = Service.Action(CPUs,GPUs,ResolutionDTO.res1080);
+                BuildResultDTO resultDTO = Service.Action(CPUs, GPUs, ResolutionDTO.res1080);
 
                 BuildResult buildResult = Mapper.Map<BuildResultDTO, BuildResult>(resultDTO);
 
@@ -92,18 +92,18 @@ namespace PCbuild_ASP.MVC_.Controllers
             return PartialView();
         }
 
-
-        public FileContentResult GetImage(Guid GameID, bool big = true)
+        /// <summary>
+        /// Get Game image by Id
+         /// </summary>
+        /// <param name="GameGuid"></param>
+        /// <param name="big"></param>
+        /// <returns></returns>
+        public FileContentResult GetImage(Guid GameGuid)
         {
-            Game game = GameRepository.Games.FirstOrDefault(g => g.GameGuid == GameID);
-            if (game != null & game.ImageMimeType64 != null & game.ImageMimeType32 != null)
+            FileDTO file = Service.GetImage(GameGuid);
+            if (file != null & file.FileType != null)
             {
-
-                if (big)
-                    return File(game.ImageData64, game.ImageMimeType64);
-                else
-                    return File(game.ImageData32, game.ImageMimeType32);
-
+                return File(file.File,file.FileType);
             }
             else
             {
@@ -113,63 +113,96 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         public JsonResult DropDownListCPU(string value)
         {
-            var cpus = CPURepository.CPUs.Where(x => x.Manufacture == value)
-                .Select(x => new { name = x.ProcessorNumber, value = x.ProductGuid });
+            //var cpus = CPURepository.CPUs.Where(x => x.Manufacture == value)
+            //  .Select(x => new { name = x.ProcessorNumber, value = x.ProductGuid });
+            var cpusDTO = Service.GetCPUsByManufacture(value);
+            var cpus =
+                Mapper.Map<IEnumerable<CPUItemDTO>, IEnumerable<CPUDropDownListItem>>(cpusDTO);
             return Json(cpus, JsonRequestBehavior.AllowGet);
-
         }
 
         public JsonResult DropDownListGPU(string value)
         {
-            var gpus = GPURepository.GPUs.Where(x => x.Developer == value)
-                .Select(x => new { name = x.Name, value = x.ProductGuid });
+            //var gpus = GPURepository.GPUs.Where(x => x.Developer == value)
+            //    .Select(x => new { name = x.Name, value = x.ProductGuid });
+            var gpusDTO = Service.GetGPUsByDeveloper(value);
+            var gpus =
+                Mapper.Map<IEnumerable<GPUItemDTO>, IEnumerable<GPUDropDownListItem>>(gpusDTO);
             return Json(gpus, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
         public ActionResult Builds()
         {
-            string UserID = User!=null?User.Identity.GetUserId():null;
-            IEnumerable<BuildEntityDTO> buildEntityViewModels = Service.GetBuilds(null);
-            IEnumerable<BuildEntityViewModel> buildEntities =  
-                Mapper.Map<IEnumerable<BuildEntityDTO>, 
+            //Doubtful
+            string UserID = User != null ? User.Identity.GetUserId() : null;
+
+            IEnumerable<BuildEntityDTO> buildEntityViewModels = Service.GetBuilds(UserID);
+            IEnumerable<BuildEntityViewModel> buildEntities =
+                Mapper.Map<IEnumerable<BuildEntityDTO>,
                 IEnumerable<BuildEntityViewModel>>(buildEntityViewModels);
             return View(buildEntities);
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult DeleteBuild(int BuildEntityID)
+        public ActionResult DeleteBuild(Guid BuildEntityGuid)
         {
-            var build = BuildRepository.Delete(BuildEntityID);
+            var build = Service.GetBuildById(BuildEntityGuid);
+            Service.DeleteBuild(BuildEntityGuid);
+            // BuildRepository.Delete(BuildEntityID);
             if (build != null)
             {
-                TempData["message"] = "Build was deleted";
+                TempData["message"] = "Build: "+build.BuildEntityGuid+" was deleted";
             }
             return RedirectToAction("Builds");
         }
 
         [Authorize]
-        public ActionResult EditBuild(Guid BuildEntityID)
+        public ActionResult EditBuild(Guid? BuildEntityGuid)
         {
-            BuildEntity build = BuildRepository.Builds.FirstOrDefault(x => x.BuildEntityGuid == BuildEntityID);
-            return View("Build", build);
+            if (BuildEntityGuid != null)
+            {
+                BuildEntityDTO buildDTO = Service.GetBuildById(BuildEntityGuid.Value);
+                BuildEntityViewModel build = Mapper.Map<BuildEntityDTO, BuildEntityViewModel>(buildDTO);
+                return View(build);
+            }
+            else
+            {
+                TempData["message"] = "No build selected";
+                return RedirectToAction("Builds", "Build");
+            }
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult SaveBuild(string BuildId, string CPUid, string GPUid)
+        public ActionResult EditBuild(BuildEntityViewModel buildEntity)
         {
-            BuildEntity build = new BuildEntity();
-            Guid.TryParse(BuildId, out Guid BuildID);
-            Guid.TryParse(CPUid, out Guid CPUID);
-            Guid.TryParse(GPUid, out Guid GPUID);
+            if (ModelState.IsValid)
+            {
+                var buildDTO = Mapper.Map<BuildEntityViewModel, BuildEntityDTO>(buildEntity);
+                buildDTO.UserID = User != null ? User.Identity.GetUserId() : null;
+                Service.EditBuild(buildDTO);
+                return RedirectToAction("Builds");
+            }
+            return View(buildEntity);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult SaveBuild(string CPUGuid, string GPUGuid)
+        {
+            BuildEntityDTO build = new BuildEntityDTO();
+            Guid.TryParse(CPUGuid, out Guid CPUID);
+            Guid.TryParse(GPUGuid, out Guid GPUID);
             build.CPUID = CPUID;
             build.GPUID = GPUID;
-            build.UserID = User.Identity.GetUserId();
-            build.BuildEntityGuid = BuildID;
-            BuildRepository.SaveBuild(build);
 
+            //doubtful
+            build.UserID = User!=null?User.Identity.GetUserId():null;
+
+            Service.SaveBuild(build);
             return RedirectToAction("Builds", "Build");
         }
     }

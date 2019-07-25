@@ -1,4 +1,4 @@
-﻿@model PCbuild_ASP.MVC_.Domain.Entities.GPU
+﻿@model PCbuild_ASP.MVC_.Models.ViewModel.GPUViewModel
 
 <div class="item">
     <h3>@Model.Manufacture @Model.Name</h3>
@@ -7,7 +7,7 @@
     <p>AverageBench: @Model.AverageBench</p>
     @using (Html.BeginForm("GPUAddToCompare", "Compare"))
     {
-        @Html.HiddenFor(x=>x.GPUID)
+        @Html.HiddenFor(x=>x.ProductGuid)
         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
         <input type="submit" value="Add to compare" class="btn btn-primary"/>
     }

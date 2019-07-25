@@ -50,7 +50,7 @@ namespace PCbuild_ASP.MVC_.Services.Services
 
         public IEnumerable<CPUdto> GetCPUs()
         {
-            return mapper.Map<IEnumerable<CPU>, IEnumerable<CPUdto>>(CPUs.Get());
+            return mapper.Map<IEnumerable<CPU>, IEnumerable<CPUdto>>(CPUs.Get().ToList());
         }
 
         public void SaveCPU(CPUdto cpudto)

@@ -96,7 +96,7 @@ namespace PCbuild_ASP.MVC_.Tests.Services
                 new Game {GameGuid = guid3, Name = "Game3"}
             };
 
-            Games.Setup(x => x.Get()).Returns(gameList);
+            Games.Setup(x => x.Get()).Returns(gameList.AsQueryable());
             //Act
             var result = gameService.GetGames();
 

@@ -48,12 +48,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\BuildResultDTO.cs" />
+    <Compile Include="DTO\CPUItemDTO.cs" />
+    <Compile Include="DTO\CPUListDTO.cs" />
     <Compile Include="DTO\FileDTO.cs" />
+    <Compile Include="DTO\GameListDTO.cs" />
+    <Compile Include="DTO\GPUItemDTO.cs" />
+    <Compile Include="DTO\GPUListDTO.cs" />
+    <Compile Include="DTO\PagingInfoDTO.cs" />
     <Compile Include="DTO\ResolutionDTO.cs" />
     <Compile Include="Interfaces\ICPUService.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IGPUService.cs" />
     <Compile Include="Interfaces\IPriceService.cs" />
+    <Compile Include="Interfaces\IShowService.cs" />
     <Compile Include="Services\BuildService.cs" />
     <Compile Include="DTO\BuildEntityDTO.cs" />
     <Compile Include="Comparison\Comparison.cs" />
@@ -69,6 +76,7 @@
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Services\GPUService.cs" />
     <Compile Include="Services\PriceService.cs" />
+    <Compile Include="Services\ShowService.cs" />
     <Compile Include="Util\AutoMapperNinjectModule.cs" />
     <Compile Include="Util\AutoMapperServicesProfile.cs" />
   </ItemGroup>

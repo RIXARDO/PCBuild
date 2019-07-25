@@ -28,6 +28,14 @@ namespace PCbuild_ASP.MVC_.Util
             CreateMap<BuildGameDTO, BuildGame>()
                 .ForMember(x => x.Game, opt => opt.MapFrom(src => src.GameDTO))
                 .ReverseMap();
+            CreateMap<CPUItemDTO, CPUDropDownListItem>()
+                .ForMember(x => x.name, oct => oct.MapFrom(src => src.ProcessorNumber))
+                .ForMember(x => x.value, oct => oct.MapFrom(scr => scr.ProductGuid))
+                .ReverseMap();
+            CreateMap<GPUItemDTO, GPUDropDownListItem>()
+                .ForMember(x => x.name, oct => oct.MapFrom(src => src.Name))
+                .ForMember(x => x.value, oct => oct.MapFrom(scr => scr.ProductGuid))
+                .ReverseMap();
         }
     }
 }
