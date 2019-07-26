@@ -295,7 +295,6 @@
     <Content Include="Views\Build\Action.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Games\Edit.cshtml" />
-    <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Show\Index.cshtml" />
     <Content Include="Views\Show\ListCPU.cshtml" />
     <Content Include="Views\Shared\CPUSummary.cshtml" />

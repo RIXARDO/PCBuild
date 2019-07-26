@@ -56,6 +56,7 @@
     <Compile Include="DTO\GPUListDTO.cs" />
     <Compile Include="DTO\PagingInfoDTO.cs" />
     <Compile Include="DTO\ResolutionDTO.cs" />
+    <Compile Include="Interfaces\ICompareService.cs" />
     <Compile Include="Interfaces\ICPUService.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\IGPUService.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="Interfaces\IBuildService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CompareService.cs" />
     <Compile Include="Services\CPUService.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Services\GPUService.cs" />

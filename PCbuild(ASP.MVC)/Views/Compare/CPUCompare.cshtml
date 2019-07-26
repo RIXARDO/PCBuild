@@ -1,5 +1,5 @@
-﻿@using PCbuild_ASP.MVC_.Domain.Entities
-@model PCbuild_ASP.MVC_.Models.CompareIndexViewModel<CPU>
+﻿@using PCbuild_ASP.MVC_.Models.ViewModel
+@model PCbuild_ASP.MVC_.Models.CompareIndexViewModel<CPUViewModel>
 @{
     ViewBag.Title = "CPU Compare";
 }
@@ -13,13 +13,13 @@
         <thead>
             <tr>
                 <td></td>
-                @foreach (var item in Model.Comparison.CompareList.Select(x => x.CPUID))
+                @foreach (var item in Model.Comparison.CompareList.Select(x => x.ProductGuid))
                 {
                     <td>
                         @using (Html.BeginForm("CPURemoveFromCompare", "Compare", FormMethod.Post))
                         {
                             @Html.HiddenFor(x => x.returnUrl)
-                            @Html.Hidden("CPUID", item)
+                            @Html.Hidden("ProductGuid", item)
                             <input type="submit" value="Remove" class="btn btn-danger" />
                         }
                     </td>
@@ -77,7 +77,7 @@
         </tr>
         <tr>
             <td><b>AverangeBench</b></td>
-            @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverangeBench))
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.AverageBench))
             {
                 <td>@item</td>
             }

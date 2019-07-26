@@ -2,9 +2,13 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuild_ASP.MVC_.Services.Comparison;
 using PCbuild_ASP.MVC_.Domain.Abstract;
 using PCbuild_ASP.MVC_.Models;
+using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuild_ASP.MVC_.Services.Interfaces;
+using PCbuild_ASP.MVC_.Services.DTO;
+using AutoMapper;
 
 namespace PCbuild_ASP.MVC_.Controllers
 {
@@ -12,13 +16,16 @@ namespace PCbuild_ASP.MVC_.Controllers
     {
         public ICPURepository cpurepo;
         public IGPURepository gpurepo;
-        public IGameRepository gamerepo;
+        ICompareService Service;
+        IMapper Mapper;
 
-        public CompareController(ICPURepository cPURepository, IGPURepository gPURepository, IGameRepository gameRepository)
+        public CompareController(ICPURepository cPURepository, IGPURepository gPURepository, IGameRepository gameRepository, ICompareService compareService, IMapper mapper)
         {
             cpurepo = cPURepository;
             gpurepo = gPURepository;
-            gamerepo = gameRepository;
+
+            Service = compareService;
+            Mapper = mapper;
         }
 
         // GET: Compare
@@ -27,9 +34,9 @@ namespace PCbuild_ASP.MVC_.Controllers
             return View(returnUrl);
         }
 
-        public ActionResult CPUCompare(Comparison<CPU> comparison, string returnUrl)
+        public ActionResult CPUCompare(Comparison<CPUViewModel> comparison, string returnUrl)
         {
-            return View(new CompareIndexViewModel<CPU>
+            return View(new CompareIndexViewModel<CPUViewModel>
             {
                 Comparison = comparison,
                 returnUrl = returnUrl
@@ -37,19 +44,22 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPUAddToCompare(Comparison<CPU> comparison, System.Guid cpuId, string returnUrl)
+        public RedirectToRouteResult CPUAddToCompare(Comparison<CPUViewModel> comparison, System.Guid cpuId, string returnUrl)
         {
-            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.ProductGuid == cpuId);
+            CPUdto cpudto = Service.FindCPUByID(cpuId);
+            var cpu = Mapper.Map<CPUdto, CPUViewModel>(cpudto);
             if (cpu != null)
             {
                 comparison.AddItem(cpu);
             }
             return RedirectToAction("CPUCompare", new { returnUrl });
         }
+
         [HttpPost]
-        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPU> comparison, System.Guid cpuId, string returnUrl)
+        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPUViewModel> comparison, System.Guid cpuId, string returnUrl)
         {
-            CPU cpu = cpurepo.CPUs.FirstOrDefault(x => x.ProductGuid == cpuId);
+            CPUdto cpudto = Service.FindCPUByID(cpuId);
+            CPUViewModel cpu = Mapper.Map<CPUdto,CPUViewModel>(cpudto);
             if (cpu != null)
             {
                 comparison.Remove(cpu);
@@ -58,15 +68,15 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPUClearCompare(Comparison<CPU> comparison, string returnUrl)
+        public RedirectToRouteResult CPUClearCompare(Comparison<CPUViewModel> comparison, string returnUrl)
         {
             comparison.Clear();
             return RedirectToAction("CPUCompare", new { returnUrl });
         }
 
-        public ActionResult GPUCompare(Comparison<GPU> comparison, string returnUrl)
+        public ActionResult GPUCompare(Comparison<GPUViewModel> comparison, string returnUrl)
         {
-            return View(new CompareIndexViewModel<GPU>
+            return View(new CompareIndexViewModel<GPUViewModel>
             {
                 Comparison = comparison,
                 returnUrl = returnUrl
@@ -74,9 +84,10 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPUAddToCompare(Comparison<GPU> comparison, System.Guid gpuId, string returnUrl)
+        public RedirectToRouteResult GPUAddToCompare(Comparison<GPUViewModel> comparison, System.Guid gpuId, string returnUrl)
         {
-            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.ProductGuid == gpuId);
+            GPUdto gpudto = Service.FindGPUByID(gpuId);
+            GPUViewModel gpu = Mapper.Map<GPUdto,GPUViewModel>(gpudto);
             if (gpu != null)
             {
                 comparison.AddItem(gpu);
@@ -85,9 +96,10 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPU> comparison, System.Guid gpuId, string returnUrl)
+        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPUViewModel> comparison, System.Guid gpuId, string returnUrl)
         {
-            GPU gpu = gpurepo.GPUs.FirstOrDefault(x => x.ProductGuid == gpuId);
+            GPUdto gpudto = Service.FindGPUByID(gpuId);
+            GPUViewModel gpu = Mapper.Map<GPUdto, GPUViewModel>(gpudto);
             if (gpu != null)
             {
                 comparison.Remove(gpu);
@@ -96,7 +108,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPUClearCompare(Comparison<GPU> comparison, string returnUrl)
+        public RedirectToRouteResult GPUClearCompare(Comparison<GPUViewModel> comparison, string returnUrl)
         {
             comparison.Clear();
             return RedirectToAction("GPUCompare", new { returnUrl });

@@ -1,5 +1,5 @@
-﻿@using PCbuild_ASP.MVC_.Domain.Entities;
-@model PCbuild_ASP.MVC_.Models.CompareIndexViewModel<GPU>
+﻿@using PCbuild_ASP.MVC_.Models.ViewModel;
+@model PCbuild_ASP.MVC_.Models.CompareIndexViewModel<GPUViewModel>
 @{
     ViewBag.Title = "GPUCompare";
 }
@@ -12,7 +12,7 @@
     <table class="table table-hover">
         <tr>
             <td></td>
-            @foreach (var item in Model.Comparison.CompareList.Select(x => x.GPUID))
+            @foreach (var item in Model.Comparison.CompareList.Select(x => x.ProductGuid))
             {
                 <td>
                     @using (Html.BeginForm("GPURemoveFromCompare", "Compare", FormMethod.Post))
@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td><b>Name</b></td>
-            @foreach (var item in Model.Comparison.CompareList.Select(x => x.Name))
+            @foreach (var item in Model.Comparison.CompareList.Select(x=>x.Name))
             {
                 <td>@item</td>
             }

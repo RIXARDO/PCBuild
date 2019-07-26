@@ -36,6 +36,19 @@ namespace PCbuild_ASP.MVC_.Util
                 .ForMember(x => x.name, oct => oct.MapFrom(src => src.Name))
                 .ForMember(x => x.value, oct => oct.MapFrom(scr => scr.ProductGuid))
                 .ReverseMap();
+            CreateMap<PagingInfoDTO, PagingInfo>()
+                .ForMember(x => x.CurrentPage, opt => opt.MapFrom(src => src.CurrentPage))
+                .ForMember(x => x.ItemsPerPage, opt => opt.MapFrom(src => src.ItemsPerPage))
+                .ForMember(x => x.TotalItems, opt => opt.MapFrom(src => src.TotalItems));
+            CreateMap<CPUListDTO, CPUListViewModel>()
+                .ForMember(x => x.CPUs, opt => opt.MapFrom(src => src.CPUList))
+                .ForMember(x => x.PagingInfo, opt => opt.MapFrom(src => src.PagingInfo));
+            CreateMap<GPUListDTO, GPUListViewModel>()
+                .ForMember(x => x.GPUs, opt => opt.MapFrom(src => src.GPUList))
+                .ForMember(x => x.PagingInfo, opt => opt.MapFrom(src => src.PagingInfo));
+            CreateMap<GameListDTO, GameListViewModel>()
+                .ForMember(x => x.Games, opt => opt.MapFrom(src => src.GameList))
+                .ForMember(x => x.PagingInfo, opt => opt.MapFrom(src => src.PagingInfo));
         }
     }
 }
