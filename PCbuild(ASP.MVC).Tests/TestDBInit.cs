@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Entity;
 using System.Configuration;
 
-namespace PCbuild_ASP.MVC_.Tests
+namespace PCbuilder_ASP.MVC_.Tests
 {
     [TestClass]
     public static class TestDBInit

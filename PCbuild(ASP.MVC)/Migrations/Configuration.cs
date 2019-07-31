@@ -1,18 +1,18 @@
-namespace PCbuild_ASP.MVC_.Migrations
+namespace PCbuilder_ASP.MVC_.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PCbuild_ASP.MVC_.Models.Identity.ApplicationContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PCbuilder_ASP.MVC_.Models.Identity.ApplicationContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PCbuild_ASP.MVC_.Models.Identity.ApplicationContext context)
+        protected override void Seed(PCbuilder_ASP.MVC_.Models.Identity.ApplicationContext context)
         {
             //  This method will be called after migrating to the latest version.
 

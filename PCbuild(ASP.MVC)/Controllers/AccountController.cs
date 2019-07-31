@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using PCbuild_ASP.MVC_.Models;
-using PCbuild_ASP.MVC_.Models.Identity;
+using PCbuilder_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models.Identity;
 using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
-using PCbuild_ASP.MVC_.App_Start;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.App_Start;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 
-namespace PCbuild_ASP.MVC_.Controllers
+namespace PCbuilder_ASP.MVC_.Controllers
 {
     [RequireHttps]
     [Authorize]

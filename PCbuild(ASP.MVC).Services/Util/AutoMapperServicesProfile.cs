@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using PCbuild_ASP.MVC_.Domain.Entities;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Services.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PCbuild_ASP.MVC_.Services.Util
+namespace PCbuilder_ASP.MVC_.Services.Util
 {
     public class AutoMapperServicesProfile: Profile
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace PCbuild_ASP.MVC_.Domain.Entities
+namespace PCbuilder_ASP.MVC_.Domain.Entities
 {
     public partial class GPUMetadata
     {

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using System.Drawing;
-using PCbuild_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Models.ViewModel;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.DTO;
 
-namespace PCbuild_ASP.MVC_.Controllers
+namespace PCbuilder_ASP.MVC_.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class GamesController : Controller

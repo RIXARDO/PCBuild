@@ -3,14 +3,14 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Controllers;
-using PCbuild_ASP.MVC_.Services.Services;
-using PCbuild_ASP.MVC_.Services.Util;
+using PCbuilder_ASP.MVC_.Controllers;
+using PCbuilder_ASP.MVC_.Services.Services;
+using PCbuilder_ASP.MVC_.Services.Util;
 
-namespace PCbuild_ASP.MVC_.Tests.Services
+namespace PCbuilder_ASP.MVC_.Tests.Services
 {
     /// <summary>
     /// Summary description for CompareSreviceTest

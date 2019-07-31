@@ -1,6 +1,6 @@
-namespace PCbuild_ASP.MVC_.Domain.Migrations
+namespace PCbuilder_ASP.MVC_.Domain.Migrations
 {
-    using PCbuild_ASP.MVC_.Domain.Entities;
+    using PCbuilder_ASP.MVC_.Domain.Entities;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -8,12 +8,12 @@ namespace PCbuild_ASP.MVC_.Domain.Migrations
     using System.IO;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PCbuild_ASP.MVC_.Domain.Concrete.EFDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PCbuilder_ASP.MVC_.Domain.Concrete.EFDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "PCbuild_ASP.MVC_.Domain.Concrete.EFDbContext";
+            ContextKey = "PCbuilder_ASP.MVC_.Domain.Concrete.EFDbContext";
         }
 
         protected override void Seed(Concrete.EFDbContext context)

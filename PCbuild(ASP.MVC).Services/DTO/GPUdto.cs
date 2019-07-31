@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace PCbuild_ASP.MVC_.Services.DTO
+namespace PCbuilder_ASP.MVC_.Services.DTO
 {
     public partial class GPUdto
     {

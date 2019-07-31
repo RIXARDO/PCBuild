@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PCbuild(ASP.MVC).Services")]
+[assembly: AssemblyTitle("PCbuilder(ASP.MVC).Services")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Win-Yagd")]
-[assembly: AssemblyProduct("PCbuild(ASP.MVC).Services")]
-[assembly: AssemblyCopyright("Copyright © Win-Yagd 2019")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("PCbuilder(ASP.MVC).Services")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

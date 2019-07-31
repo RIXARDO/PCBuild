@@ -3,13 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Domain.Entities;
-using PCbuild_ASP.MVC_.Services.Services;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Services.Services;
+using PCbuilder_ASP.MVC_.Services.DTO;
 using System.Collections.Generic;
 
-namespace PCbuild_ASP.MVC_.Tests.Services
+namespace PCbuilder_ASP.MVC_.Tests.Services
 {
     [TestClass]
     public class PriceServiceTest

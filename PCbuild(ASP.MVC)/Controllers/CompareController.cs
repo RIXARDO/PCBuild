@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Services.Comparison;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Models;
-using PCbuild_ASP.MVC_.Models.ViewModel;
-using PCbuild_ASP.MVC_.Services.Interfaces;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Services.Comparison;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Services.DTO;
 using AutoMapper;
 
-namespace PCbuild_ASP.MVC_.Controllers
+namespace PCbuilder_ASP.MVC_.Controllers
 {
     public class CompareController : Controller
     {

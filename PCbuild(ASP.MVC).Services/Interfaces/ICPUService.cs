@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Services.DTO;
 
-namespace PCbuild_ASP.MVC_.Services.Interfaces
+namespace PCbuilder_ASP.MVC_.Services.Interfaces
 {
     public interface ICPUService
     {

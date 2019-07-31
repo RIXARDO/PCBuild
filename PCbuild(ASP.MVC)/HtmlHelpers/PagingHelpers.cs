@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web;
 using System.Text;
-using PCbuild_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models;
 
-namespace PCbuild_ASP.MVC_.HtmlHelpers
+namespace PCbuilder_ASP.MVC_.HtmlHelpers
 {
     public static class PagingHelpers
     {

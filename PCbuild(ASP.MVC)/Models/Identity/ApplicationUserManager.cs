@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 
-namespace PCbuild_ASP.MVC_.Models.Identity
+namespace PCbuilder_ASP.MVC_.Models.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {

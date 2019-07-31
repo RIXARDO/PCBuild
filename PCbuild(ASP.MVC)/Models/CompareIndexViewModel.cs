@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PCbuild_ASP.MVC_.Models.ViewModel;
-using PCbuild_ASP.MVC_.Services.Comparison;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.Comparison;
 
-namespace PCbuild_ASP.MVC_.Models
+namespace PCbuilder_ASP.MVC_.Models
 {
     public class CompareIndexViewModel<T>
     {

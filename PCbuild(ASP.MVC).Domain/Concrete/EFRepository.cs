@@ -5,9 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using PCbuild_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
 
-namespace PCbuild_ASP.MVC_.Domain.Concrete
+namespace PCbuilder_ASP.MVC_.Domain.Concrete
 {
     public class EFRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {

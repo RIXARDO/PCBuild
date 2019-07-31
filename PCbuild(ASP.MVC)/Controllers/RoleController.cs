@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Models.Identity;
+using PCbuilder_ASP.MVC_.Models.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 
-namespace PCbuild_ASP.MVC_.Controllers
+namespace PCbuilder_ASP.MVC_.Controllers
 {
     [Authorize(Roles ="Admin")]
     public class RoleController : Controller

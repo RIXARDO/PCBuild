@@ -7,7 +7,7 @@ using Ninject.Modules;
 using Ninject;
 using AutoMapper;
 
-namespace PCbuild_ASP.MVC_.Services.Util
+namespace PCbuilder_ASP.MVC_.Services.Util
 {
     public class AutoMapperNinjectModule: NinjectModule
     {

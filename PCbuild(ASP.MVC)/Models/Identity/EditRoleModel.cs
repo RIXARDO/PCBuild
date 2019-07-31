@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace PCbuild_ASP.MVC_.Models.Identity
+namespace PCbuilder_ASP.MVC_.Models.Identity
 {
     public class EditRoleModel
     {

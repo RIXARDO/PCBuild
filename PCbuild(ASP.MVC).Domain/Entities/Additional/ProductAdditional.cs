@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace PCbuild_ASP.MVC_.Domain.Entities
+namespace PCbuilder_ASP.MVC_.Domain.Entities
 {
     public partial class Product
     {

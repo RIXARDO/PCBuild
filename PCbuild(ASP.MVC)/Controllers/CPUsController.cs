@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Domain.Concrete;
-using PCbuild_ASP.MVC_.Domain.Entities;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Services.Interfaces;
-using PCbuild_ASP.MVC_.Services.Services;
-using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Domain.Concrete;
+using PCbuilder_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Services.Services;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
 using AutoMapper;
-using static PCbuild_ASP.MVC_.Models.ViewModel.CPUViewModel;
-using PCbuild_ASP.MVC_.Services.DTO;
+using static PCbuilder_ASP.MVC_.Models.ViewModel.CPUViewModel;
+using PCbuilder_ASP.MVC_.Services.DTO;
 
-namespace PCbuild_ASP.MVC_.Controllers
+namespace PCbuilder_ASP.MVC_.Controllers
 {
     [Authorize(Roles ="Admin")]
     public class CPUsController : Controller

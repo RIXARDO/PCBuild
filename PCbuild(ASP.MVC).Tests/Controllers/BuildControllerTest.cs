@@ -3,18 +3,18 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Services.Interfaces;
-using PCbuild_ASP.MVC_.Util;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Util;
 using Moq;
-using PCbuild_ASP.MVC_.Controllers;
+using PCbuilder_ASP.MVC_.Controllers;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Services.DTO;
-using PCbuild_ASP.MVC_.Models;
-using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
 using System.Web;
 using System.Security.Principal;
 
-namespace PCbuild_ASP.MVC_.Tests.Controllers
+namespace PCbuilder_ASP.MVC_.Tests.Controllers
 {
     /// <summary>
     /// Summary description for BuildControllerTest

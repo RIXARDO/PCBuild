@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PCbuild_ASP.MVC_.Domain.Entities
+namespace PCbuilder_ASP.MVC_.Domain.Entities
 {
     [Table("GPUs")]
     [MetadataType(typeof(GPUMetadata))]

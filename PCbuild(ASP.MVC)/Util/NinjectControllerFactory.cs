@@ -6,16 +6,16 @@ using System.Web.Mvc;
 using Ninject;
 using Moq;
 using System.Configuration;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Domain.Concrete;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Concrete;
 using System.Web;
 using System.Threading;
-using PCbuild_ASP.MVC_.Services.Interfaces;
-using PCbuild_ASP.MVC_.Services.Services;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Services.Services;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using AutoMapper;
 
-namespace PCbuild_ASP.MVC_.Util
+namespace PCbuilder_ASP.MVC_.Util
 {
     //реализация пользовательской фабрики контроллеров,
     //наследуюсь от фабрики используемой по умолчанию

@@ -5,13 +5,13 @@ using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PCbuild_ASP.MVC_.Controllers;
-using PCbuild_ASP.MVC_.Models.ViewModel;
-using PCbuild_ASP.MVC_.Services.DTO;
-using PCbuild_ASP.MVC_.Services.Interfaces;
-using PCbuild_ASP.MVC_.Util;
+using PCbuilder_ASP.MVC_.Controllers;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Util;
 
-namespace PCbuild_ASP.MVC_.Tests.Controllers
+namespace PCbuilder_ASP.MVC_.Tests.Controllers
 {
     [TestClass]
     public class GPUsControllerTest

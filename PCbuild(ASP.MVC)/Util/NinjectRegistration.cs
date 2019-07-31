@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Ninject.Modules;
-using PCbuild_ASP.MVC_.Domain.Concrete;
-using PCbuild_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Concrete;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
 using System.Threading;
-using PCbuild_ASP.MVC_.Services.Interfaces;
-using PCbuild_ASP.MVC_.Services.Services;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Services.Services;
 using Ninject;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Services.Util;
+using PCbuilder_ASP.MVC_.Services.Util;
 
-namespace PCbuild_ASP.MVC_.Util
+namespace PCbuilder_ASP.MVC_.Util
 {
     public class NinjectRegistration : NinjectModule
     {

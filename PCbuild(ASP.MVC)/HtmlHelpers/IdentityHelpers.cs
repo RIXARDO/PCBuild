@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Models.Identity;
+using PCbuilder_ASP.MVC_.Models.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
-namespace PCbuild_ASP.MVC_.HtmlHelpers
+namespace PCbuilder_ASP.MVC_.HtmlHelpers
 {
     public static class IdentityHelpers
     {

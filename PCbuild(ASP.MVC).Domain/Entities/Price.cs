@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace PCbuild_ASP.MVC_.Domain.Entities
+namespace PCbuilder_ASP.MVC_.Domain.Entities
 {
     public enum Currency { UAH, EUR, USD, RUB };
 

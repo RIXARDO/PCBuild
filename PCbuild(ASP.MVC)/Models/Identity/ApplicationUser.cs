@@ -8,7 +8,7 @@ using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace PCbuild_ASP.MVC_.Models.Identity
+namespace PCbuilder_ASP.MVC_.Models.Identity
 {
     public class ApplicationUser: IdentityUser
     {

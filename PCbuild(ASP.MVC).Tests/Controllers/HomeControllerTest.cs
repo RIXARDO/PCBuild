@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PCbuild_ASP.MVC_;
-using PCbuild_ASP.MVC_.Controllers;
+using PCbuilder_ASP.MVC_;
+using PCbuilder_ASP.MVC_.Controllers;
 
-namespace PCbuild_ASP.MVC_.Tests.Controllers
+namespace PCbuilder_ASP.MVC_.Tests.Controllers
 {
     //[TestClass]
     public class HomeControllerTest

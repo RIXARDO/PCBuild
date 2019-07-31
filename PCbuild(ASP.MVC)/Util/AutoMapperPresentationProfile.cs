@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Models;
-using PCbuild_ASP.MVC_.Models.ViewModel;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.DTO;
 
-namespace PCbuild_ASP.MVC_.Util
+namespace PCbuilder_ASP.MVC_.Util
 {
     public class AutoMapperPresentationProfile: Profile
     {

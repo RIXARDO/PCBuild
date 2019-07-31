@@ -6,10 +6,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PCbuild_ASP.MVC_.Models.Identity;
-using PCbuild_ASP.MVC_.App_Start;
+using PCbuilder_ASP.MVC_.Models.Identity;
+using PCbuilder_ASP.MVC_.App_Start;
 
-namespace PCbuild_ASP.MVC_.Controllers
+namespace PCbuilder_ASP.MVC_.Controllers
 {
     [Authorize]
     public class ManageController : Controller

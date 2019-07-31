@@ -1,4 +1,4 @@
-namespace PCbuild_ASP.MVC_.Migrations
+namespace PCbuilder_ASP.MVC_.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

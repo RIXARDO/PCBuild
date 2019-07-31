@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Domain.Abstract;
-using PCbuild_ASP.MVC_.Domain.Entities;
-using PCbuild_ASP.MVC_.Services.DTO;
-using PCbuild_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
 
-namespace PCbuild_ASP.MVC_.Services.Services
+namespace PCbuilder_ASP.MVC_.Services.Services
 {
     public class PriceService: IPriceService
     {

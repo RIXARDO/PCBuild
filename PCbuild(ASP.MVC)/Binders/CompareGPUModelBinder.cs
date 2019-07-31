@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Services.Comparison;
-using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Services.Comparison;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
 
-namespace PCbuild_ASP.MVC_.Binders
+namespace PCbuilder_ASP.MVC_.Binders
 {
     public class CompareGPUModelBinder: IModelBinder
     {

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
 //Code by Dhananjay Kumar
-namespace PCbuild_ASP.MVC_.HtmlHelpers
+namespace PCbuilder_ASP.MVC_.HtmlHelpers
 {
     public static class EnumRadioButtonHelper
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PCbuild_ASP.MVC_.Domain.Entities
+namespace PCbuilder_ASP.MVC_.Domain.Entities
 {
     [MetadataType(typeof(ProductMetadata))]
     public partial class Product

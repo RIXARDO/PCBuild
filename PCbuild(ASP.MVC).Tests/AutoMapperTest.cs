@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Domain.Entities;
-using PCbuild_ASP.MVC_.Services.DTO;
-using PCbuild_ASP.MVC_.Services.Util;
-using PCbuild_ASP.MVC_.Util;
+using PCbuilder_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Services.Util;
+using PCbuilder_ASP.MVC_.Util;
 using System.Collections.Generic;
-using PCbuild_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models;
 
-namespace PCbuild_ASP.MVC_.Tests
+namespace PCbuilder_ASP.MVC_.Tests
 {
     [TestClass]
     public class AutoMapperTest

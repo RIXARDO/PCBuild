@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC)", "PCbuild(ASP.MVC)\PCbuild(ASP.MVC).csproj", "{296C84D7-1CF0-440D-848A-44A281148BF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuilder(ASP.MVC)", "PCbuild(ASP.MVC)\PCbuilder(ASP.MVC).csproj", "{296C84D7-1CF0-440D-848A-44A281148BF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC).Tests", "PCbuild(ASP.MVC).Tests\PCbuild(ASP.MVC).Tests.csproj", "{A7ECD357-E5C9-46CB-A73B-5C0C78D69D22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuilder(ASP.MVC).Tests", "PCbuild(ASP.MVC).Tests\PCbuilder(ASP.MVC).Tests.csproj", "{A7ECD357-E5C9-46CB-A73B-5C0C78D69D22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC).Domain", "PCbuild(ASP.MVC).Domain\PCbuild(ASP.MVC).Domain.csproj", "{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuilder(ASP.MVC).Domain", "PCbuild(ASP.MVC).Domain\PCbuilder(ASP.MVC).Domain.csproj", "{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuild(ASP.MVC).Services", "PCbuild(ASP.MVC).Services\PCbuild(ASP.MVC).Services.csproj", "{61F12496-B1BA-4A95-805C-3A720E23B7F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCbuilder(ASP.MVC).Services", "PCbuild(ASP.MVC).Services\PCbuilder(ASP.MVC).Services.csproj", "{61F12496-B1BA-4A95-805C-3A720E23B7F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

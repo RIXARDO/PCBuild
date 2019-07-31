@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
-namespace PCbuild_ASP.MVC_.Models.Identity
+namespace PCbuilder_ASP.MVC_.Models.Identity
 {
     public class ApplicationContext: IdentityDbContext<ApplicationUser>
     {

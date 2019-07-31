@@ -9,8 +9,8 @@
     <ProjectGuid>{A7ECD357-E5C9-46CB-A73B-5C0C78D69D22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PCbuild_ASP.MVC_.Tests</RootNamespace>
-    <AssemblyName>PCbuild%28ASP.MVC%29.Tests</AssemblyName>
+    <RootNamespace>PCbuilder_ASP.MVC_.Tests</RootNamespace>
+    <AssemblyName>PCbuilder%28ASP.MVC%29.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -133,17 +133,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PCbuild%28ASP.MVC%29.Domain\PCbuild%28ASP.MVC%29.Domain.csproj">
+    <ProjectReference Include="..\PCbuild%28ASP.MVC%29.Domain\PCbuilder%28ASP.MVC%29.Domain.csproj">
       <Project>{6b7717ba-1dd6-4b1e-964f-e6c1a1282935}</Project>
-      <Name>PCbuild%28ASP.MVC%29.Domain</Name>
+      <Name>PCbuilder%28ASP.MVC%29.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PCbuild%28ASP.MVC%29.Services\PCbuild%28ASP.MVC%29.Services.csproj">
+    <ProjectReference Include="..\PCbuild%28ASP.MVC%29.Services\PCbuilder%28ASP.MVC%29.Services.csproj">
       <Project>{61f12496-b1ba-4a95-805c-3a720e23b7f2}</Project>
-      <Name>PCbuild%28ASP.MVC%29.Services</Name>
+      <Name>PCbuilder%28ASP.MVC%29.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PCbuild%28ASP.MVC%29\PCbuild%28ASP.MVC%29.csproj">
+    <ProjectReference Include="..\PCbuild%28ASP.MVC%29\PCbuilder%28ASP.MVC%29.csproj">
       <Project>{296C84D7-1CF0-440D-848A-44A281148BF6}</Project>
-      <Name>PCbuild%28ASP.MVC%29</Name>
+      <Name>PCbuilder%28ASP.MVC%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

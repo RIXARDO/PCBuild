@@ -7,7 +7,7 @@ using Microsoft.Owin;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace PCbuild_ASP.MVC_.Models.Identity
+namespace PCbuilder_ASP.MVC_.Models.Identity
 {
     public class ApplicationRole: IdentityRole
     {

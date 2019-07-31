@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PCbuild_ASP.MVC_.Domain.Entities;
-using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
 
-namespace PCbuild_ASP.MVC_.Models
+namespace PCbuilder_ASP.MVC_.Models
 {
     public class GameListViewModel
     {

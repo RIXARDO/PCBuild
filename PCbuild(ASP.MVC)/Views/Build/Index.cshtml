@@ -1,5 +1,5 @@
-﻿@using PCbuild_ASP.MVC_.Models
-@model PCbuild_ASP.MVC_.Models.ViewModel.BuildEntityViewModel
+﻿@using PCbuilder_ASP.MVC_.Models
+@model PCbuilder_ASP.MVC_.Models.ViewModel.BuildEntityViewModel
 
 @{
     ViewBag.Title = "Builds";
@@ -21,7 +21,7 @@
             <div class="radio">
                 <label>
                     @Html.RadioButton("CPU", "Intel", true, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
-                                <span>Intel</span>
+                    <span>Intel</span>
                 </label>
             </div>
             <div class="radio">
@@ -46,27 +46,27 @@
                 </label>
             </div>
         </div>
-            <div class="col-md-4">
-                <h5>Screen</h5>
-                <div class="radio">
-                    <label>
-                        @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true, new { @class = "custom-control-input" })
-                                        <span>1080p</span>
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        @Html.RadioButton("ScreenRez", ResolutionEnum.res1440, new { @class = "custom-control-input" })
-                                        <span>1440p</span>
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        @Html.RadioButton("ScreenRez", ResolutionEnum.res2160, new { @class = "custom-control-input" })
-                                        <span>2560p</span>
-                    </label>
-                </div>
+        <div class="col-md-4">
+            <h5>Screen</h5>
+            <div class="radio">
+                <label>
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true, new { @class = "custom-control-input" })
+                    <span>1080p</span>
+                </label>
             </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1440, new { @class = "custom-control-input" })
+                    <span>1440p</span>
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    @Html.RadioButton("ScreenRez", ResolutionEnum.res2160, new { @class = "custom-control-input" })
+                    <span>2560p</span>
+                </label>
+            </div>
+        </div>
     </div>
     <div class="row">
 
@@ -76,7 +76,7 @@
             </select>
         </div>
         @*@Html.DropDownListFor(x => x.CPUs, new SelectList(Model.CPUs.Where(x => x.Manufacture == "Intel").
-        AsEnumerable(), "CPUID", "ProcessorNumber"), new { @OnChange = "onchangeCPUid()" })*@
+            AsEnumerable(), "CPUID", "ProcessorNumber"), new { @OnChange = "onchangeCPUid()" })*@
 
 
         <div class="col-md-4">
@@ -85,7 +85,7 @@
             </select>
         </div>
         @*@Html.DropDownListFor(x => x.GPUs, new SelectList(Model.GPUs.Where(x => x.Manufacture == "Nvidia").
-        AsEnumerable(), "GPUID", "Name"), new { @OnChange = "onchangeGPUid()" })*@
+            AsEnumerable(), "GPUID", "Name"), new { @OnChange = "onchangeGPUid()" })*@
 
     </div>
     <input type="submit" value="Action" class="btn btn-default" style="float:left; margin-right:10px" />

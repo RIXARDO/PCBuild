@@ -2,13 +2,13 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PCbuild_ASP.MVC_.Domain.Concrete;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Concrete;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using System.Data.SqlClient;
 using System.Data.Entity;
 using System.Linq;
 
-namespace PCbuild_ASP.MVC_.Tests.RepositoryTest
+namespace PCbuilder_ASP.MVC_.Tests.RepositoryTest
 {
     /// <summary>
     /// Summary description for GenericRepositoryTest

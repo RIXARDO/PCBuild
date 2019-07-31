@@ -1,12 +1,12 @@
-﻿using PCbuild_ASP.MVC_.Domain.Entities;
+﻿using PCbuilder_ASP.MVC_.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PCbuild_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
 
-namespace PCbuild_ASP.MVC_.Domain.Concrete
+namespace PCbuilder_ASP.MVC_.Domain.Concrete
 {
     public class EFUnitOfWork : IUnitOfWork, IDisposable
     {

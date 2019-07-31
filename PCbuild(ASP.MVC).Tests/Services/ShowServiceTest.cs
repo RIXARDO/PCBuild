@@ -2,16 +2,16 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PCbuild_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
 using Moq;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using AutoMapper;
-using PCbuild_ASP.MVC_.Services.Util;
-using PCbuild_ASP.MVC_.Services.Services;
+using PCbuilder_ASP.MVC_.Services.Util;
+using PCbuilder_ASP.MVC_.Services.Services;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace PCbuild_ASP.MVC_.Tests.Services
+namespace PCbuilder_ASP.MVC_.Tests.Services
 {
     /// <summary>
     /// Summary description for ShowServiceTest

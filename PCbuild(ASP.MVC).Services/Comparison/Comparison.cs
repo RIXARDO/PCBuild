@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace PCbuild_ASP.MVC_.Services.Comparison
+namespace PCbuilder_ASP.MVC_.Services.Comparison
 {
     public partial class Comparison<Ent>
     {

@@ -4,20 +4,20 @@ using System.Linq;
 using System.Web;
 using Owin;
 using Microsoft.Owin;
-using PCbuild_ASP.MVC_.Models;
+using PCbuilder_ASP.MVC_.Models;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Google;
 using Microsoft.AspNet.Identity.Owin;
-using PCbuild_ASP.MVC_.Models.Identity;
+using PCbuilder_ASP.MVC_.Models.Identity;
 using System.Threading.Tasks;
 
 
-[assembly:OwinStartup(typeof(PCbuild_ASP.MVC_.App_Start.Startup))]
+[assembly:OwinStartup(typeof(PCbuilder_ASP.MVC_.App_Start.Startup))]
 
-namespace PCbuild_ASP.MVC_.App_Start
+namespace PCbuilder_ASP.MVC_.App_Start
 {
     public class Startup
     {

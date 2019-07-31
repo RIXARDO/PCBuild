@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PCbuild_ASP.MVC_.Controllers;
-using PCbuild_ASP.MVC_.Domain.Concrete;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Controllers;
+using PCbuilder_ASP.MVC_.Domain.Concrete;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 using Moq;
 using System.Collections.Generic;
 using System.Data.Entity;
-using PCbuild_ASP.MVC_.Domain.Abstract;
+using PCbuilder_ASP.MVC_.Domain.Abstract;
 
-namespace PCbuild_ASP.MVC_.Tests
+namespace PCbuilder_ASP.MVC_.Tests
 {
     [TestClass]
     public class UnitTest1

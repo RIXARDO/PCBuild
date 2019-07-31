@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace PCbuild_ASP.MVC_
+namespace PCbuilder_ASP.MVC_
 {
     public class RouteConfig
     {

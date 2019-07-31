@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PCbuild_ASP.MVC_.Domain.Abstract
+namespace PCbuilder_ASP.MVC_.Domain.Abstract
 {
     public interface IUnitOfWork: IDisposable
     {

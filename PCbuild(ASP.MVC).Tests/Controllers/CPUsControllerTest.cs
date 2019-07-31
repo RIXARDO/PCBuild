@@ -2,20 +2,20 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PCbuild_ASP.MVC_.Controllers;
-using PCbuild_ASP.MVC_.Services.Interfaces;
+using PCbuilder_ASP.MVC_.Controllers;
+using PCbuilder_ASP.MVC_.Services.Interfaces;
 using AutoMapper;
 using Moq;
-using PCbuild_ASP.MVC_.Services.DTO;
+using PCbuilder_ASP.MVC_.Services.DTO;
 using Ninject;
 using Ninject.Modules;
-using PCbuild_ASP.MVC_.Services.Util;
-using PCbuild_ASP.MVC_.Util;
+using PCbuilder_ASP.MVC_.Services.Util;
+using PCbuilder_ASP.MVC_.Util;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Models.ViewModel;
+using PCbuilder_ASP.MVC_.Models.ViewModel;
 using System.Linq;
 
-namespace PCbuild_ASP.MVC_.Tests.Controllers
+namespace PCbuilder_ASP.MVC_.Tests.Controllers
 {
     /// <summary>
     /// Summary description for CPUControllerTest

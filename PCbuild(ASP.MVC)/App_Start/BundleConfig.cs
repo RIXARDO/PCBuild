@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace PCbuild_ASP.MVC_
+namespace PCbuilder_ASP.MVC_
 {
     public class BundleConfig
     {

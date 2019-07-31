@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuilder_ASP.MVC_.Domain.Entities;
 
-namespace PCbuild_ASP.MVC_.Domain.Abstract
+namespace PCbuilder_ASP.MVC_.Domain.Abstract
 {
     public interface IBuildEntityRepository
     {

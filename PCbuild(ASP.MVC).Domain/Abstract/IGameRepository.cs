@@ -1,4 +1,4 @@
-﻿using PCbuild_ASP.MVC_.Domain.Entities;
+﻿using PCbuilder_ASP.MVC_.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PCbuild_ASP.MVC_.Domain.Abstract
+namespace PCbuilder_ASP.MVC_.Domain.Abstract
 {
     public interface IGameRepository
     {

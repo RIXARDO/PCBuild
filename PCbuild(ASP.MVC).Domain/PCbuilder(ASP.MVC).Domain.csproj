@@ -7,8 +7,8 @@
     <ProjectGuid>{6B7717BA-1DD6-4B1E-964F-E6C1A1282935}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PCbuild_ASP.MVC_.Domain</RootNamespace>
-    <AssemblyName>PCbuild%28ASP.MVC%29.Domain</AssemblyName>
+    <RootNamespace>PCbuilder_ASP.MVC_.Domain</RootNamespace>
+    <AssemblyName>PCbuilder%28ASP.MVC%29.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -130,6 +130,10 @@
     <Compile Include="Migrations\201906182008202_CPURefactor.Designer.cs">
       <DependentUpon>201906182008202_CPURefactor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907312118384_Refactoring.cs" />
+    <Compile Include="Migrations\201907312118384_Refactoring.Designer.cs">
+      <DependentUpon>201907312118384_Refactoring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -154,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906182008202_CPURefactor.resx">
       <DependentUpon>201906182008202_CPURefactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907312118384_Refactoring.resx">
+      <DependentUpon>201907312118384_Refactoring.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
