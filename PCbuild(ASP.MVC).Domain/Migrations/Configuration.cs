@@ -5,6 +5,7 @@ namespace PCbuild_ASP.MVC_.Domain.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<PCbuild_ASP.MVC_.Domain.Concrete.EFDbContext>
@@ -42,6 +43,7 @@ namespace PCbuild_ASP.MVC_.Domain.Migrations
             //};
             //gpus.ForEach(x => context.GPUs.Add(x));
             //context.SaveChanges();
+
 
             //var games = new List<Game>
             //{

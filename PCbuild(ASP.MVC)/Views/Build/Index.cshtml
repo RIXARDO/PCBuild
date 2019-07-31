@@ -19,38 +19,52 @@
         <div class="col-md-4">
             <h5>CPU</h5>
             <div class="radio">
-                @Html.RadioButton("CPU", "Intel", true, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
-                <span>Intel</span>
+                <label>
+                    @Html.RadioButton("CPU", "Intel", true, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
+                                <span>Intel</span>
+                </label>
             </div>
             <div class="radio">
-                @Html.RadioButton("CPU", "AMD", false, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
-                <span>AMD</span>
+                <label>
+                    @Html.RadioButton("CPU", "AMD", false, new { @OnChange = "onchangeCPU($(this))", @class = "custom-control-input" })
+                    <span>AMD</span>
+                </label>
             </div>
         </div>
         <div class="col-md-4">
             <h5>GPU</h5>
             <div class="radio">
-                @Html.RadioButton("GPU", "Nvidia", true, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
-                <span>Nvidia</span>
+                <label>
+                    @Html.RadioButton("GPU", "Nvidia", true, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
+                    <span>Nvidia</span>
+                </label>
             </div>
             <div class="radio">
-                @Html.RadioButton("GPU", "AMD", false, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
-                <span>Radeon</span>
+                <label>
+                    @Html.RadioButton("GPU", "AMD", false, new { @OnChange = "onchangeGPU($(this))", @class = "custom-control-input" })
+                    <span>Radeon</span>
+                </label>
             </div>
         </div>
             <div class="col-md-4">
                 <h5>Screen</h5>
                 <div class="radio">
-                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true, new { @class = "custom-control-input" })
-                    <span>1080p</span>
+                    <label>
+                        @Html.RadioButton("ScreenRez", ResolutionEnum.res1080, true, new { @class = "custom-control-input" })
+                                        <span>1080p</span>
+                    </label>
                 </div>
                 <div class="radio">
-                    @Html.RadioButton("ScreenRez", ResolutionEnum.res1440, new { @class = "custom-control-input" })
-                    <span>1440p</span>
+                    <label>
+                        @Html.RadioButton("ScreenRez", ResolutionEnum.res1440, new { @class = "custom-control-input" })
+                                        <span>1440p</span>
+                    </label>
                 </div>
                 <div class="radio">
-                    @Html.RadioButton("ScreenRez", ResolutionEnum.res2160, new { @class = "custom-control-input" })
-                    <span>2560p</span>
+                    <label>
+                        @Html.RadioButton("ScreenRez", ResolutionEnum.res2160, new { @class = "custom-control-input" })
+                                        <span>2560p</span>
+                    </label>
                 </div>
             </div>
     </div>

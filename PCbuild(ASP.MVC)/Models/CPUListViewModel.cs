@@ -9,7 +9,7 @@ namespace PCbuild_ASP.MVC_.Models
 {
     public class CPUListViewModel
     {
-        public IEnumerable<CPU> CPUs;
+        public IEnumerable<CPUViewModel> CPUs;
         public PagingInfo PagingInfo;
     }
 }

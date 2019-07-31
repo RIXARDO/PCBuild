@@ -100,7 +100,6 @@
     <Compile Include="DAL\PCBuildInitializer.cs" />
     <Compile Include="Entities\Additional\ProductAdditional.cs" />
     <Compile Include="Entities\BuildEntity.cs" />
-    <Compile Include="Entities\Comparison.cs" />
     <Compile Include="Entities\CPU.cs" />
     <Compile Include="Entities\EntityMetadata\BuildEntityMetadata.cs" />
     <Compile Include="Entities\EntityMetadata\CPUMetadata.cs" />

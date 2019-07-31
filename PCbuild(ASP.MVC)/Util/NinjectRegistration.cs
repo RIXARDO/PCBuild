@@ -52,8 +52,12 @@ namespace PCbuild_ASP.MVC_.Util
                                                    // WithConstructorArgument("unitOfWork", Kernel.Get<IUnitOfWork>()).
                                                    //WithConstructorArgument("repository", Kernel.Get<IGenericRepository<Game>>());
             Bind<IPriceService>().To<PriceService>();//.
-                //WithConstructorArgument("unitOfWork", Kernel.Get<IUnitOfWork>()).
-                //WithConstructorArgument("repository", Kernel.Get<IGenericRepository<Price>>());
+                                                     //WithConstructorArgument("unitOfWork", Kernel.Get<IUnitOfWork>()).
+                                                     //WithConstructorArgument("repository", Kernel.Get<IGenericRepository<Price>>());
+
+            Bind<IShowService>().To<ShowService>();
+
+            Bind<ICompareService>().To<CompareService>();
 
             //Mapper
             var mapperConfiguration = CreateConfiguration();

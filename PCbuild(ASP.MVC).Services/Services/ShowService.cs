@@ -49,9 +49,9 @@ namespace PCbuild_ASP.MVC_.Services.Services
                 .Get()
                 .OrderBy(x => x.ProcessorNumber)
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToList();
-            var cpusdto = Mapper.Map<IEnumerable<CPU>, IEnumerable<CPUdto>>(cpus);
+                .Take(PageSize);
+            var cpusdto = 
+                Mapper.Map<IEnumerable<CPU>, IEnumerable<CPUdto>>(cpus.ToList());
             CPUListDTO cpuList = new CPUListDTO
             {
                 CPUList = cpusdto,
@@ -72,7 +72,8 @@ namespace PCbuild_ASP.MVC_.Services.Services
                 .OrderBy(x => x.Name)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize);
-            var gamesDTO = Mapper.Map<IEnumerable<Game>, IEnumerable<GameDTO>>(games);
+            var gamesDTO = 
+                Mapper.Map<IEnumerable<Game>, IEnumerable<GameDTO>>(games.ToList());
             GameListDTO gameList = new GameListDTO
             {
                 GameList = gamesDTO,
@@ -94,7 +95,7 @@ namespace PCbuild_ASP.MVC_.Services.Services
                 .OrderBy(x => x.Name)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize);
-            var gpusdto = Mapper.Map<IEnumerable<GPU>, IEnumerable<GPUdto>>(gpus);
+            var gpusdto = Mapper.Map<IEnumerable<GPU>, IEnumerable<GPUdto>>(gpus.ToList());
             GPUListDTO cpuList = new GPUListDTO
             {
                 GPUList = gpusdto,

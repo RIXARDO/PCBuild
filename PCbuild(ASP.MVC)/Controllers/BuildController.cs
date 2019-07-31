@@ -101,7 +101,7 @@ namespace PCbuild_ASP.MVC_.Controllers
         public FileContentResult GetImage(Guid GameGuid)
         {
             FileDTO file = Service.GetImage(GameGuid);
-            if (file != null & file.FileType != null)
+            if (file != null && file.FileType != null)
             {
                 return File(file.File,file.FileType);
             }

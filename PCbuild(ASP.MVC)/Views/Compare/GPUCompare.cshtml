@@ -18,7 +18,7 @@
                     @using (Html.BeginForm("GPURemoveFromCompare", "Compare", FormMethod.Post))
                     {
                         @Html.HiddenFor(x => x.returnUrl)
-                        @Html.Hidden("GPUID", item)
+                        @Html.Hidden("ProductGuid", item)
                         <input type="submit" value="Remove" class="btn btn-danger"/>
                     }
                 </td>

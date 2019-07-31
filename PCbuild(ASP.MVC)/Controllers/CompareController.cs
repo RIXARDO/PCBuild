@@ -44,9 +44,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPUAddToCompare(Comparison<CPUViewModel> comparison, System.Guid cpuId, string returnUrl)
+        public RedirectToRouteResult CPUAddToCompare(Comparison<CPUViewModel> comparison, System.Guid ProductGuid, string returnUrl)
         {
-            CPUdto cpudto = Service.FindCPUByID(cpuId);
+            CPUdto cpudto = Service.FindCPUByID(ProductGuid);
             var cpu = Mapper.Map<CPUdto, CPUViewModel>(cpudto);
             if (cpu != null)
             {
@@ -56,9 +56,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPUViewModel> comparison, System.Guid cpuId, string returnUrl)
+        public RedirectToRouteResult CPURemoveFromCompare(Comparison<CPUViewModel> comparison, System.Guid ProductGuid, string returnUrl)
         {
-            CPUdto cpudto = Service.FindCPUByID(cpuId);
+            CPUdto cpudto = Service.FindCPUByID(ProductGuid);
             CPUViewModel cpu = Mapper.Map<CPUdto,CPUViewModel>(cpudto);
             if (cpu != null)
             {
@@ -84,9 +84,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPUAddToCompare(Comparison<GPUViewModel> comparison, System.Guid gpuId, string returnUrl)
+        public RedirectToRouteResult GPUAddToCompare(Comparison<GPUViewModel> comparison, System.Guid ProductGuid, string returnUrl)
         {
-            GPUdto gpudto = Service.FindGPUByID(gpuId);
+            GPUdto gpudto = Service.FindGPUByID(ProductGuid);
             GPUViewModel gpu = Mapper.Map<GPUdto,GPUViewModel>(gpudto);
             if (gpu != null)
             {
@@ -96,9 +96,9 @@ namespace PCbuild_ASP.MVC_.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPUViewModel> comparison, System.Guid gpuId, string returnUrl)
+        public RedirectToRouteResult GPURemoveFromCompare(Comparison<GPUViewModel> comparison, System.Guid ProductGuid, string returnUrl)
         {
-            GPUdto gpudto = Service.FindGPUByID(gpuId);
+            GPUdto gpudto = Service.FindGPUByID(ProductGuid);
             GPUViewModel gpu = Mapper.Map<GPUdto, GPUViewModel>(gpudto);
             if (gpu != null)
             {

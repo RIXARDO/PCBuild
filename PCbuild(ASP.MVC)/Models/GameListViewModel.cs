@@ -9,7 +9,7 @@ namespace PCbuild_ASP.MVC_.Models
 {
     public class GameListViewModel
     {
-        public IEnumerable<Game> Games { get; set; }
+        public IEnumerable<GameViewModel> Games { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

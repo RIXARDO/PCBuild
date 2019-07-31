@@ -9,7 +9,7 @@ namespace PCbuild_ASP.MVC_.Models
 {
     public class GPUListViewModel
     {
-        public IEnumerable<GPU> GPUs { get; set; }
+        public IEnumerable<GPUViewModel> GPUs { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

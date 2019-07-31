@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using PCbuild_ASP.MVC_.Domain.Entities;
+using PCbuild_ASP.MVC_.Services.Comparison;
+using PCbuild_ASP.MVC_.Models.ViewModel;
 
 namespace PCbuild_ASP.MVC_.Binders
 {
@@ -11,10 +12,13 @@ namespace PCbuild_ASP.MVC_.Binders
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            Comparison<GPU> comparison = (Comparison<GPU>)controllerContext.HttpContext.Session[sessionKey];
+            Comparison<GPUViewModel> comparison = 
+                (Comparison<GPUViewModel>)controllerContext
+                .HttpContext
+                .Session[sessionKey];
             if (comparison == null)
             {
-                comparison = new Comparison<GPU>();
+                comparison = new Comparison<GPUViewModel>();
                 controllerContext.HttpContext.Session[sessionKey] = comparison;
             }
             return comparison;

@@ -115,6 +115,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="RepositoryTest\GenericRepositoryTest.cs" />
     <Compile Include="Services\BuildServiceTest.cs" />
+    <Compile Include="Services\CompareSreviceTest.cs" />
     <Compile Include="Services\CPUServiceTest.cs" />
     <Compile Include="Services\GPUServiceTest.cs" />
     <Compile Include="Services\GameServiceTest.cs" />
