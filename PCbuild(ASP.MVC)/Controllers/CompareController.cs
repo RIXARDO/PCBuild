@@ -14,16 +14,11 @@ namespace PCbuild_ASP.MVC_.Controllers
 {
     public class CompareController : Controller
     {
-        public ICPURepository cpurepo;
-        public IGPURepository gpurepo;
         ICompareService Service;
         IMapper Mapper;
 
-        public CompareController(ICPURepository cPURepository, IGPURepository gPURepository, IGameRepository gameRepository, ICompareService compareService, IMapper mapper)
+        public CompareController(ICompareService compareService, IMapper mapper)
         {
-            cpurepo = cPURepository;
-            gpurepo = gPURepository;
-
             Service = compareService;
             Mapper = mapper;
         }

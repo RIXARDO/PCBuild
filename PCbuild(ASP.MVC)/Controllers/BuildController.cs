@@ -18,29 +18,6 @@ namespace PCbuild_ASP.MVC_.Controllers
 {
     public class BuildController : Controller
     {
-        ICPURepository CPURepository;
-        IGPURepository GPURepository;
-        IGameRepository GameRepository;
-
-        private IBuildEntityRepository BuildRepository;
-
-
-        public BuildController(
-            ICPURepository cPU,
-            IGPURepository gPU,
-            IGameRepository game,
-            IBuildEntityRepository build,
-            IBuildService service,
-            IMapper mapper)
-        {
-            CPURepository = cPU;
-            GPURepository = gPU;
-            GameRepository = game;
-            BuildRepository = build;
-            Service = service;
-            Mapper = mapper;
-        }
-
         IBuildService Service;
         IMapper Mapper;
 
@@ -67,24 +44,6 @@ namespace PCbuild_ASP.MVC_.Controllers
                 BuildResultDTO resultDTO = Service.Action(CPUs, GPUs, ResolutionDTO.res1080);
 
                 BuildResult buildResult = Mapper.Map<BuildResultDTO, BuildResult>(resultDTO);
-
-                //float CPUbench = CPURepository.CPUs.Where(x => x.ProductGuid == CPUs).Select(x => x.AverageBench).First() / 100f;
-                //float GPUbench = GPURepository.GPUs.Where(x => x.ProductGuid == GPUs).Select(x => x.AverageBench).First() / 100f;
-                //float ScreenRezConf = (ScreenRez == "p1080") ? 1 : ((ScreenRez == "p1440") ? 0.75f : 0.5f);
-                //float fp = 120 * CPUbench * GPUbench * ScreenRezConf;
-                //foreach (Game game in GameRepository.Games)
-                //{
-                //    float fps = fp / (game.AverangeRequirements / 100f);
-                //    buildResult.BuildGames.Add(new BuildGame { Game = game, FPS = (int)fps });
-                //}
-
-                ///////////////////////////////////////////////////////////
-                //buildResult.BuildEntity = new BuildEntityViewModel
-                //{
-                //    CPU = CPURepository.CPUs.FirstOrDefault(x => x.ProductGuid == CPUs),
-                //    GPU = GPURepository.GPUs.FirstOrDefault(x => x.ProductGuid == GPUs),
-                //    UserID = User.Identity.GetUserId()
-                //};
 
                 return PartialView(buildResult);
             }
@@ -113,18 +72,15 @@ namespace PCbuild_ASP.MVC_.Controllers
 
         public JsonResult DropDownListCPU(string value)
         {
-            //var cpus = CPURepository.CPUs.Where(x => x.Manufacture == value)
-            //  .Select(x => new { name = x.ProcessorNumber, value = x.ProductGuid });
             var cpusDTO = Service.GetCPUsByManufacture(value);
             var cpus =
-                Mapper.Map<IEnumerable<CPUItemDTO>, IEnumerable<CPUDropDownListItem>>(cpusDTO);
+                Mapper
+                .Map<IEnumerable<CPUItemDTO>, IEnumerable<CPUDropDownListItem>>(cpusDTO);
             return Json(cpus, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DropDownListGPU(string value)
         {
-            //var gpus = GPURepository.GPUs.Where(x => x.Developer == value)
-            //    .Select(x => new { name = x.Name, value = x.ProductGuid });
             var gpusDTO = Service.GetGPUsByDeveloper(value);
             var gpus =
                 Mapper.Map<IEnumerable<GPUItemDTO>, IEnumerable<GPUDropDownListItem>>(gpusDTO);
@@ -150,7 +106,6 @@ namespace PCbuild_ASP.MVC_.Controllers
         {
             var build = Service.GetBuildById(BuildEntityGuid);
             Service.DeleteBuild(BuildEntityGuid);
-            // BuildRepository.Delete(BuildEntityID);
             if (build != null)
             {
                 TempData["message"] = "Build: "+build.BuildEntityGuid+" was deleted";
