@@ -118,14 +118,14 @@ namespace PCbuilder_ASP.MVC_.Services.Services
         {
             try
             {
-                var entry = mapper.Map<IEnumerable<BuildEntity>, IEnumerable<BuildEntityDTO>>(BuildRepository.Get(x => x.UserID == UserID));
+                var entry = mapper.Map<IEnumerable<BuildEntity>, IEnumerable<BuildEntityDTO>>(
+                    BuildRepository.Get(x => x.UserID == UserID).ToList());
                 return entry;
             }
             catch (Exception ex)
             {
                 throw ex;
                 //Add Log
-                return null;
             }
         }
 

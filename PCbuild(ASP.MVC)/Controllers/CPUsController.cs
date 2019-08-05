@@ -35,7 +35,6 @@ namespace PCbuilder_ASP.MVC_.Controllers
         // GET: CPUs
         public ActionResult Index()
         {
-            //Mapper Async
             var getcpu = Service.GetCPUs();
             var cpus = Mapper.Map<IEnumerable<CPUdto>, IEnumerable<CPUViewModel>>(getcpu);
             return View(cpus);

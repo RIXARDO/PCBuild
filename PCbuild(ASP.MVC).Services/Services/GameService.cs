@@ -39,6 +39,7 @@ namespace PCbuilder_ASP.MVC_.Services.Services
         {
             Game game = mapper.Map<GameDTO, Game>(gamedto);
             Games.Update(game);
+            uow.Save();
         }
 
         public GameDTO GetGameByID(Guid guid)
@@ -57,6 +58,7 @@ namespace PCbuilder_ASP.MVC_.Services.Services
         {
             Game game = mapper.Map<GameDTO, Game>(gamedto);
             Games.Create(game);
+            uow.Save();
         }
 
         private bool disposed = false;
